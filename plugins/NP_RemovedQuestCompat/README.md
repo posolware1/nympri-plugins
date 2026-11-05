@@ -24,7 +24,7 @@ No Plugin Manager parameters. Quest ids removed from the navigator when they are
 
 ## Install
 
-Copy `NP_RemovedQuestCompat.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_RemovedQuestCompat.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_RemovedQuestCompat/` folder. The folder exists so the script and its notes can be browsed, and later split out as a git submodule.
+Copy `NP_RemovedQuestCompat.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_RemovedQuestCompat.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_RemovedQuestCompat/` folder.
 
 ## Screenshots
 

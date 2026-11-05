@@ -1,0 +1,47 @@
+# Load order for plugins.js (NOT the README category order).
+# NP_Language is inserted right after MEO_Util_Node; the rest append at the end;
+# NP_OptionsCategories stays last.
+NP_Language
+NP_VideoPortrait
+NP_AutoSave
+NP_QuestMarker
+NP_FastBattle
+NP_TitleProgress
+NP_PowerStrike
+NP_TitleVolume
+NP_PriestessDiary
+NP_Voice
+NP_SaveThumb
+NP_OutfitReact
+NP_PictureAnim
+NP_Campfire
+NP_Titles
+NP_ClothDamage
+NP_Stress
+NP_CampSkills
+NP_YarizoQuest
+NP_ShopCompare
+NP_BattleQoL
+NP_SuperAttack
+NP_BossBalance
+NP_RareMobs
+NP_MorningHints
+NP_QuestHints
+NP_QuestTabs
+NP_AudioBalance
+NP_UIColors
+NP_LogToggle
+NP_ItemNameFix
+NP_BattleHUD
+NP_BattleCmd
+NP_Items
+NP_EliteMobs
+NP_EliteRewards
+NP_EliteSprites
+NP_LevelAllocation
+NP_MenuLayout
+NP_EnemyHUD
+NP_BondHints
+NP_SouthGateQuest
+NP_RemovedQuestCompat
+NP_OptionsCategories

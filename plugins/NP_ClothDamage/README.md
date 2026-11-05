@@ -28,7 +28,7 @@ After `NP_Titles`, before `NP_Stress`. `NP_Titles` reads the level for one title
 
 ## Install
 
-Copy `NP_ClothDamage.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_ClothDamage.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_ClothDamage/` folder. The folder exists so the script and its notes can be browsed, and later split out as a git submodule.
+Copy `NP_ClothDamage.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_ClothDamage.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_ClothDamage/` folder.
 
 ## Assets
 

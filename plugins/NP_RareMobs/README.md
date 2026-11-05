@@ -44,7 +44,7 @@ No Plugin Manager parameters. The Options toggle is the on/off switch. Off means
 
 ## Install
 
-Copy `NP_RareMobs.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_RareMobs.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_RareMobs/` folder. The folder exists so the script and its notes can be browsed, and later split out as a git submodule.
+Copy `NP_RareMobs.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_RareMobs.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_RareMobs/` folder.
 
 ## Screenshots
 

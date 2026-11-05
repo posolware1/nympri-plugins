@@ -1,0 +1,471 @@
+{
+  "load_order": [
+    "NP_Language",
+    "NP_VideoPortrait",
+    "NP_AutoSave",
+    "NP_QuestMarker",
+    "NP_FastBattle",
+    "NP_TitleProgress",
+    "NP_PowerStrike",
+    "NP_TitleVolume",
+    "NP_PriestessDiary",
+    "NP_Voice",
+    "NP_SaveThumb",
+    "NP_OutfitReact",
+    "NP_PictureAnim",
+    "NP_Campfire",
+    "NP_Titles",
+    "NP_ClothDamage",
+    "NP_Stress",
+    "NP_CampSkills",
+    "NP_YarizoQuest",
+    "NP_ShopCompare",
+    "NP_BattleQoL",
+    "NP_SuperAttack",
+    "NP_BossBalance",
+    "NP_RareMobs",
+    "NP_MorningHints",
+    "NP_QuestHints",
+    "NP_QuestTabs",
+    "NP_AudioBalance",
+    "NP_UIColors",
+    "NP_LogToggle",
+    "NP_ItemNameFix",
+    "NP_BattleHUD",
+    "NP_BattleCmd",
+    "NP_Items",
+    "NP_EliteMobs",
+    "NP_EliteRewards",
+    "NP_EliteSprites",
+    "NP_LevelAllocation",
+    "NP_MenuLayout",
+    "NP_EnemyHUD",
+    "NP_BondHints",
+    "NP_SouthGateQuest",
+    "NP_RemovedQuestCompat",
+    "NP_OptionsCategories"
+  ],
+  "entries": {
+    "NP_Language": {
+      "description": "v1.0 Выбор языка игры: Русский / English (переключатель в Настройках и на титуле).",
+      "parameters": {},
+      "status": true
+    },
+    "NP_VideoPortrait": {
+      "description": "v1.0.0 Looping video in place of a standing portrait (above pictures, below message window).",
+      "parameters": {
+        "Default X": "960",
+        "Default Y": "960",
+        "Default Scale": "143",
+        "Feather": "14",
+        "Fade Frames": "20",
+        "Volume Source": "bgm"
+      },
+      "status": true
+    },
+    "NP_AutoSave": {
+      "description": "v1.1 Два чередующихся автосохранения: переходы, сон и перед боссами.",
+      "parameters": {
+        "Enabled": "true",
+        "Slot Id": "21",
+        "Throttle Seconds": "60",
+        "Sleep Common Events": "325",
+        "Idle Frames": "20",
+        "Slot Label": "Автосохранение",
+        "Toast Text": "Автосохранение…",
+        "Option Label": "Автосохранение"
+      },
+      "status": true
+    },
+    "NP_QuestMarker": {
+      "description": "v1.1 Мигающий «!» над доступной целью задания; скрывается вместе с NPC.",
+      "parameters": {
+        "Enabled": "true",
+        "Option Label": "Метки заданий",
+        "Color": "#ffe040",
+        "Font Size": "34"
+      },
+      "status": true
+    },
+    "NP_FastBattle": {
+      "description": "v1.0 Быстрый бой (опция): короче паузы, без кубиков, лог боя листается сам.",
+      "parameters": {
+        "Enabled": "false",
+        "Option Label": "Быстрый бой",
+        "Battle Switch": "14",
+        "Wait Rate": "0.25",
+        "Auto Advance Frames": "14",
+        "Hide Dice": "true",
+        "Battle Common Events": "13,14,20,31,32,33,34,35,36,37,38,335,343,345,346,349,350,351,364,365,366,367,368,380,389,392",
+        "Battle Map Event Pages": "53:9:2,53:9:4"
+      },
+      "status": true
+    },
+    "NP_TitleProgress": {
+      "description": "v1.0 Заставка титульного экрана меняется по прогрессу линии Яризо (+ своя музыка).",
+      "parameters": {
+        "Enabled": "true",
+        "Option Label": "Заставка по прогрессу",
+        "Backgrounds": "np_title_s0,np_title_s1,np_title_s2,np_title_s3",
+        "Logo": "np_title_logo",
+        "Bgm": "PerituneMaterial_Pray_Organ4_loop,PerituneMaterial_Pray_Organ4_loop,PerituneMaterial_Midnight_Masquerade_loop,harmonic-evil4",
+        "Bgm Volume": "90,90,90,100",
+        "Ken Burns": "true"
+      },
+      "status": true
+    },
+    "NP_PowerStrike": {
+      "description": "v1.0 «Усиленный удар»: боевая команда с QTE (успей нажать на круги) и множителем урона.",
+      "parameters": {
+        "Result Variable": "3530",
+        "Multiplier Variable": "3531",
+        "Command Icon": "131",
+        "Perfect Animation": "12",
+        "Fatigue Rate": "0.5",
+        "Mult Perfect": "1.7",
+        "Mult Good": "1.25",
+        "Mult Normal": "1.0",
+        "Mult Weak": "0.6",
+        "Fap Auto Success": "false",
+        "Command Labels": "true"
+      },
+      "status": true
+    },
+    "NP_TitleVolume": {
+      "description": "v1.0 Кнопка звука и ползунок громкости музыки на титульном экране.",
+      "parameters": {
+        "Corner": "topright",
+        "Hotkey": "77"
+      },
+      "status": true
+    },
+    "NP_PriestessDiary": {
+      "description": "v1.0 Подробный блок жрицы в окне состояния + предмет «Дневник жрицы» (книга с записями).",
+      "parameters": {
+        "Item Id": "1490",
+        "Icon Index": "230",
+        "Toast": "true"
+      },
+      "status": true
+    },
+    "NP_Voice": {
+      "description": "v1.0 Озвучка добавок: короткие вздохи/стоны жрицы из звуков, которые уже есть в игре.",
+      "parameters": {
+        "Enabled": "true",
+        "Option Label": "Озвучка добавок",
+        "Fast Battle Max": "0.7"
+      },
+      "status": true
+    },
+    "NP_SaveThumb": {
+      "description": "v1.0 Сохранение везде (опция) + слоты сохранения со снимком карты, главой, заданием и стадией жрицы.",
+      "parameters": {
+        "Save Anywhere": "true",
+        "Option Label": "Сохранение везде",
+        "Thumb Width": "160",
+        "Thumb Height": "120",
+        "Jpeg Quality": "0.6",
+        "Stage Labels": "Верная жрица,Смятение,Двойная жизнь,Падение"
+      },
+      "status": true
+    },
+    "NP_OutfitReact": {
+      "description": "v1.0 Яризо реагирует на купальник/откровенный наряд жрицы (слайд-реплика + её смущённый ответ).",
+      "parameters": {
+        "Enabled": "true",
+        "Option Label": "Реплики про одежду",
+        "Transfer Chance": "0.3",
+        "Cooldown Seconds": "120",
+        "Cooldown Steps": "150",
+        "Equip Cooldown Seconds": "20",
+        "Voice Volume": "100"
+      },
+      "status": true
+    },
+    "NP_PictureAnim": {
+      "description": "v1.0 Живая анимация картинок (сетка PIXI): покачивание бёдер, дыхание, смех.",
+      "parameters": {},
+      "status": true
+    },
+    "NP_Campfire": {
+      "description": "v1.0 Разговоры на привале: короткие диалоги героя, жрицы и Яризо при ночёвке (лагерь/гостиница).",
+      "parameters": {
+        "Enabled": "true",
+        "Chance": "40",
+        "Cooldown": "2",
+        "OptionLabel": "Разговоры на привале"
+      },
+      "status": true
+    },
+    "NP_Titles": {
+      "description": "v1.0 Титулы жрицы: открываются по ходу игры, один активный даёт небольшой бонус (меню «Титулы»).",
+      "parameters": {
+        "Popup": "true",
+        "Option Label": "Уведомления о титулах",
+        "Menu Label": "Титулы"
+      },
+      "status": true
+    },
+    "NP_ClothDamage": {
+      "description": "v1.0 Рваная одежда: облачение жрицы рвётся в бою, чинится на отдыхе (опция).",
+      "parameters": {
+        "Enabled": "true",
+        "OptionLabel": "Рваная одежда",
+        "Thresholds": "4,10,18",
+        "HitPoints": "1",
+        "CritPoints": "2",
+        "SexPoints": "3",
+        "BigHitPoints": "1",
+        "LevelFiles": "t1,t2,t3",
+        "BattleLog": "true"
+      },
+      "status": true
+    },
+    "NP_Stress": {
+      "description": "v1.0 Напряжение (стресс) и черты отряда в духе Darkest Dungeon: срывы/подъёмы, черты, храмовая служба (опция).",
+      "parameters": {},
+      "status": true
+    },
+    "NP_CampSkills": {
+      "description": "v1.1 Умения на привале: очки отдыха, баффы на 3 боя; восстановление меню после просмотра патчей (опция).",
+      "parameters": {},
+      "status": true
+    },
+    "NP_YarizoQuest": {
+      "description": "v1.0 Задание «Наёмник из таверны»: где встретить и нанять Яризо (журнал + метки).",
+      "parameters": {},
+      "status": true
+    },
+    "NP_ShopCompare": {
+      "description": "[RU mod] Shop: stat deltas vs current gear",
+      "parameters": {
+        "Enabled": "true"
+      },
+      "status": true
+    },
+    "NP_BattleQoL": {
+      "description": "[RU mod] Battle speed x2 (Shift) and auto battle",
+      "parameters": {
+        "Speed Key": "16",
+        "Auto Icon": "38",
+        "Battle Switch": "14"
+      },
+      "status": true
+    },
+    "NP_SuperAttack": {
+      "description": "[RU mod] Super attacks for the Priestess and companions: charge bar + FP cost + unique QTE.",
+      "parameters": {
+        "Icon": "143"
+      },
+      "status": true
+    },
+    "NP_BossBalance": {
+      "description": "[RU mod] Boss balance v1.2: Fap relief in all chapters, Normal chapter 1, party-size support, phases and mechanics (after NP_SuperAttack)",
+      "parameters": {},
+      "status": true
+    },
+    "NP_RareMobs": {
+      "description": "[RU mod] Rare elite monsters: recolour+glow, mechanics, rare loot, rare bestiary (after NP_BossBalance)",
+      "parameters": {},
+      "status": true
+    },
+    "NP_MorningHints": {
+      "description": "[RU mod] Morning hints after a night absence",
+      "parameters": {
+        "Chance": "60",
+        "Cooldown": "1",
+        "Delay": "45"
+      },
+      "status": true
+    },
+    "NP_QuestHints": {
+      "description": "[RU mod] Quest journal: where to go + tab counts",
+      "parameters": {},
+      "status": true
+    },
+    "NP_QuestTabs": {
+      "description": "[RU mod] Quest journal tabs: Story / Side / Completed",
+      "parameters": {},
+      "status": true
+    },
+    "NP_AudioBalance": {
+      "description": "[RU mod] Loudness balance (EBU R128) + ambience for silent maps, scene and mod-mechanic sounds",
+      "parameters": {},
+      "status": true
+    },
+    "NP_UIColors": {
+      "description": "[RU mod] Unified colour scheme: quests, inventory, shop, logs. Option «Цветное оформление»",
+      "parameters": {},
+      "status": true
+    },
+    "NP_LogToggle": {
+      "description": "[RU mod] Map log: auto-hide in dialogue + collapse tab (L/D)",
+      "parameters": {
+        "Hotkey": "76",
+        "Take Over D": "true",
+        "Restore Delay": "24"
+      },
+      "status": true
+    },
+    "NP_ItemNameFix": {
+      "description": "[RU mod] Saved weapon instance names/descriptions rebuilt in the current language",
+      "parameters": {},
+      "status": true
+    },
+    "NP_BattleHUD": {
+      "description": "[RU mod] Compact battle party cards (face, HP/MP/Fatigue, super, stress); option «Компактная панель боя» (after NP_Stress/NP_SuperAttack)",
+      "parameters": {},
+      "status": true
+    },
+    "NP_BattleCmd": {
+      "description": "[RU mod] Battle command menu: 2 columns icon+label, hint line, gold super; option «Новое меню команд» (after NP_BattleHUD)",
+      "parameters": {},
+      "status": true
+    },
+    "NP_Items": {
+      "description": "[RU mod] New items, affixes, quest rewards, shop stock, Holy Water (after NP_SuperAttack/NP_Stress/NP_ClothDamage/NP_CampSkills)",
+      "parameters": {},
+      "status": true
+    },
+    "NP_EliteMobs": {
+      "description": "[RU mod] Six new rare kinds; daily shuffled priority, 25% rolls; after NP_Items",
+      "parameters": {},
+      "status": true
+    },
+    "NP_EliteRewards": {
+      "description": "[RU mod] Six permanent rare trophies; after NP_EliteMobs",
+      "parameters": {},
+      "status": true
+    },
+    "NP_EliteSprites": {
+      "description": "v0.1.0 Six custom elite sprites, original palette and glow",
+      "parameters": {},
+      "status": true
+    },
+    "NP_LevelAllocation": {
+      "description": "[RU mod] Распределение всех очков на одном экране, черновик и пояснения характеристик.",
+      "parameters": {},
+      "status": true
+    },
+    "NP_MenuLayout": {
+      "description": "[RU mod] Компактная пауза: карточки отряда, эффекты, локация и цель; все команды сохранены.",
+      "parameters": {},
+      "status": true
+    },
+    "NP_EnemyHUD": {
+      "description": "[RU mod] Карточка врага в текущем стиле боя: HP, эффекты, подробности (F6).",
+      "parameters": {},
+      "status": true
+    },
+    "NP_BondHints": {
+      "description": "[RU mod] Одноразовые контекстные подсказки отношений в логе (RU/EN).",
+      "parameters": {},
+      "status": true
+    },
+    "NP_SouthGateQuest": {
+      "description": "[RU mod] Документы южной заставе: задание ранга 2+, 200G на месте.",
+      "parameters": {},
+      "status": true
+    },
+    "NP_RemovedQuestCompat": {
+      "description": "Совместимость старых сейвов после отмены трёх квестов; без игрового контента.",
+      "parameters": {},
+      "status": true
+    },
+    "NP_OptionsCategories": {
+      "description": "[RU mod] Options menu split into categories (load LAST)",
+      "parameters": {
+        "showCounts": "true"
+      },
+      "status": true
+    }
+  },
+  "categories": [
+    {
+      "id": "Language",
+      "title_en": "Language",
+      "title_ru": "Язык",
+      "plugins": [
+        "NP_Language",
+        "NP_OptionsCategories"
+      ]
+    },
+    {
+      "id": "UI",
+      "title_en": "UI",
+      "title_ru": "Интерфейс",
+      "plugins": [
+        "NP_TitleVolume",
+        "NP_TitleProgress",
+        "NP_MenuLayout",
+        "NP_LogToggle",
+        "NP_UIColors",
+        "NP_SaveThumb",
+        "NP_ShopCompare",
+        "NP_LevelAllocation",
+        "NP_BattleHUD",
+        "NP_BattleCmd",
+        "NP_EnemyHUD",
+        "NP_PictureAnim",
+        "NP_VideoPortrait"
+      ]
+    },
+    {
+      "id": "Battle",
+      "title_en": "Battle",
+      "title_ru": "Бой",
+      "plugins": [
+        "NP_FastBattle",
+        "NP_BattleQoL",
+        "NP_PowerStrike",
+        "NP_SuperAttack",
+        "NP_BossBalance",
+        "NP_RareMobs",
+        "NP_EliteMobs",
+        "NP_EliteRewards",
+        "NP_EliteSprites",
+        "NP_ClothDamage",
+        "NP_Stress",
+        "NP_Voice"
+      ]
+    },
+    {
+      "id": "Quests",
+      "title_en": "Quests",
+      "title_ru": "Задания",
+      "plugins": [
+        "NP_QuestMarker",
+        "NP_QuestHints",
+        "NP_QuestTabs",
+        "NP_YarizoQuest",
+        "NP_SouthGateQuest",
+        "NP_MorningHints",
+        "NP_BondHints",
+        "NP_RemovedQuestCompat"
+      ]
+    },
+    {
+      "id": "Content",
+      "title_en": "Content",
+      "title_ru": "Контент",
+      "plugins": [
+        "NP_PriestessDiary",
+        "NP_Titles",
+        "NP_Campfire",
+        "NP_CampSkills",
+        "NP_OutfitReact",
+        "NP_Items",
+        "NP_ItemNameFix",
+        "NP_AudioBalance"
+      ]
+    },
+    {
+      "id": "Misc",
+      "title_en": "Misc",
+      "title_ru": "Прочее",
+      "plugins": [
+        "NP_AutoSave"
+      ]
+    }
+  ]
+}

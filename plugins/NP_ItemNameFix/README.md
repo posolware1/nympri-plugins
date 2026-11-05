@@ -24,7 +24,7 @@ No Plugin Manager parameters. Call `NP_ItemNameFix.run()` if you need the counte
 
 ## Install
 
-Copy `NP_ItemNameFix.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_ItemNameFix.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_ItemNameFix/` folder. The folder exists so the script and its notes can be browsed, and later split out as a git submodule.
+Copy `NP_ItemNameFix.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_ItemNameFix.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_ItemNameFix/` folder.
 
 ## Screenshots
 

@@ -28,7 +28,7 @@ After `NP_PictureAnim`, before `NP_Titles`. It injects into common events 474 (c
 
 ## Install
 
-Copy `NP_Campfire.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_Campfire.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_Campfire/` folder. The folder exists so the script and its notes can be browsed, and later split out as a git submodule.
+Copy `NP_Campfire.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_Campfire.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_Campfire/` folder.
 
 ## Screenshots
 

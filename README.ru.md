@@ -2,90 +2,99 @@
 
 ![RPG Maker MV](https://img.shields.io/badge/RPG_Maker-MV-blue)
 
-Личная коллекция плагинов русского мода взрослой игры на RPG Maker MV (Nymphomania Priestess). Здесь только техническое описание: что игрок видит на экране, какие пункты появляются в настройках и в каком порядке скрипты стоят в менеджере плагинов.
+Личный набор плагинов русского мода **Nymphomania Priestess** (RPG Maker MV, 18+). Не связан с издателем оригинала.
 
-**Личные плагины мода NymPri RU; не связаны с издателем оригинальной игры.**
+Только перевод + переключатель языка: [nympri-ru](https://github.com/posolware1/nympri-ru)
 
- 
-![Титульный экран: кнопка языка и ползунок музыки](docs/screenshots/title.png)
+![Титульный экран](docs/screenshots/title.png)
 
-Титульный экран мода. Кнопка **RU | EN** — это `NP_Language`. Динамик и ползунок 0–100 — `NP_TitleVolume`.
+## Требования
 
-## Раскладка
+- Игра **Alpha 0.80j** с рабочей папкой `www` (английский оригинал или RU-патч).
+- Скрипты цепляются к MEO / KNS / YEP Item Core / DreamX — остальной мод не убирайте.
 
-У каждого плагина своя папка:
+## Установка (Windows)
 
-```
-plugins/NP_<Name>/
-  NP_<Name>.js
-  README.md
-  README.ru.md
-```
+1. Скачайте ZIP репозитория (**Code → Download ZIP**) и распакуйте.
+2. Запустите `install.bat` **или**:
+   ```bat
+   install.bat "C:\путь\к\игре\www"
+   ```
+   (Нужен Python 3. Скрипт копирует `.js`, при наличии `assets/`, и правит `plugins.js`.)
+3. Запустите игру.
 
-Сейчас это обычные каталоги. В `.gitmodules.example` лежат 44 закомментированные заготовки submodule на будущее. Файл не называется `.gitmodules`, и все записи закомментированы, поэтому Git ничего дополнительно не клонирует.
+Без Python: скопируйте каждый `plugins/NP_*/NP_*.js` в `www/js/plugins/`, содержимое `plugins/*/assets/` — в `www/` (пути `img/`, `movies/`…), затем на машине с Python: `python install.py "www"`. Порядок в `plugins.js` — `install/plugins_order.txt` (`NP_Language` сразу после `MEO_Util_Node`, остальные NP_* в конце, `NP_OptionsCategories` последним).
 
-`_plugins_order.js` из проекта мода — это сгенерированный список `plugins.js`. В этот репозиторий он не входит. Таблица ниже повторяет его порядок. `NP_PartyMenu` и `NP_Tips` в коллекцию не входят.
+## Плагины по категориям
 
-## Установка
+Категории — только для навигации. **Порядок загрузки отдельный** — `install/plugins_order.txt`.
 
-1. Скопируйте каждый `plugins/NP_<Name>/NP_<Name>.js` в `www/js/plugins/` игры. Имя файла не меняйте. Движок не загружает скрипты из этих подпапок.
-2. Включите плагины в менеджере в порядке таблицы. `NP_Language` стоит рано: сразу после `MEO_Util_Node`, до плагинов, которые читают CSV при запуске. Остальные 43 скрипта — один блок в конце списка. `NP_OptionsCategories` — самый последний.
-3. Остальной мод (MEO, KNS, YEP Item Core, DreamX и данные игры) должен остаться. Эти скрипты цепляются к тем системам и сами по себе игру не запускают.
-4. У девяти плагинов картинки и ролики лежат в `plugins/<Name>/assets/`. Скопируйте содержимое каждой папки `assets/` в `www/` игры и сохраните относительные пути (`assets/img/...` становится `www/img/...`, `assets/movies/...` — `www/movies/...`). Указатель: [INVENTORY.md](INVENTORY.md). Английский текст, штатная музыка и звук привала по-прежнему берутся из полного мода (`www/lang/en/` и папка `audio/` игры).
+### Язык
 
-Файлы в кодировке UTF-8 без BOM. Скрипты `.js` не переформатированы: это побайтовая копия исходников мода.
+- [NP_Language](plugins/NP_Language/) — Кнопка на титуле и пункт в настройках: RU ↔ EN, затем перезапуск.
+- [NP_OptionsCategories](plugins/NP_OptionsCategories/) — Настройки по разделам: Звук, Бой, Механики, Интерфейс, Язык, Прочее.
 
-## Плагины
+### Интерфейс
 
-| # | Плагин | Что получает игрок |
-|---:|---|---|
-| 1 | [NP_Language](plugins/NP_Language/README.ru.md) | Кнопка на титуле и пункт в настройках переключают игру между русским и английским и перезапускают её. |
-| 2 | [NP_VideoPortrait](plugins/NP_VideoPortrait/README.ru.md) | Зацикленное видео стоит на месте портрета: поверх картинок и под окном сообщений. |
-| 3 | [NP_AutoSave](plugins/NP_AutoSave/README.ru.md) | Автосохранение при переходах, после сна и перед боссами; две первые строки списка сохранений. |
-| 4 | [NP_QuestMarker](plugins/NP_QuestMarker/README.ru.md) | Мигающий «!» стоит на текущей цели задания или на выходе, который к ней ведёт. |
-| 5 | [NP_FastBattle](plugins/NP_FastBattle/README.ru.md) | Опция «Быстрый бой»: короче паузы боя, без картинок кубиков, журнал боя листается сам. |
-| 6 | [NP_TitleProgress](plugins/NP_TitleProgress/README.ru.md) | Фон титула, медленная панорама и музыка сдвигаются по самому дальнему этапу связи с Яризо на этой установке. |
-| 7 | [NP_PowerStrike](plugins/NP_PowerStrike/README.ru.md) | Боевая команда сразу после атаки: три мини-игры на время и множитель урона. |
-| 8 | [NP_TitleVolume](plugins/NP_TitleVolume/README.ru.md) | Значок динамика и ползунок музыки 0–100 на титуле, та же настройка, что громкость BGM. |
-| 9 | [NP_PriestessDiary](plugins/NP_PriestessDiary/README.ru.md) | Страница «♥» со шкалами жрицы и ключевой предмет, который открывается книгой открытых записей. |
-| 10 | [NP_Voice](plugins/NP_Voice/README.ru.md) | Опция проигрывает короткий вздох, вдох или стон, нарезанный из звуков, которые уже есть в игре. |
-| 11 | [NP_SaveThumb](plugins/NP_SaveThumb/README.ru.md) | Слоты показывают снимок карты, главу, задание и стадию жрицы. Опция разрешает сохранение на картах, где оно обычно запрещено. |
-| 12 | [NP_OutfitReact](plugins/NP_OutfitReact/README.ru.md) | В купальнике или откровенном наряде Яризо иногда говорит, а жрица отвечает слайдом. |
-| 13 | [NP_PictureAnim](plugins/NP_PictureAnim/README.ru.md) | Показанная картинка может покачиваться, дышать или смеяться на сетке PIXI. Область лица не искажается. |
-| 14 | [NP_Campfire](plugins/NP_Campfire/README.ru.md) | В некоторые ночи перед сном играет короткий разговор героя, жрицы и Яризо. |
-| 15 | [NP_Titles](plugins/NP_Titles/README.ru.md) | Команда меню «Титулы»: титулы открываются по игре, надевается один, жрица получает небольшой бонус. |
-| 16 | [NP_ClothDamage](plugins/NP_ClothDamage/README.ru.md) | Удары по жрице в базовом облачении меняют стоячую картинку на трёх уровнях разрыва. Отдых или переодевание чинят его. |
-| 17 | [NP_Stress](plugins/NP_Stress/README.ru.md) | У каждого в отряде напряжение 0–100, в бою срыв или подъём, постоянные черты и храмовая служба, которая закрепляет или снимает черты. |
-| 18 | [NP_CampSkills](plugins/NP_CampSkills/README.ru.md) | Перед ночным разговором меню тратит 2 очка в лагере или 4 в гостинице на умения отдыха и баффы на три боя. |
-| 19 | [NP_YarizoQuest](plugins/NP_YarizoQuest/README.ru.md) | Задание «Наёмник из таверны» следит, где Яризо, и ставит метку. В журнале только то, что игрок уже знает. |
-| 20 | [NP_ShopCompare](plugins/NP_ShopCompare/README.ru.md) | На экране покупки у каждого, кто может надеть вещь, видно «сейчас → станет», зелёным или красным. |
-| 21 | [NP_BattleQoL](plugins/NP_BattleQoL/README.ru.md) | Shift включает скорость боя ×2. «Автобой» заставляет всех брать обычную атаку. В углу подписи ×2 и АВТО. |
-| 22 | [NP_SuperAttack](plugins/NP_SuperAttack/README.ru.md) | У жрицы, Яризо, Зельеварки и принцессы-вампира есть супер, когда шкала заряда полна. |
-| 23 | [NP_BossBalance](plugins/NP_BossBalance/README.ru.md) | Бои с боссами получают предупреждения фаз, предел оглушения и масштаб от сложности. Два пункта настроек выключают масштаб и защиту от суперов. |
-| 24 | [NP_RareMobs](plugins/NP_RareMobs/README.ru.md) | Появление в подземелье может стать редким врагом со звездой и своей механикой. В меню открывается бестиарий: силуэты, приметы и добыча. |
-| 25 | [NP_MorningHints](plugins/NP_MorningHints/README.ru.md) | После ночной отлучки жрицы герой на следующей карте замечает мелочь. Она уходит от ответа. Он принимает это. |
-| 26 | [NP_QuestHints](plugins/NP_QuestHints/README.ru.md) | В подробностях задания появляется строка «Куда идти: …» для тех этапов, которые скрипт действительно знает. В заголовках вкладок — счётчики. |
-| 27 | [NP_QuestTabs](plugins/NP_QuestTabs/README.ru.md) | Две вкладки журнала становятся «Сюжет», «Побочные» и «Выполненные», со счётчиками и строкой, если вкладка пуста. |
-| 28 | [NP_AudioBalance](plugins/NP_AudioBalance/README.ru.md) | Одна опция ограничивает громкость BGM, BGS, SE и ME. Тихие карты и часть событий мода получают звук даже при выключенной опции. |
-| 29 | [NP_UIColors](plugins/NP_UIColors/README.ru.md) | Опция «Цветное оформление» перекрашивает задания, имена вещей, лавку и журналы. Диалоги сохраняют авторские цвета. |
-| 30 | [NP_LogToggle](plugins/NP_LogToggle/README.ru.md) | Журнал карты слева снизу гаснет на время сообщений. Угловой ярлык, L или D сворачивает его до счётчика. |
-| 31 | [NP_ItemNameFix](plugins/NP_ItemNameFix/README.ru.md) | При загрузке независимые копии оружия вроде «Short Sword» получают имя из текущей базы, вместе с приставкой и суффиксом. |
-| 32 | [NP_BattleHUD](plugins/NP_BattleHUD/README.ru.md) | До четырёх карточек отряда: лицо, HP, MP, усталость, заряд супера, напряжение и значки эффектов. Одна опция возвращает исходные окна. |
-| 33 | [NP_BattleCmd](plugins/NP_BattleCmd/README.ru.md) | Выбор боевых команд становится двумя колонками «иконка + подпись», под курсором строка подсказки. Готовый супер подсвечен золотом. |
-| 34 | [NP_Items](plugins/NP_Items/README.ru.md) | Оружие спутников, аксессуары, инструменты, проклятая экипировка, аффиксы DreamX и святая вода, встроенные в бой и лавки. |
-| 35 | [NP_EliteMobs](plugins/NP_EliteMobs/README.ru.md) | Шесть новых встреч со звездой попадают в бестиарий. Каждый редкий вид, старый и новый, бросается с шансом 25%, один редкий на вход в карту. |
-| 36 | [NP_EliteRewards](plugins/NP_EliteRewards/README.ru.md) | Каждый из шести новых редких может один раз дать постоянный трофей: компас, линзу, двойное жало, споровый футляр, камертон или каплю резерва. |
-| 37 | [NP_EliteSprites](plugins/NP_EliteSprites/README.ru.md) | Шесть новых редких используют свои листы персонажей, с той же аурой и звездой, что у старых редких. |
-| 38 | [NP_LevelAllocation](plugins/NP_LevelAllocation/README.ru.md) | После уровня герой и Кохаку тратят все новые очки на одном экране: черновик и фраза о каждой характеристике. |
-| 39 | [NP_MenuLayout](plugins/NP_MenuLayout/README.ru.md) | Экран паузы становится карточками отряда, панелью задания и исходными командами; лишнее собрано в «Ещё». |
-| 40 | [NP_EnemyHUD](plugins/NP_EnemyHUD/README.ru.md) | Сторона врага в бою становится карточкой: имя, HP, значки эффектов и постраничные подробности по F6. |
-| 41 | [NP_BondHints](plugins/NP_BondHints/README.ru.md) | Журнал карты говорит, какой порог связи пройден и где ночевать дальше. Каждый порог упоминается один раз. |
-| 42 | [NP_SouthGateQuest](plugins/NP_SouthGateQuest/README.ru.md) | С ранга гильдии 2 задание на доставку платит 200 G на южной заставе. Без опыта и без славы. |
-| 43 | [NP_RemovedQuestCompat](plugins/NP_RemovedQuestCompat/README.ru.md) | Старые сейвы теряют оставшиеся события и предметы трёх заданий, которые мод убрал. Игроку ничего нового не добавляется. |
-| 44 | [NP_OptionsCategories](plugins/NP_OptionsCategories/README.ru.md) | Список настроек становится разделами «Звук», «Бой», «Механики», «Интерфейс», «Язык и текст» и «Прочее». Пустые разделы скрыты. |
+- [NP_TitleVolume](plugins/NP_TitleVolume/) — Динамик и ползунок музыки 0–100 на титуле.
+- [NP_TitleProgress](plugins/NP_TitleProgress/) — Фон и музыка титула сдвигаются по связи с Яризо.
+- [NP_MenuLayout](plugins/NP_MenuLayout/) — Пауза: карточки отряда, задание, команды в «Ещё».
+- [NP_LogToggle](plugins/NP_LogToggle/) — Журнал карты гаснет на сообщениях; L/D сворачивает.
+- [NP_UIColors](plugins/NP_UIColors/) — Опция перекрашивает задания, вещи, лавку, журналы.
+- [NP_SaveThumb](plugins/NP_SaveThumb/) — Слоты: снимок карты, глава, задание, стадия жрицы.
+- [NP_ShopCompare](plugins/NP_ShopCompare/) — В лавке: «сейчас → станет» зелёным/красным.
+- [NP_LevelAllocation](plugins/NP_LevelAllocation/) — После уровня — все новые очки на одном экране.
+- [NP_BattleHUD](plugins/NP_BattleHUD/) — Карточки отряда: лицо, HP/MP, усталость, супер, напряжение.
+- [NP_BattleCmd](plugins/NP_BattleCmd/) — Команды боя: две колонки «иконка + подпись».
+- [NP_EnemyHUD](plugins/NP_EnemyHUD/) — Карточка врага: имя, HP, эффекты; F6 — подробности.
+- [NP_PictureAnim](plugins/NP_PictureAnim/) — Картинка может дышать/качаться; лицо не искажается.
+- [NP_VideoPortrait](plugins/NP_VideoPortrait/) — Зацикленное видео на месте портрета.
 
-## Порядок из списка мода
+### Бой
 
-`NP_Language` — 8-й плагин в полном `plugins.js` (сразу после `MEO_Util_Node`). Блок от `NP_VideoPortrait` до `NP_OptionsCategories` стоит в хвосте того файла, в порядке таблицы. В описании каждого плагина отдельно сказано, после кого его ставить, если два скрипта рисуют один экран.
+- [NP_FastBattle](plugins/NP_FastBattle/) — Опция: короче паузы боя, без картинок кубиков.
+- [NP_BattleQoL](plugins/NP_BattleQoL/) — Shift = ×2; автобой = обычная атака.
+- [NP_PowerStrike](plugins/NP_PowerStrike/) — Команда боя: три мини-игры и множитель урона.
+- [NP_SuperAttack](plugins/NP_SuperAttack/) — Суперы у жрицы, Яризо, Зельеварки и принцессы-вампира.
+- [NP_BossBalance](plugins/NP_BossBalance/) — Фазы боссов, предел оглушения, масштаб сложности.
+- [NP_RareMobs](plugins/NP_RareMobs/) — Редкие со звездой и бестиарий.
+- [NP_EliteMobs](plugins/NP_EliteMobs/) — Шесть новых редких; шанс 25%, один на вход в карту.
+- [NP_EliteRewards](plugins/NP_EliteRewards/) — Постоянные трофеи с шести новых редких.
+- [NP_EliteSprites](plugins/NP_EliteSprites/) — Свои листы персонажей у новых редких.
+- [NP_ClothDamage](plugins/NP_ClothDamage/) — Удары рвут базовое облачение на трёх уровнях картинки.
+- [NP_Stress](plugins/NP_Stress/) — Напряжение 0–100, черты, храмовая служба.
+- [NP_Voice](plugins/NP_Voice/) — Опция: короткие вздохи/стоны из штатного звука.
 
-English notes: [README.md](README.md).
+### Задания
+
+- [NP_QuestMarker](plugins/NP_QuestMarker/) — Мигающий «!» на цели задания или на выходе к ней.
+- [NP_QuestHints](plugins/NP_QuestHints/) — Строка «Куда идти: …» в подробностях задания.
+- [NP_QuestTabs](plugins/NP_QuestTabs/) — Вкладки журнала: Сюжет / Побочные / Выполненные.
+- [NP_YarizoQuest](plugins/NP_YarizoQuest/) — Задание следит, где Яризо, и ставит метку.
+- [NP_SouthGateQuest](plugins/NP_SouthGateQuest/) — С ранга 2: доставка за 200 G на южной заставе.
+- [NP_MorningHints](plugins/NP_MorningHints/) — После ночной отлучки герой замечает мелочь на следующей карте.
+- [NP_BondHints](plugins/NP_BondHints/) — Журнал карты: какой порог связи и где ночевать дальше.
+- [NP_RemovedQuestCompat](plugins/NP_RemovedQuestCompat/) — Чистит остатки трёх убранных заданий в старых сейвах.
+
+### Контент
+
+- [NP_PriestessDiary](plugins/NP_PriestessDiary/) — Страница «♥» и дневник открытых записей.
+- [NP_Titles](plugins/NP_Titles/) — Меню «Титулы»: открыть, надеть, небольшой бонус жрице.
+- [NP_Campfire](plugins/NP_Campfire/) — В некоторые ночи — короткий разговор перед сном.
+- [NP_CampSkills](plugins/NP_CampSkills/) — Перед ночным разговором: умения отдыха за очки лагеря/гостиницы.
+- [NP_OutfitReact](plugins/NP_OutfitReact/) — В откровенном наряде Яризо иногда говорит; ответ слайдом.
+- [NP_Items](plugins/NP_Items/) — Оружие спутников, проклятые вещи, аффиксы, святая вода.
+- [NP_ItemNameFix](plugins/NP_ItemNameFix/) — Переименовывает независимые копии оружия из текущей БД.
+- [NP_AudioBalance](plugins/NP_AudioBalance/) — Опция ограничивает громкость; тихие карты получают звук.
+
+### Прочее
+
+- [NP_AutoSave](plugins/NP_AutoSave/) — Автосейв при переходах, после сна и перед боссами.
+
+## Язык
+
+`NP_Language` даёт кнопку **RU | EN** на титуле и в настройках. CSV-перевод: [nympri-ru](https://github.com/posolware1/nympri-ru).
+
+## Для разработчиков
+
+[docs/dev.md](docs/dev.md). English: [README.md](README.md).

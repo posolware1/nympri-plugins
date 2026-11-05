@@ -24,7 +24,7 @@ No Plugin Manager parameters. Quest id 201091, stage variable 3571 (0, 1, or 99)
 
 ## Install
 
-Copy `NP_SouthGateQuest.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_SouthGateQuest.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_SouthGateQuest/` folder. The folder exists so the script and its notes can be browsed, and later split out as a git submodule.
+Copy `NP_SouthGateQuest.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_SouthGateQuest.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_SouthGateQuest/` folder.
 
 ## Screenshots
 

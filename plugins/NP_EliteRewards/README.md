@@ -29,7 +29,7 @@ No Plugin Manager parameters. Reserved ids: weapon 701 Twin Needle; armors 1000 
 
 ## Install
 
-Copy `NP_EliteRewards.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_EliteRewards.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_EliteRewards/` folder. The folder exists so the script and its notes can be browsed, and later split out as a git submodule.
+Copy `NP_EliteRewards.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_EliteRewards.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_EliteRewards/` folder.
 
 ## Screenshots
 

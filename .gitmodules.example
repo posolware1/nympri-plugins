@@ -1,0 +1,183 @@
+# .gitmodules.example
+#
+# Commented stubs for a future split of plugins/* into git submodules.
+# This file is an example only. It is not named .gitmodules, and every
+# entry is commented, so Git will not register or fetch anything.
+# Replace <repository url> when a plugin gets its own repository.
+#
+# [submodule "plugins/NP_Language"]
+# 	path = plugins/NP_Language
+# 	url = <repository url for NP_Language>
+#
+# [submodule "plugins/NP_VideoPortrait"]
+# 	path = plugins/NP_VideoPortrait
+# 	url = <repository url for NP_VideoPortrait>
+#
+# [submodule "plugins/NP_AutoSave"]
+# 	path = plugins/NP_AutoSave
+# 	url = <repository url for NP_AutoSave>
+#
+# [submodule "plugins/NP_QuestMarker"]
+# 	path = plugins/NP_QuestMarker
+# 	url = <repository url for NP_QuestMarker>
+#
+# [submodule "plugins/NP_FastBattle"]
+# 	path = plugins/NP_FastBattle
+# 	url = <repository url for NP_FastBattle>
+#
+# [submodule "plugins/NP_TitleProgress"]
+# 	path = plugins/NP_TitleProgress
+# 	url = <repository url for NP_TitleProgress>
+#
+# [submodule "plugins/NP_PowerStrike"]
+# 	path = plugins/NP_PowerStrike
+# 	url = <repository url for NP_PowerStrike>
+#
+# [submodule "plugins/NP_TitleVolume"]
+# 	path = plugins/NP_TitleVolume
+# 	url = <repository url for NP_TitleVolume>
+#
+# [submodule "plugins/NP_PriestessDiary"]
+# 	path = plugins/NP_PriestessDiary
+# 	url = <repository url for NP_PriestessDiary>
+#
+# [submodule "plugins/NP_Voice"]
+# 	path = plugins/NP_Voice
+# 	url = <repository url for NP_Voice>
+#
+# [submodule "plugins/NP_SaveThumb"]
+# 	path = plugins/NP_SaveThumb
+# 	url = <repository url for NP_SaveThumb>
+#
+# [submodule "plugins/NP_OutfitReact"]
+# 	path = plugins/NP_OutfitReact
+# 	url = <repository url for NP_OutfitReact>
+#
+# [submodule "plugins/NP_PictureAnim"]
+# 	path = plugins/NP_PictureAnim
+# 	url = <repository url for NP_PictureAnim>
+#
+# [submodule "plugins/NP_Campfire"]
+# 	path = plugins/NP_Campfire
+# 	url = <repository url for NP_Campfire>
+#
+# [submodule "plugins/NP_Titles"]
+# 	path = plugins/NP_Titles
+# 	url = <repository url for NP_Titles>
+#
+# [submodule "plugins/NP_ClothDamage"]
+# 	path = plugins/NP_ClothDamage
+# 	url = <repository url for NP_ClothDamage>
+#
+# [submodule "plugins/NP_Stress"]
+# 	path = plugins/NP_Stress
+# 	url = <repository url for NP_Stress>
+#
+# [submodule "plugins/NP_CampSkills"]
+# 	path = plugins/NP_CampSkills
+# 	url = <repository url for NP_CampSkills>
+#
+# [submodule "plugins/NP_YarizoQuest"]
+# 	path = plugins/NP_YarizoQuest
+# 	url = <repository url for NP_YarizoQuest>
+#
+# [submodule "plugins/NP_ShopCompare"]
+# 	path = plugins/NP_ShopCompare
+# 	url = <repository url for NP_ShopCompare>
+#
+# [submodule "plugins/NP_BattleQoL"]
+# 	path = plugins/NP_BattleQoL
+# 	url = <repository url for NP_BattleQoL>
+#
+# [submodule "plugins/NP_SuperAttack"]
+# 	path = plugins/NP_SuperAttack
+# 	url = <repository url for NP_SuperAttack>
+#
+# [submodule "plugins/NP_BossBalance"]
+# 	path = plugins/NP_BossBalance
+# 	url = <repository url for NP_BossBalance>
+#
+# [submodule "plugins/NP_RareMobs"]
+# 	path = plugins/NP_RareMobs
+# 	url = <repository url for NP_RareMobs>
+#
+# [submodule "plugins/NP_MorningHints"]
+# 	path = plugins/NP_MorningHints
+# 	url = <repository url for NP_MorningHints>
+#
+# [submodule "plugins/NP_QuestHints"]
+# 	path = plugins/NP_QuestHints
+# 	url = <repository url for NP_QuestHints>
+#
+# [submodule "plugins/NP_QuestTabs"]
+# 	path = plugins/NP_QuestTabs
+# 	url = <repository url for NP_QuestTabs>
+#
+# [submodule "plugins/NP_AudioBalance"]
+# 	path = plugins/NP_AudioBalance
+# 	url = <repository url for NP_AudioBalance>
+#
+# [submodule "plugins/NP_UIColors"]
+# 	path = plugins/NP_UIColors
+# 	url = <repository url for NP_UIColors>
+#
+# [submodule "plugins/NP_LogToggle"]
+# 	path = plugins/NP_LogToggle
+# 	url = <repository url for NP_LogToggle>
+#
+# [submodule "plugins/NP_ItemNameFix"]
+# 	path = plugins/NP_ItemNameFix
+# 	url = <repository url for NP_ItemNameFix>
+#
+# [submodule "plugins/NP_BattleHUD"]
+# 	path = plugins/NP_BattleHUD
+# 	url = <repository url for NP_BattleHUD>
+#
+# [submodule "plugins/NP_BattleCmd"]
+# 	path = plugins/NP_BattleCmd
+# 	url = <repository url for NP_BattleCmd>
+#
+# [submodule "plugins/NP_Items"]
+# 	path = plugins/NP_Items
+# 	url = <repository url for NP_Items>
+#
+# [submodule "plugins/NP_EliteMobs"]
+# 	path = plugins/NP_EliteMobs
+# 	url = <repository url for NP_EliteMobs>
+#
+# [submodule "plugins/NP_EliteRewards"]
+# 	path = plugins/NP_EliteRewards
+# 	url = <repository url for NP_EliteRewards>
+#
+# [submodule "plugins/NP_EliteSprites"]
+# 	path = plugins/NP_EliteSprites
+# 	url = <repository url for NP_EliteSprites>
+#
+# [submodule "plugins/NP_LevelAllocation"]
+# 	path = plugins/NP_LevelAllocation
+# 	url = <repository url for NP_LevelAllocation>
+#
+# [submodule "plugins/NP_MenuLayout"]
+# 	path = plugins/NP_MenuLayout
+# 	url = <repository url for NP_MenuLayout>
+#
+# [submodule "plugins/NP_EnemyHUD"]
+# 	path = plugins/NP_EnemyHUD
+# 	url = <repository url for NP_EnemyHUD>
+#
+# [submodule "plugins/NP_BondHints"]
+# 	path = plugins/NP_BondHints
+# 	url = <repository url for NP_BondHints>
+#
+# [submodule "plugins/NP_SouthGateQuest"]
+# 	path = plugins/NP_SouthGateQuest
+# 	url = <repository url for NP_SouthGateQuest>
+#
+# [submodule "plugins/NP_RemovedQuestCompat"]
+# 	path = plugins/NP_RemovedQuestCompat
+# 	url = <repository url for NP_RemovedQuestCompat>
+#
+# [submodule "plugins/NP_OptionsCategories"]
+# 	path = plugins/NP_OptionsCategories
+# 	url = <repository url for NP_OptionsCategories>
+#

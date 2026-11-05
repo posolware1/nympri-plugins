@@ -1,0 +1,39 @@
+# NP_QuestMarker
+
+## Title
+
+Blinking quest exclamation mark.
+
+## Version
+
+1.1 (`@plugindesc`).
+
+## Purpose
+
+While a quest variable sits in the range stored in `NP_QuestMarker.TARGETS`, a blinking «!» is drawn on the current map:
+
+- On the NPC or tile of the current step, when that step is on this map.
+- Otherwise on the door, exit, or world-map node (Map003) that the built-in transfer table says is the way there.
+
+The mark hides with the NPC. A blank page, transparency, or an erase removes it at once, and it returns when the character comes back. Invisible transfer events and coordinate exits still count as destinations. The marker does not change quest progress. It only points.
+
+## Load order
+
+After `NP_AutoSave`, before `NP_FastBattle`. `NP_QuestTabs` and `NP_YarizoQuest` expect the marker table to already exist.
+
+## Parameters
+
+- **Enabled** `true`.
+- **Option Label** `Метки заданий` — empty hides the Options row.
+- **Color** `#ffe040`.
+- **Font Size** `34`.
+
+## Install
+
+Copy `NP_QuestMarker.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_QuestMarker.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_QuestMarker/` folder. The folder exists so the script and its notes can be browsed, and later split out as a git submodule.
+
+## Screenshots
+
+screenshots TBD
+
+No image files are shipped here. The panels described above are drawn by the plugin at runtime inside the game.

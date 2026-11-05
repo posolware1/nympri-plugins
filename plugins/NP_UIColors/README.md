@@ -28,7 +28,7 @@ No Plugin Manager parameters. Options row **Цветное оформление 
 
 ## Install
 
-Copy `NP_UIColors.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_UIColors.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_UIColors/` folder. The folder exists so the script and its notes can be browsed, and later split out as a git submodule.
+Copy `NP_UIColors.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_UIColors.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_UIColors/` folder.
 
 ## Screenshots
 

@@ -24,7 +24,7 @@ No Plugin Manager parameters. Options row **Подсказки в журнале
 
 ## Install
 
-Copy `NP_QuestHints.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_QuestHints.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_QuestHints/` folder. The folder exists so the script and its notes can be browsed, and later split out as a git submodule.
+Copy `NP_QuestHints.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_QuestHints.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_QuestHints/` folder.
 
 ## Screenshots
 

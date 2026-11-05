@@ -33,7 +33,7 @@ After `NP_Voice`, before `NP_OutfitReact`. Does not change `NP_AutoSave` files. 
 
 ## Install
 
-Copy `NP_SaveThumb.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_SaveThumb.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_SaveThumb/` folder. The folder exists so the script and its notes can be browsed, and later split out as a git submodule.
+Copy `NP_SaveThumb.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_SaveThumb.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_SaveThumb/` folder.
 
 ## Screenshots
 

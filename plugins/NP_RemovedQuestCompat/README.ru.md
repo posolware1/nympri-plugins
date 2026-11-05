@@ -24,7 +24,7 @@
 
 ## Установка
 
-Скопируйте `NP_RemovedQuestCompat.js` в `www/js/plugins/` игры. Имя файла должно остаться `NP_RemovedQuestCompat.js`. В менеджере плагинов включите его в порядке из раздела [Порядок загрузки](#порядок-загрузки). RPG Maker MV читает плагины из `www/js/plugins/`, а не из папки `plugins/NP_RemovedQuestCompat/` в этом репозитории. Папка нужна, чтобы скрипт и описание было удобно смотреть на GitHub и позже вынести в отдельный git submodule.
+Скопируйте `NP_RemovedQuestCompat.js` в `www/js/plugins/` игры. Имя файла должно остаться `NP_RemovedQuestCompat.js`. В менеджере плагинов включите его в порядке из раздела [Порядок загрузки](#порядок-загрузки). RPG Maker MV читает плагины из `www/js/plugins/`, а не из папки `plugins/NP_RemovedQuestCompat/` в этом репозитории.
 
 ## Скриншоты
 

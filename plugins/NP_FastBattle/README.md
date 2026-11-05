@@ -34,7 +34,7 @@ After `NP_QuestMarker`, before `NP_TitleProgress`. Separate from `NP_BattleQoL` 
 
 ## Install
 
-Copy `NP_FastBattle.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_FastBattle.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_FastBattle/` folder. The folder exists so the script and its notes can be browsed, and later split out as a git submodule.
+Copy `NP_FastBattle.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_FastBattle.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_FastBattle/` folder.
 
 ## Screenshots
 

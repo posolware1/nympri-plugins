@@ -39,7 +39,7 @@ After `NP_TitleVolume`, before `NP_Voice`. `NP_Titles` adds the active title int
 
 ## Install
 
-Copy `NP_PriestessDiary.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_PriestessDiary.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_PriestessDiary/` folder. The folder exists so the script and its notes can be browsed, and later split out as a git submodule.
+Copy `NP_PriestessDiary.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_PriestessDiary.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_PriestessDiary/` folder.
 
 ## Screenshots
 

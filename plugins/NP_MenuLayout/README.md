@@ -46,8 +46,6 @@ Full list and checksums: [INVENTORY.md](../../INVENTORY.md).
 
 ## Screenshots
 
-![Items](assets/img/system/np-menu/backpack.svg)
-![Quest](assets/img/system/np-menu/scroll-text.svg)
-![Party](assets/img/system/np-menu/users.svg)
-![Equipment](assets/img/system/np-menu/shield.svg)
-![Save](assets/img/system/np-menu/save.svg)
+![Pause menu: command list, party gauges, and status boxes](screenshots/NP_MenuLayout.png)
+
+The command column sits on the left. Jimmy and Kohaku show class, level, and HP, MP, and FP. Under the list are alignment, fame, love, lust, and silver.

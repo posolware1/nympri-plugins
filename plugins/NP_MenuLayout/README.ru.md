@@ -46,8 +46,6 @@
 
 ## Скриншоты
 
-![Предметы](assets/img/system/np-menu/backpack.svg)
-![Задание](assets/img/system/np-menu/scroll-text.svg)
-![Отряд](assets/img/system/np-menu/users.svg)
-![Снаряжение](assets/img/system/np-menu/shield.svg)
-![Сохранение](assets/img/system/np-menu/save.svg)
+![Меню паузы: список команд, показатели отряда и окна статуса](screenshots/NP_MenuLayout.png)
+
+Слева колонка команд. У Jimmy и Kohaku класс, уровень и полоски HP, MP и FP. Под списком мировоззрение, слава, любовь, похоть и серебро.

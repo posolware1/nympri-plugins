@@ -32,6 +32,6 @@ Copy `NP_QuestTabs.js` into the game's `www/js/plugins/` directory. The file nam
 
 ## Screenshots
 
-screenshots TBD
+![Quest journal: Story tab empty, Side and Completed counted](screenshots/NP_QuestTabs.png)
 
-No image files are shipped here. The panels described above are drawn by the plugin at runtime inside the game.
+Three tabs sit in the header, each with a count: **Сюжет / Story (0)**, **Побочные / Side (5)**, **Выполненные / Completed (1)**. Story is selected and empty, so the list shows a short line instead of a blank page.

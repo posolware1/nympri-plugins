@@ -39,6 +39,6 @@ Copy `NP_Titles.js` into the game's `www/js/plugins/` directory. The file name m
 
 ## Screenshots
 
-screenshots TBD
+![Priestess titles: unlocked list and the equipped title's detail](screenshots/NP_Titles.png)
 
-No image files are shipped here. The panels described above are drawn by the plugin at runtime inside the game.
+The header shows how many titles are unlocked and which one is active. Locked rows read `???`. The detail pane for **Скромная жрица / Humble Priestess** shows the description, the condition, the faith bonus, and that it is equipped. OK removes it.

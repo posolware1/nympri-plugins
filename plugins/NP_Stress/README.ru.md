@@ -32,8 +32,20 @@
 
 Скопируйте `NP_Stress.js` в `www/js/plugins/` игры. Имя файла должно остаться `NP_Stress.js`. В менеджере плагинов включите его в порядке из раздела [Порядок загрузки](#порядок-загрузки). RPG Maker MV читает плагины из `www/js/plugins/`, а не из папки `plugins/NP_Stress/` в этом репозитории. Папка нужна, чтобы скрипт и описание было удобно смотреть на GitHub и позже вынести в отдельный git submodule.
 
+## Ресурсы
+
+Скопируйте содержимое папки `assets/` этого плагина в `www/` игры и сохраните относительные пути. Файл `assets/img/pictures/example.png` должен оказаться в `www/img/pictures/example.png` (а `assets/movies/clip.webm` — в `www/movies/clip.webm`). Имя папки `assets` в путь игры не входит.
+
+Наложения, которые рисуются на полосках боя и, при включённом `NP_BattleHUD`, на карточке отряда:
+
+- `img/pictures/np_stress_crack.png` — трещины срыва
+- `img/pictures/np_stress_afflict.png` — метка срыва
+- `img/pictures/np_stress_virtue.png` — сияние подъёма
+
+Полный список и контрольные суммы: [INVENTORY.md](../../INVENTORY.md).
+
 ## Скриншоты
 
-screenshots TBD
-
-Файлов изображений в репозитории нет. Окна, описанные выше, плагин рисует во время игры.
+![Трещины срыва](assets/img/pictures/np_stress_crack.png)
+![Срыв](assets/img/pictures/np_stress_afflict.png)
+![Подъём](assets/img/pictures/np_stress_virtue.png)

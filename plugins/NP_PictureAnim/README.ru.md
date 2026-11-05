@@ -32,8 +32,20 @@
 
 Скопируйте `NP_PictureAnim.js` в `www/js/plugins/` игры. Имя файла должно остаться `NP_PictureAnim.js`. В менеджере плагинов включите его в порядке из раздела [Порядок загрузки](#порядок-загрузки). RPG Maker MV читает плагины из `www/js/plugins/`, а не из папки `plugins/NP_PictureAnim/` в этом репозитории. Папка нужна, чтобы скрипт и описание было удобно смотреть на GitHub и позже вынести в отдельный git submodule.
 
+## Ресурсы
+
+Скопируйте содержимое папки `assets/` этого плагина в `www/` игры и сохраните относительные пути. Файл `assets/img/pictures/example.png` должен оказаться в `www/img/pictures/example.png` (а `assets/movies/clip.webm` — в `www/movies/clip.webm`). Имя папки `assets` в путь игры не входит.
+
+Пляжные картинки, под которые сняты области сетки:
+
+- `img/pictures/np_beachanim_bg.png` — фон
+- `img/pictures/np_beachanim_pri.png` — жрица (области пресета `tease` сняты с этой картинки)
+- `img/pictures/np_beachanim_yar.png` — Яризо
+
+Полный список и контрольные суммы: [INVENTORY.md](../../INVENTORY.md).
+
 ## Скриншоты
 
-screenshots TBD
-
-Файлов изображений в репозитории нет. Окна, описанные выше, плагин рисует во время игры.
+![Фон пляжа](assets/img/pictures/np_beachanim_bg.png)
+![Картинка жрицы для сетки](assets/img/pictures/np_beachanim_pri.png)
+![Яризо](assets/img/pictures/np_beachanim_yar.png)

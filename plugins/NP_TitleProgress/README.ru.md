@@ -35,8 +35,23 @@
 
 Скопируйте `NP_TitleProgress.js` в `www/js/plugins/` игры. Имя файла должно остаться `NP_TitleProgress.js`. В менеджере плагинов включите его в порядке из раздела [Порядок загрузки](#порядок-загрузки). RPG Maker MV читает плагины из `www/js/plugins/`, а не из папки `plugins/NP_TitleProgress/` в этом репозитории. Папка нужна, чтобы скрипт и описание было удобно смотреть на GitHub и позже вынести в отдельный git submodule.
 
+## Ресурсы
+
+Скопируйте содержимое папки `assets/` этого плагина в `www/` игры и сохраните относительные пути. Файл `assets/img/pictures/example.png` должен оказаться в `www/img/pictures/example.png` (а `assets/movies/clip.webm` — в `www/movies/clip.webm`). Имя папки `assets` в путь игры не входит.
+
+Фоны этапов и логотипы. Музыка титула — штатные треки игры; звуковых файлов здесь нет.
+
+- `img/titles1/np_title_s0.png` — этап 0
+- `img/titles1/np_title_s1.png` — этап 1
+- `img/titles1/np_title_s2.png` — этап 2
+- `img/titles1/np_title_s3.png` — этап 3
+- `img/titles2/np_title_logo.png` — логотип
+- `img/titles2/np_title_logo_en.png` — логотип для английского титула
+
+Полный список и контрольные суммы: [INVENTORY.md](../../INVENTORY.md).
+
 ## Скриншоты
 
-screenshots TBD
-
-Файлов изображений в репозитории нет. Окна, описанные выше, плагин рисует во время игры.
+![Этап 0](assets/img/titles1/np_title_s0.png)
+![Этап 3](assets/img/titles1/np_title_s3.png)
+![Логотип](assets/img/titles2/np_title_logo.png)

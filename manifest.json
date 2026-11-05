@@ -1,0 +1,649 @@
+{
+  "total_files": 98,
+  "total_bytes": 46413309,
+  "plugins": {
+    "NP_ClothDamage": {
+      "count": 20,
+      "bytes": 21439288,
+      "files": [
+        {
+          "rel": "img/pictures/stand-heroine-basic-cloth82-0-t1.png",
+          "size": 587721,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/stand-heroine-basic-cloth82-0-t1.png",
+          "sha256_16": "8ca30793278d462d"
+        },
+        {
+          "rel": "img/pictures/stand-heroine-basic-cloth82-0-t2.png",
+          "size": 1291202,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/stand-heroine-basic-cloth82-0-t2.png",
+          "sha256_16": "886bc23c58495333"
+        },
+        {
+          "rel": "img/pictures/stand-heroine-basic-cloth82-0-t3.png",
+          "size": 1271886,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/stand-heroine-basic-cloth82-0-t3.png",
+          "sha256_16": "812ae33abf523959"
+        },
+        {
+          "rel": "img/pictures/stand-heroine-basic-cloth82-0-ta.png",
+          "size": 1134798,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/stand-heroine-basic-cloth82-0-ta.png",
+          "sha256_16": "3ae9c5f41cd73125"
+        },
+        {
+          "rel": "img/pictures/stand-heroine-basic-cloth82-0-tb.png",
+          "size": 1247981,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/stand-heroine-basic-cloth82-0-tb.png",
+          "sha256_16": "9c676b1c71d0ff29"
+        },
+        {
+          "rel": "img/pictures/stand-heroine-basic-cloth82-1-t1.png",
+          "size": 622919,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/stand-heroine-basic-cloth82-1-t1.png",
+          "sha256_16": "169838c1aaa8f72b"
+        },
+        {
+          "rel": "img/pictures/stand-heroine-basic-cloth82-1-t2.png",
+          "size": 1333770,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/stand-heroine-basic-cloth82-1-t2.png",
+          "sha256_16": "257b17350a7617e2"
+        },
+        {
+          "rel": "img/pictures/stand-heroine-basic-cloth82-1-t3.png",
+          "size": 1296309,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/stand-heroine-basic-cloth82-1-t3.png",
+          "sha256_16": "73669bafeb57268c"
+        },
+        {
+          "rel": "img/pictures/stand-heroine-basic-cloth82-1-ta.png",
+          "size": 1186938,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/stand-heroine-basic-cloth82-1-ta.png",
+          "sha256_16": "98a05a3785357299"
+        },
+        {
+          "rel": "img/pictures/stand-heroine-basic-cloth82-1-tb.png",
+          "size": 1300532,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/stand-heroine-basic-cloth82-1-tb.png",
+          "sha256_16": "f77216aa6083a467"
+        },
+        {
+          "rel": "img/pictures/stand-heroine-basic-cloth82-2-t1.png",
+          "size": 371508,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/stand-heroine-basic-cloth82-2-t1.png",
+          "sha256_16": "f194c9f6692f5753"
+        },
+        {
+          "rel": "img/pictures/stand-heroine-basic-cloth82-2-t2.png",
+          "size": 1270803,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/stand-heroine-basic-cloth82-2-t2.png",
+          "sha256_16": "ec11122eec5cc621"
+        },
+        {
+          "rel": "img/pictures/stand-heroine-basic-cloth82-2-t3.png",
+          "size": 1244709,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/stand-heroine-basic-cloth82-2-t3.png",
+          "sha256_16": "0e34556ad4d196c3"
+        },
+        {
+          "rel": "img/pictures/stand-heroine-basic-cloth82-2-ta.png",
+          "size": 1095979,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/stand-heroine-basic-cloth82-2-ta.png",
+          "sha256_16": "1ab23a39c3ff01ae"
+        },
+        {
+          "rel": "img/pictures/stand-heroine-basic-cloth82-2-tb.png",
+          "size": 1239874,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/stand-heroine-basic-cloth82-2-tb.png",
+          "sha256_16": "271b95c695933023"
+        },
+        {
+          "rel": "img/pictures/stand-heroine-basic-cloth82-3-t1.png",
+          "size": 395478,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/stand-heroine-basic-cloth82-3-t1.png",
+          "sha256_16": "69c79ffcc12e4807"
+        },
+        {
+          "rel": "img/pictures/stand-heroine-basic-cloth82-3-t2.png",
+          "size": 1204356,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/stand-heroine-basic-cloth82-3-t2.png",
+          "sha256_16": "e37badaf9765887b"
+        },
+        {
+          "rel": "img/pictures/stand-heroine-basic-cloth82-3-t3.png",
+          "size": 1174453,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/stand-heroine-basic-cloth82-3-t3.png",
+          "sha256_16": "f3e56abfcd5c3910"
+        },
+        {
+          "rel": "img/pictures/stand-heroine-basic-cloth82-3-ta.png",
+          "size": 1034451,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/stand-heroine-basic-cloth82-3-ta.png",
+          "sha256_16": "3be625fcb66960b0"
+        },
+        {
+          "rel": "img/pictures/stand-heroine-basic-cloth82-3-tb.png",
+          "size": 1133621,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/stand-heroine-basic-cloth82-3-tb.png",
+          "sha256_16": "45fa852925268963"
+        }
+      ]
+    },
+    "NP_EliteSprites": {
+      "count": 6,
+      "bytes": 45232,
+      "files": [
+        {
+          "rel": "img/characters/$NP_Elite_Wolf_v1.png",
+          "size": 5967,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/characters/$NP_Elite_Wolf_v1.png",
+          "sha256_16": "3389b1d8c6cea081"
+        },
+        {
+          "rel": "img/characters/$NP_Elite_Spider_v1.png",
+          "size": 8058,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/characters/$NP_Elite_Spider_v1.png",
+          "sha256_16": "610ad2d2414c279c"
+        },
+        {
+          "rel": "img/characters/$NP_Elite_Scorpion_v1.png",
+          "size": 8490,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/characters/$NP_Elite_Scorpion_v1.png",
+          "sha256_16": "47e2286c10d513ba"
+        },
+        {
+          "rel": "img/characters/$NP_Elite_Mushroom_v1.png",
+          "size": 11866,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/characters/$NP_Elite_Mushroom_v1.png",
+          "sha256_16": "74a9612a20536662"
+        },
+        {
+          "rel": "img/characters/$NP_Elite_Bat_v1.png",
+          "size": 6358,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/characters/$NP_Elite_Bat_v1.png",
+          "sha256_16": "cec440e2a9d00836"
+        },
+        {
+          "rel": "img/characters/$NP_Elite_Sludge_v1.png",
+          "size": 4493,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/characters/$NP_Elite_Sludge_v1.png",
+          "sha256_16": "8395d611362dcbd9"
+        }
+      ]
+    },
+    "NP_MenuLayout": {
+      "count": 19,
+      "bytes": 9046,
+      "files": [
+        {
+          "rel": "img/system/np-menu/LICENSE.txt",
+          "size": 880,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np-menu/LICENSE.txt",
+          "sha256_16": "1e7290b35280a048"
+        },
+        {
+          "rel": "img/system/np-menu/NOTICE.txt",
+          "size": 205,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np-menu/NOTICE.txt",
+          "sha256_16": "2953d4786d61ac9f"
+        },
+        {
+          "rel": "img/system/np-menu/backpack.svg",
+          "size": 524,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np-menu/backpack.svg",
+          "sha256_16": "53caf80cc1d0aa69"
+        },
+        {
+          "rel": "img/system/np-menu/book-open.svg",
+          "size": 454,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np-menu/book-open.svg",
+          "sha256_16": "af73d9a232af14f1"
+        },
+        {
+          "rel": "img/system/np-menu/chevron-down.svg",
+          "size": 315,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np-menu/chevron-down.svg",
+          "sha256_16": "092bc585e8be14d0"
+        },
+        {
+          "rel": "img/system/np-menu/chevron-left.svg",
+          "size": 317,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np-menu/chevron-left.svg",
+          "sha256_16": "8487e8895015cfe0"
+        },
+        {
+          "rel": "img/system/np-menu/chevron-right.svg",
+          "size": 317,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np-menu/chevron-right.svg",
+          "sha256_16": "0212027b224e2735"
+        },
+        {
+          "rel": "img/system/np-menu/coins.svg",
+          "size": 427,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np-menu/coins.svg",
+          "sha256_16": "391db07dbdf95fec"
+        },
+        {
+          "rel": "img/system/np-menu/ellipsis.svg",
+          "size": 387,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np-menu/ellipsis.svg",
+          "sha256_16": "074e9267b0a03d1b"
+        },
+        {
+          "rel": "img/system/np-menu/heart.svg",
+          "size": 432,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np-menu/heart.svg",
+          "sha256_16": "1172005be86ff6e3"
+        },
+        {
+          "rel": "img/system/np-menu/moon.svg",
+          "size": 329,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np-menu/moon.svg",
+          "sha256_16": "fdcad9fb78b19229"
+        },
+        {
+          "rel": "img/system/np-menu/save.svg",
+          "size": 488,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np-menu/save.svg",
+          "sha256_16": "6f3d226f8d5614cd"
+        },
+        {
+          "rel": "img/system/np-menu/scroll-text.svg",
+          "size": 497,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np-menu/scroll-text.svg",
+          "sha256_16": "b76b2e6921c39fc4"
+        },
+        {
+          "rel": "img/system/np-menu/settings.svg",
+          "size": 899,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np-menu/settings.svg",
+          "sha256_16": "7b25dcd16799d743"
+        },
+        {
+          "rel": "img/system/np-menu/shield.svg",
+          "size": 459,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np-menu/shield.svg",
+          "sha256_16": "253b04710fb847d2"
+        },
+        {
+          "rel": "img/system/np-menu/sparkles.svg",
+          "size": 643,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np-menu/sparkles.svg",
+          "sha256_16": "a6581cb81b2582ca"
+        },
+        {
+          "rel": "img/system/np-menu/sun.svg",
+          "size": 555,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np-menu/sun.svg",
+          "sha256_16": "5b7ce5713292b6eb"
+        },
+        {
+          "rel": "img/system/np-menu/sword.svg",
+          "size": 465,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np-menu/sword.svg",
+          "sha256_16": "bb267a007d3e80a7"
+        },
+        {
+          "rel": "img/system/np-menu/users.svg",
+          "size": 453,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np-menu/users.svg",
+          "sha256_16": "b0a20db7a87e0e0e"
+        }
+      ]
+    },
+    "NP_OutfitReact": {
+      "count": 29,
+      "bytes": 1065312,
+      "files": [
+        {
+          "rel": "img/system/np_or_pri_an_0.png",
+          "size": 35444,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np_or_pri_an_0.png",
+          "sha256_16": "064364ea259f9870"
+        },
+        {
+          "rel": "img/system/np_or_pri_an_92.png",
+          "size": 40164,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np_or_pri_an_92.png",
+          "sha256_16": "68c4c99e7a73a1e6"
+        },
+        {
+          "rel": "img/system/np_or_pri_an_93.png",
+          "size": 38482,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np_or_pri_an_93.png",
+          "sha256_16": "c33f8f713e57cf2b"
+        },
+        {
+          "rel": "img/system/np_or_pri_an_94.png",
+          "size": 38935,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np_or_pri_an_94.png",
+          "sha256_16": "3f61c1c885dcf242"
+        },
+        {
+          "rel": "img/system/np_or_pri_an_95.png",
+          "size": 36552,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np_or_pri_an_95.png",
+          "sha256_16": "95c03564c5b792f4"
+        },
+        {
+          "rel": "img/system/np_or_pri_an_98.png",
+          "size": 34355,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np_or_pri_an_98.png",
+          "sha256_16": "c77778a8f7a5a05b"
+        },
+        {
+          "rel": "img/system/np_or_pri_an_99.png",
+          "size": 36483,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np_or_pri_an_99.png",
+          "sha256_16": "caa26eb49eb0f263"
+        },
+        {
+          "rel": "img/system/np_or_pri_fl_0.png",
+          "size": 35344,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np_or_pri_fl_0.png",
+          "sha256_16": "23e64649f7a96211"
+        },
+        {
+          "rel": "img/system/np_or_pri_fl_92.png",
+          "size": 40070,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np_or_pri_fl_92.png",
+          "sha256_16": "aa52afa7eac08dec"
+        },
+        {
+          "rel": "img/system/np_or_pri_fl_93.png",
+          "size": 38389,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np_or_pri_fl_93.png",
+          "sha256_16": "dc926ffc18d8b5fb"
+        },
+        {
+          "rel": "img/system/np_or_pri_fl_94.png",
+          "size": 38915,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np_or_pri_fl_94.png",
+          "sha256_16": "d505897fd569fbef"
+        },
+        {
+          "rel": "img/system/np_or_pri_fl_95.png",
+          "size": 36446,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np_or_pri_fl_95.png",
+          "sha256_16": "963ac57acd451bb0"
+        },
+        {
+          "rel": "img/system/np_or_pri_fl_98.png",
+          "size": 34252,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np_or_pri_fl_98.png",
+          "sha256_16": "1fff21593242b774"
+        },
+        {
+          "rel": "img/system/np_or_pri_fl_99.png",
+          "size": 36376,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np_or_pri_fl_99.png",
+          "sha256_16": "2c1f358ee20a212c"
+        },
+        {
+          "rel": "img/system/np_or_pri_pl_0.png",
+          "size": 35303,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np_or_pri_pl_0.png",
+          "sha256_16": "1724eaa39d025354"
+        },
+        {
+          "rel": "img/system/np_or_pri_pl_92.png",
+          "size": 40016,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np_or_pri_pl_92.png",
+          "sha256_16": "bf2bc1d3a282c787"
+        },
+        {
+          "rel": "img/system/np_or_pri_pl_93.png",
+          "size": 38341,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np_or_pri_pl_93.png",
+          "sha256_16": "e62f4f91369b0cb7"
+        },
+        {
+          "rel": "img/system/np_or_pri_pl_94.png",
+          "size": 38804,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np_or_pri_pl_94.png",
+          "sha256_16": "fa8e6573fa5df921"
+        },
+        {
+          "rel": "img/system/np_or_pri_pl_95.png",
+          "size": 36410,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np_or_pri_pl_95.png",
+          "sha256_16": "5ec3ff29b1de04dc"
+        },
+        {
+          "rel": "img/system/np_or_pri_pl_98.png",
+          "size": 34164,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np_or_pri_pl_98.png",
+          "sha256_16": "6154b5fff69c5a33"
+        },
+        {
+          "rel": "img/system/np_or_pri_pl_99.png",
+          "size": 36333,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np_or_pri_pl_99.png",
+          "sha256_16": "3920e0c3e1dc89b7"
+        },
+        {
+          "rel": "img/system/np_or_pri_sh_0.png",
+          "size": 34999,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np_or_pri_sh_0.png",
+          "sha256_16": "bae60cb69384758f"
+        },
+        {
+          "rel": "img/system/np_or_pri_sh_92.png",
+          "size": 39726,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np_or_pri_sh_92.png",
+          "sha256_16": "cb72eedf2656f550"
+        },
+        {
+          "rel": "img/system/np_or_pri_sh_93.png",
+          "size": 38047,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np_or_pri_sh_93.png",
+          "sha256_16": "b47de862f1b24f7a"
+        },
+        {
+          "rel": "img/system/np_or_pri_sh_94.png",
+          "size": 38664,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np_or_pri_sh_94.png",
+          "sha256_16": "459da052fb281c85"
+        },
+        {
+          "rel": "img/system/np_or_pri_sh_95.png",
+          "size": 36119,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np_or_pri_sh_95.png",
+          "sha256_16": "433a03d8c49597f2"
+        },
+        {
+          "rel": "img/system/np_or_pri_sh_98.png",
+          "size": 34121,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np_or_pri_sh_98.png",
+          "sha256_16": "c1ad7f3de3cab7d8"
+        },
+        {
+          "rel": "img/system/np_or_pri_sh_99.png",
+          "size": 36189,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np_or_pri_sh_99.png",
+          "sha256_16": "627695a40528fdd6"
+        },
+        {
+          "rel": "img/system/np_or_yarizo.png",
+          "size": 27869,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/system/np_or_yarizo.png",
+          "sha256_16": "cb57dd6873ab19a3"
+        }
+      ]
+    },
+    "NP_PictureAnim": {
+      "count": 3,
+      "bytes": 2310263,
+      "files": [
+        {
+          "rel": "img/pictures/np_beachanim_bg.png",
+          "size": 1575266,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/np_beachanim_bg.png",
+          "sha256_16": "b3dbb96212573f8e"
+        },
+        {
+          "rel": "img/pictures/np_beachanim_pri.png",
+          "size": 422607,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/np_beachanim_pri.png",
+          "sha256_16": "fcecaaeee71c7c3b"
+        },
+        {
+          "rel": "img/pictures/np_beachanim_yar.png",
+          "size": 312390,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/np_beachanim_yar.png",
+          "sha256_16": "60bd3a7795cc9088"
+        }
+      ]
+    },
+    "NP_Stress": {
+      "count": 3,
+      "bytes": 340001,
+      "files": [
+        {
+          "rel": "img/pictures/np_stress_crack.png",
+          "size": 165176,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/np_stress_crack.png",
+          "sha256_16": "b22b7725cf329ca1"
+        },
+        {
+          "rel": "img/pictures/np_stress_afflict.png",
+          "size": 107074,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/np_stress_afflict.png",
+          "sha256_16": "1108e67835d18b7b"
+        },
+        {
+          "rel": "img/pictures/np_stress_virtue.png",
+          "size": 67751,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/np_stress_virtue.png",
+          "sha256_16": "420d0eb443fb38f0"
+        }
+      ]
+    },
+    "NP_SuperAttack": {
+      "count": 8,
+      "bytes": 3131275,
+      "files": [
+        {
+          "rel": "img/pictures/np_super_cutin_pri.png",
+          "size": 671268,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/np_super_cutin_pri.png",
+          "sha256_16": "5df23922c84571fc"
+        },
+        {
+          "rel": "img/pictures/np_super_cutin_yar.png",
+          "size": 721114,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/np_super_cutin_yar.png",
+          "sha256_16": "ff2f6925cedac382"
+        },
+        {
+          "rel": "img/pictures/np_super_cutin_pm.png",
+          "size": 661176,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/np_super_cutin_pm.png",
+          "sha256_16": "2bb3aa048ad36d17"
+        },
+        {
+          "rel": "img/pictures/np_super_cutin_vp.png",
+          "size": 687274,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/np_super_cutin_vp.png",
+          "sha256_16": "d5e8f4ae6bf33fd3"
+        },
+        {
+          "rel": "img/pictures/np_super_flask.png",
+          "size": 18529,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/np_super_flask.png",
+          "sha256_16": "a6284a23ec4a717a"
+        },
+        {
+          "rel": "img/pictures/np_super_moon.png",
+          "size": 135139,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/np_super_moon.png",
+          "sha256_16": "afd7a6fb19895820"
+        },
+        {
+          "rel": "img/pictures/np_super_reticle.png",
+          "size": 41080,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/np_super_reticle.png",
+          "sha256_16": "7c2c54a5192b7ac8"
+        },
+        {
+          "rel": "img/pictures/np_super_sign.png",
+          "size": 195695,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/pictures/np_super_sign.png",
+          "sha256_16": "86b0c5dfdec5f453"
+        }
+      ]
+    },
+    "NP_TitleProgress": {
+      "count": 6,
+      "bytes": 7179007,
+      "files": [
+        {
+          "rel": "img/titles1/np_title_s0.png",
+          "size": 1868546,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/titles1/np_title_s0.png",
+          "sha256_16": "ae21691db6cc54fa"
+        },
+        {
+          "rel": "img/titles1/np_title_s1.png",
+          "size": 1607550,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/titles1/np_title_s1.png",
+          "sha256_16": "e29a5a9f9120daf8"
+        },
+        {
+          "rel": "img/titles1/np_title_s2.png",
+          "size": 1692420,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/titles1/np_title_s2.png",
+          "sha256_16": "fb5a0ffe6884ed17"
+        },
+        {
+          "rel": "img/titles1/np_title_s3.png",
+          "size": 1656023,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/titles1/np_title_s3.png",
+          "sha256_16": "8378418edd890346"
+        },
+        {
+          "rel": "img/titles2/np_title_logo.png",
+          "size": 185262,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/titles2/np_title_logo.png",
+          "sha256_16": "3bded83300c70b4b"
+        },
+        {
+          "rel": "img/titles2/np_title_logo_en.png",
+          "size": 169206,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/img/titles2/np_title_logo_en.png",
+          "sha256_16": "ba0fdbb6bdc7648b"
+        }
+      ]
+    },
+    "NP_VideoPortrait": {
+      "count": 4,
+      "bytes": 10893885,
+      "files": [
+        {
+          "rel": "movies/dance1.webm",
+          "size": 2804646,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/movies/dance1.webm",
+          "sha256_16": "6daaba07e30de885"
+        },
+        {
+          "rel": "movies/dance2.webm",
+          "size": 2710649,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/movies/dance2.webm",
+          "sha256_16": "c7237afd3142162b"
+        },
+        {
+          "rel": "movies/dance3.webm",
+          "size": 1470240,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/movies/dance3.webm",
+          "sha256_16": "80ebc8156f81f0fd"
+        },
+        {
+          "rel": "movies/dance4.webm",
+          "size": 3908350,
+          "source": "/workspace/np/incoming/NymPri_080jPlus_new/NymPri_080jPlusMODES_Elites_v1.0.2_Sprites_v0.1.0_Windows_clean/www/movies/dance4.webm",
+          "sha256_16": "13f1165357497bbb"
+        }
+      ]
+    }
+  },
+  "missing": []
+}

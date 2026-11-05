@@ -34,8 +34,20 @@ No Plugin Manager parameters. Options row **Компактное меню пау
 
 Copy `NP_MenuLayout.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_MenuLayout.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_MenuLayout/` folder. The folder exists so the script and its notes can be browsed, and later split out as a git submodule.
 
+## Assets
+
+Copy the contents of this plugin's `assets/` folder into the game's `www/` directory and keep the relative paths. A file at `assets/img/pictures/example.png` must end up at `www/img/pictures/example.png` (and `assets/movies/clip.webm` at `www/movies/clip.webm`). The folder name `assets` is not part of the game path.
+
+Menu icons loaded as `img/system/np-menu/<name>.svg`. They are Lucide static icons (ISC); `LICENSE.txt` and `NOTICE.txt` sit in the same folder. Stroke colour was set to `#dcbc7c` for this mod.
+
+The script loads these by name: `users` (Party, character list), `backpack` (Items), `shield` (Equipment), `sparkles` (Skills), `scroll-text` (current quest), `book-open` (Diary and titles), `heart` (companions), `save`, `settings`, `coins` (silver), `ellipsis` (More), `chevron-right` (Exit), `moon` / `sun` / `sparkles` (effect chips). Also in the folder, unused by the current script: `sword.svg`, `chevron-down.svg`, `chevron-left.svg`, plus `LICENSE.txt` and `NOTICE.txt`.
+
+Full list and checksums: [INVENTORY.md](../../INVENTORY.md).
+
 ## Screenshots
 
-screenshots TBD
-
-No image files are shipped here. The panels described above are drawn by the plugin at runtime inside the game.
+![Items](assets/img/system/np-menu/backpack.svg)
+![Quest](assets/img/system/np-menu/scroll-text.svg)
+![Party](assets/img/system/np-menu/users.svg)
+![Equipment](assets/img/system/np-menu/shield.svg)
+![Save](assets/img/system/np-menu/save.svg)

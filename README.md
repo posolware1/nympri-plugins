@@ -28,7 +28,7 @@ Folders are ordinary directories in this repository. `.gitmodules.example` lists
 1. Copy every `plugins/NP_<Name>/NP_<Name>.js` into the game's `www/js/plugins/` directory. Keep the file name. The engine does not load scripts from these subfolders.
 2. Enable the plugins in Plugin Manager in the order below. `NP_Language` is early: immediately after `MEO_Util_Node`, before plugins that read CSV at startup. The other 43 scripts are one block at the end of the list. `NP_OptionsCategories` is last.
 3. Leave the rest of the mod in place (MEO, KNS, YEP Item Core, DreamX, and the game data). These scripts hook those systems. They are not a standalone project.
-4. Some behaviour needs files that ship with the full mod (`www/lang/en/`, title images, `movies/`, camp audio). This repository is the plugin scripts and their notes only.
+4. Nine plugins ship pictures and movies under `plugins/<Name>/assets/`. Copy the contents of each `assets/` folder into the game `www/` directory and keep the relative paths (`assets/img/...` becomes `www/img/...`, `assets/movies/...` becomes `www/movies/...`). The index is [INVENTORY.md](INVENTORY.md). English text, stock BGM, and camp audio still come from the full mod (`www/lang/en/` and the game's `audio/` folder).
 
 Language files are UTF-8 without a BOM. Do not reformat the `.js` files: they are a byte copy of the mod sources.
 

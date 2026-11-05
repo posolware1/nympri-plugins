@@ -34,8 +34,20 @@
 
 Скопируйте `NP_MenuLayout.js` в `www/js/plugins/` игры. Имя файла должно остаться `NP_MenuLayout.js`. В менеджере плагинов включите его в порядке из раздела [Порядок загрузки](#порядок-загрузки). RPG Maker MV читает плагины из `www/js/plugins/`, а не из папки `plugins/NP_MenuLayout/` в этом репозитории. Папка нужна, чтобы скрипт и описание было удобно смотреть на GitHub и позже вынести в отдельный git submodule.
 
+## Ресурсы
+
+Скопируйте содержимое папки `assets/` этого плагина в `www/` игры и сохраните относительные пути. Файл `assets/img/pictures/example.png` должен оказаться в `www/img/pictures/example.png` (а `assets/movies/clip.webm` — в `www/movies/clip.webm`). Имя папки `assets` в путь игры не входит.
+
+Значки меню, которые грузятся как `img/system/np-menu/<имя>.svg`. Это значки Lucide static (лицензия ISC); `LICENSE.txt` и `NOTICE.txt` лежат в той же папке. Цвет обводки для мода заменён на `#dcbc7c`.
+
+Скрипт запрашивает по имени: `users` (Отряд, список персонажей), `backpack` (Предметы), `shield` (Снаряжение), `sparkles` (Умения), `scroll-text` (текущее задание), `book-open` (Дневник и титулы), `heart` (спутники), `save`, `settings`, `coins` (серебро), `ellipsis` (Ещё), `chevron-right` (Выход), `moon` / `sun` / `sparkles` (значки эффектов). В папке есть и не используются текущим скриптом: `sword.svg`, `chevron-down.svg`, `chevron-left.svg`, а также `LICENSE.txt` и `NOTICE.txt`.
+
+Полный список и контрольные суммы: [INVENTORY.md](../../INVENTORY.md).
+
 ## Скриншоты
 
-screenshots TBD
-
-Файлов изображений в репозитории нет. Окна, описанные выше, плагин рисует во время игры.
+![Предметы](assets/img/system/np-menu/backpack.svg)
+![Задание](assets/img/system/np-menu/scroll-text.svg)
+![Отряд](assets/img/system/np-menu/users.svg)
+![Снаряжение](assets/img/system/np-menu/shield.svg)
+![Сохранение](assets/img/system/np-menu/save.svg)

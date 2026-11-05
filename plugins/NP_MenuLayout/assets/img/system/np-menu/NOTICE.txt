@@ -1,0 +1,2 @@
+Lucide static v0.468.0 (ISC). Source: https://lucide.dev / https://www.npmjs.com/package/lucide-static
+Adaptation for NymPri: currentColor stroke set to #dcbc7c. Original license preserved in LICENSE.txt.

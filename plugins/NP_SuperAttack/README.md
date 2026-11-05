@@ -33,8 +33,26 @@ After `NP_PowerStrike`, `NP_Stress`, `NP_FastBattle`, and `NP_BattleQoL`. In the
 
 Copy `NP_SuperAttack.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_SuperAttack.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_SuperAttack/` folder. The folder exists so the script and its notes can be browsed, and later split out as a git submodule.
 
+## Assets
+
+Copy the contents of this plugin's `assets/` folder into the game's `www/` directory and keep the relative paths. A file at `assets/img/pictures/example.png` must end up at `www/img/pictures/example.png` (and `assets/movies/clip.webm` at `www/movies/clip.webm`). The folder name `assets` is not part of the game path.
+
+Cut-ins and the QTE pictures, all under `img/pictures/`:
+
+- `np_super_cutin_pri.png` — priestess (Holy Seal)
+- `np_super_cutin_yar.png` — Yarizo (Bear Grip)
+- `np_super_cutin_pm.png` — Potion Maker (Flask Throw)
+- `np_super_cutin_vp.png` — vampire princess (Blood Moon)
+- `np_super_sign.png` — Holy Seal marker
+- `np_super_flask.png` and `np_super_reticle.png` — Flask Throw
+- `np_super_moon.png` — Blood Moon needle
+
+Full list and checksums: [INVENTORY.md](../../INVENTORY.md).
+
 ## Screenshots
 
-screenshots TBD
-
-No image files are shipped here. The panels described above are drawn by the plugin at runtime inside the game.
+![Priestess cut-in](assets/img/pictures/np_super_cutin_pri.png)
+![Holy Seal sign](assets/img/pictures/np_super_sign.png)
+![Flask](assets/img/pictures/np_super_flask.png)
+![Reticle](assets/img/pictures/np_super_reticle.png)
+![Blood Moon](assets/img/pictures/np_super_moon.png)

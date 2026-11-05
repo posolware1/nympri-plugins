@@ -33,8 +33,26 @@
 
 Скопируйте `NP_SuperAttack.js` в `www/js/plugins/` игры. Имя файла должно остаться `NP_SuperAttack.js`. В менеджере плагинов включите его в порядке из раздела [Порядок загрузки](#порядок-загрузки). RPG Maker MV читает плагины из `www/js/plugins/`, а не из папки `plugins/NP_SuperAttack/` в этом репозитории. Папка нужна, чтобы скрипт и описание было удобно смотреть на GitHub и позже вынести в отдельный git submodule.
 
+## Ресурсы
+
+Скопируйте содержимое папки `assets/` этого плагина в `www/` игры и сохраните относительные пути. Файл `assets/img/pictures/example.png` должен оказаться в `www/img/pictures/example.png` (а `assets/movies/clip.webm` — в `www/movies/clip.webm`). Имя папки `assets` в путь игры не входит.
+
+Кат-ины и картинки QTE, все в `img/pictures/`:
+
+- `np_super_cutin_pri.png` — жрица (Святая печать)
+- `np_super_cutin_yar.png` — Яризо (Медвежья хватка)
+- `np_super_cutin_pm.png` — Зельеварка (Бросок склянки)
+- `np_super_cutin_vp.png` — принцесса-вампир (Кровавая луна)
+- `np_super_sign.png` — маркер Святой печати
+- `np_super_flask.png` и `np_super_reticle.png` — Бросок склянки
+- `np_super_moon.png` — стрелка Кровавой луны
+
+Полный список и контрольные суммы: [INVENTORY.md](../../INVENTORY.md).
+
 ## Скриншоты
 
-screenshots TBD
-
-Файлов изображений в репозитории нет. Окна, описанные выше, плагин рисует во время игры.
+![Кат-ин жрицы](assets/img/pictures/np_super_cutin_pri.png)
+![Знак Святой печати](assets/img/pictures/np_super_sign.png)
+![Склянка](assets/img/pictures/np_super_flask.png)
+![Прицел](assets/img/pictures/np_super_reticle.png)
+![Кровавая луна](assets/img/pictures/np_super_moon.png)

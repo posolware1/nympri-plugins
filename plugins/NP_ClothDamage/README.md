@@ -30,6 +30,21 @@ After `NP_Titles`, before `NP_Stress`. `NP_Titles` reads the level for one title
 
 Copy `NP_ClothDamage.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_ClothDamage.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_ClothDamage/` folder. The folder exists so the script and its notes can be browsed, and later split out as a git submodule.
 
+## Assets
+
+Copy the contents of this plugin's `assets/` folder into the game's `www/` directory and keep the relative paths. A file at `assets/img/pictures/example.png` must end up at `www/img/pictures/example.png` (and `assets/movies/clip.webm` at `www/movies/clip.webm`). The folder name `assets` is not part of the game path.
+
+20 torn standing pictures for the basic vestment (armor 82), one set per face `0`–`3`. Each face has tear levels `t1`, `t2`, `t3` and fallback sets `ta`, `tb`. The intact `cloth82` pictures belong to the base game and are not in this folder.
+
+- `img/pictures/stand-heroine-basic-cloth82-0-t1.png` through `stand-heroine-basic-cloth82-0-tb.png`
+- the same five suffixes for faces `1`, `2`, and `3`
+
+Full list and checksums: [INVENTORY.md](../../INVENTORY.md).
+
 ## Screenshots
 
-This plugin does not add its own screen.
+Shipped tear levels for face 0 (the plugin swaps these onto the standing picture during battle):
+
+![Tear level t1](assets/img/pictures/stand-heroine-basic-cloth82-0-t1.png)
+![Tear level t2](assets/img/pictures/stand-heroine-basic-cloth82-0-t2.png)
+![Tear level t3](assets/img/pictures/stand-heroine-basic-cloth82-0-t3.png)

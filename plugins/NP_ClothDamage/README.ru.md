@@ -30,6 +30,21 @@
 
 Скопируйте `NP_ClothDamage.js` в `www/js/plugins/` игры. Имя файла должно остаться `NP_ClothDamage.js`. В менеджере плагинов включите его в порядке из раздела [Порядок загрузки](#порядок-загрузки). RPG Maker MV читает плагины из `www/js/plugins/`, а не из папки `plugins/NP_ClothDamage/` в этом репозитории. Папка нужна, чтобы скрипт и описание было удобно смотреть на GitHub и позже вынести в отдельный git submodule.
 
+## Ресурсы
+
+Скопируйте содержимое папки `assets/` этого плагина в `www/` игры и сохраните относительные пути. Файл `assets/img/pictures/example.png` должен оказаться в `www/img/pictures/example.png` (а `assets/movies/clip.webm` — в `www/movies/clip.webm`). Имя папки `assets` в путь игры не входит.
+
+20 рваных стоячих картинок базового облачения (броня 82), по набору на лица `0`–`3`. У каждого лица уровни разрыва `t1`, `t2`, `t3` и запасные наборы `ta`, `tb`. Целые картинки `cloth82` входят в игру и здесь не лежат.
+
+- `img/pictures/stand-heroine-basic-cloth82-0-t1.png` … `stand-heroine-basic-cloth82-0-tb.png`
+- те же пять суффиксов для лиц `1`, `2` и `3`
+
+Полный список и контрольные суммы: [INVENTORY.md](../../INVENTORY.md).
+
 ## Скриншоты
 
-Отдельного экрана этот плагин не добавляет.
+Уровни разрыва для лица 0 (плагин подменяет ими стоячую картинку в бою):
+
+![Уровень t1](assets/img/pictures/stand-heroine-basic-cloth82-0-t1.png)
+![Уровень t2](assets/img/pictures/stand-heroine-basic-cloth82-0-t2.png)
+![Уровень t3](assets/img/pictures/stand-heroine-basic-cloth82-0-t3.png)

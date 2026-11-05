@@ -38,8 +38,24 @@
 
 Скопируйте `NP_VideoPortrait.js` в `www/js/plugins/` игры. Имя файла должно остаться `NP_VideoPortrait.js`. В менеджере плагинов включите его в порядке из раздела [Порядок загрузки](#порядок-загрузки). RPG Maker MV читает плагины из `www/js/plugins/`, а не из папки `plugins/NP_VideoPortrait/` в этом репозитории. Папка нужна, чтобы скрипт и описание было удобно смотреть на GitHub и позже вынести в отдельный git submodule.
 
+## Ресурсы
+
+Скопируйте содержимое папки `assets/` этого плагина в `www/` игры и сохраните относительные пути. Файл `assets/img/pictures/example.png` должен оказаться в `www/img/pictures/example.png` (а `assets/movies/clip.webm` — в `www/movies/clip.webm`). Имя папки `assets` в путь игры не входит.
+
+Четыре примера роликов. Плагин играет любой `movies/<имя>.webm` (запасной вариант — `.mp4`). В справке скрипта указаны эти имена:
+
+- `movies/dance1.webm`
+- `movies/dance2.webm`
+- `movies/dance3.webm`
+- `movies/dance4.webm`
+
+Полный список и контрольные суммы: [INVENTORY.md](../../INVENTORY.md).
+
 ## Скриншоты
 
-screenshots TBD
+Четыре ролика лежат в `assets/movies/`. Это видео, не кадры.
 
-Файлов изображений в репозитории нет. Окна, описанные выше, плагин рисует во время игры.
+- [dance1.webm](assets/movies/dance1.webm)
+- [dance2.webm](assets/movies/dance2.webm)
+- [dance3.webm](assets/movies/dance3.webm)
+- [dance4.webm](assets/movies/dance4.webm)

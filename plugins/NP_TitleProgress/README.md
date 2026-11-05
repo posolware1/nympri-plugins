@@ -35,8 +35,23 @@ After `NP_FastBattle`, before `NP_PowerStrike`. Does not depend on `NP_TitleVolu
 
 Copy `NP_TitleProgress.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_TitleProgress.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_TitleProgress/` folder. The folder exists so the script and its notes can be browsed, and later split out as a git submodule.
 
+## Assets
+
+Copy the contents of this plugin's `assets/` folder into the game's `www/` directory and keep the relative paths. A file at `assets/img/pictures/example.png` must end up at `www/img/pictures/example.png` (and `assets/movies/clip.webm` at `www/movies/clip.webm`). The folder name `assets` is not part of the game path.
+
+Stage backgrounds and logos. Title BGM stays the stock tracks already in the game; those audio files are not here.
+
+- `img/titles1/np_title_s0.png` — stage 0
+- `img/titles1/np_title_s1.png` — stage 1
+- `img/titles1/np_title_s2.png` — stage 2
+- `img/titles1/np_title_s3.png` — stage 3
+- `img/titles2/np_title_logo.png` — logo
+- `img/titles2/np_title_logo_en.png` — logo used with the English title art
+
+Full list and checksums: [INVENTORY.md](../../INVENTORY.md).
+
 ## Screenshots
 
-screenshots TBD
-
-No image files are shipped here. The panels described above are drawn by the plugin at runtime inside the game.
+![Stage 0](assets/img/titles1/np_title_s0.png)
+![Stage 3](assets/img/titles1/np_title_s3.png)
+![Logo](assets/img/titles2/np_title_logo.png)

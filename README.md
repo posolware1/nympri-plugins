@@ -6,8 +6,6 @@ Personal plugin collection for the Russian mod of an adult RPG Maker MV game (Ny
 
 **Personal NymPri RU-mod plugins; not affiliated with the original game publisher.**
 
-The same collection is also kept as a private Origin mirror, `kosta-gorunov/nympri-plugins`. This GitHub repository is the public copy.
-
 ![Title screen: language button and music slider](docs/screenshots/title.png)
 
 Title screen from the mod. The **RU | EN** button is `NP_Language`. The speaker and the 0–100 slider are `NP_TitleVolume`.

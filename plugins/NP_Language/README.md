@@ -35,6 +35,6 @@ Copy `NP_Language.js` into the game's `www/js/plugins/` directory. The file name
 
 ## Screenshots
 
-screenshots TBD
+![Language switch confirm on the title screen](screenshots/NP_Language.png)
 
-No image files are shipped here. The panels described above are drawn by the plugin at runtime inside the game.
+The **RU | EN** button on the title screen opens this confirm window. Accepting reloads the game in the chosen language.

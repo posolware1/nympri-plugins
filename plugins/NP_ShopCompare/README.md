@@ -32,12 +32,10 @@ Copy `NP_ShopCompare.js` into the game's `www/js/plugins/` directory. The file n
 
 ## Screenshots
 
-Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
+![Buy list: current and new weapon stats.](../../docs/screenshots/historical/ShopCompare.png)
 
-![Buy list: current and new weapon stats. Older frame, not a new capture.](../../docs/screenshots/historical/ShopCompare.png)
+Buy list: current and new weapon stats.
 
-Buy list: current and new weapon stats. Older frame, not a new capture.
+![The same comparison for armor, two characters.](../../docs/screenshots/historical/ShopCompare_armor.png)
 
-![The same comparison for armor, two characters. Older frame.](../../docs/screenshots/historical/ShopCompare_armor.png)
-
-The same comparison for armor, two characters. Older frame.
+The same comparison for armor, two characters.

@@ -34,8 +34,6 @@ Copy `NP_MorningHints.js` into the game's `www/js/plugins/` directory. The file 
 
 ## Screenshots
 
-Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
+![A morning line is on screen. The autosave notice and a title toast are also visible.](../../docs/screenshots/historical/MorningHints_AutoSave.png)
 
-![A morning line is on screen. The autosave notice and a title toast are also visible. Older frame.](../../docs/screenshots/historical/MorningHints_AutoSave.png)
-
-A morning line is on screen. The autosave notice and a title toast are also visible. Older frame.
+A morning line is on screen. The autosave notice and a title toast are also visible.

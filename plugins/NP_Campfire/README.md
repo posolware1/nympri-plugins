@@ -36,8 +36,6 @@ Copy `NP_Campfire.js` into the game's `www/js/plugins/` directory. The file name
 
 ## Screenshots
 
-Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
+![A camp conversation and the camp-skill list are on one frame. Stress meters are also visible.](../../docs/screenshots/historical/Campfire_CampSkills.png)
 
-![A camp conversation and the camp-skill list are on one frame. Stress meters are also visible. Older frame.](../../docs/screenshots/historical/Campfire_CampSkills.png)
-
-A camp conversation and the camp-skill list are on one frame. Stress meters are also visible. Older frame.
+A camp conversation and the camp-skill list are on one frame. Stress meters are also visible.

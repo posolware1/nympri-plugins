@@ -49,7 +49,7 @@ Full list and checksums: [INVENTORY.md](../../INVENTORY.md).
 
 ## Screenshots
 
-Pictures below are files shipped with the plugin, not a new gameplay capture.
+These are the picture files the plugin uses.
 
 Shipped tear levels for face 0 (the plugin swaps these onto the standing picture during battle):
 

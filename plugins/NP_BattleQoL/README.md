@@ -36,8 +36,6 @@ Copy `NP_BattleQoL.js` into the game's `www/js/plugins/` directory. The file nam
 
 ## Screenshots
 
-Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
+![The corner reads battle speed and autobattle.](../../docs/screenshots/historical/FastBattle_BattleQoL.png)
 
-![The corner reads battle speed and autobattle. Older frame.](../../docs/screenshots/historical/FastBattle_BattleQoL.png)
-
-The corner reads battle speed and autobattle. Older frame.
+The corner reads battle speed and autobattle.

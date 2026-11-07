@@ -40,12 +40,10 @@ Copy `NP_BattleHUD.js` into the game's `www/js/plugins/` directory. The file nam
 
 ## Screenshots
 
-Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
+![Party cards are visible beside the command list and the enemy window.](../../docs/screenshots/historical/BattleCmd_BattleHUD_EnemyHUD.png)
 
-![Party cards are visible beside the command list and the enemy window. Older frame.](../../docs/screenshots/historical/BattleCmd_BattleHUD_EnemyHUD.png)
+Party cards are visible beside the command list and the enemy window.
 
-Party cards are visible beside the command list and the enemy window. Older frame.
+![Four party cards are also visible on this stress-traits frame.](../../docs/screenshots/historical/Stress_traits.png)
 
-![Four party cards are also visible on this stress-traits frame. Older frame.](../../docs/screenshots/historical/Stress_traits.png)
-
-Four party cards are also visible on this stress-traits frame. Older frame.
+Four party cards are also visible on this stress-traits frame.

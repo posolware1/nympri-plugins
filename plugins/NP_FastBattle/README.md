@@ -42,12 +42,10 @@ Copy `NP_FastBattle.js` into the game's `www/js/plugins/` directory. The file na
 
 ## Screenshots
 
-Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
+![The corner shows battle speed and autobattle. It does not by itself prove the shorter waits.](../../docs/screenshots/historical/FastBattle_BattleQoL.png)
 
-![The corner shows battle speed and autobattle. Older frame. It does not by itself prove the shorter waits.](../../docs/screenshots/historical/FastBattle_BattleQoL.png)
+The corner shows battle speed and autobattle. It does not by itself prove the shorter waits.
 
-The corner shows battle speed and autobattle. Older frame. It does not by itself prove the shorter waits.
+![Battle speed is also visible on this command-list frame.](../../docs/screenshots/historical/BattleCmd_BattleHUD_EnemyHUD.png)
 
-![Battle speed is also visible on this command-list frame. Older frame.](../../docs/screenshots/historical/BattleCmd_BattleHUD_EnemyHUD.png)
-
-Battle speed is also visible on this command-list frame. Older frame.
+Battle speed is also visible on this command-list frame.

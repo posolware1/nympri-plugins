@@ -8,7 +8,7 @@ Companion russifier (translation + language switch only): [nympri-ru](https://gi
 
 ![Title screen: RU | EN and the music slider](docs/screenshots/title.png)
 
-Older title capture already in the repository (`NP_Language` button and `NP_TitleVolume` slider). It was not re-shot for this revision.
+The RU | EN button is `NP_Language`. The speaker and slider are `NP_TitleVolume`.
 
 ## Requirements
 

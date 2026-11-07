@@ -43,12 +43,10 @@ Copy `NP_Titles.js` into the game's `www/js/plugins/` directory. The file name m
 
 ## Screenshots
 
-Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
-
 ![Priestess titles: unlocked list and the equipped title's detail](screenshots/NP_Titles.png)
 
 The header shows how many titles are unlocked and which one is active. Locked rows read `???`. The detail pane for **Скромная жрица / Humble Priestess** shows the description, the condition, the faith bonus, and that it is equipped. OK removes it.
 
-![A title toast is visible on this morning frame. The titles menu itself is the other capture already in this folder. Older frames.](../../docs/screenshots/historical/MorningHints_AutoSave.png)
+![A title toast is visible on this morning frame. The titles menu itself is the other capture already in this folder.](../../docs/screenshots/historical/MorningHints_AutoSave.png)
 
-A title toast is visible on this morning frame. The titles menu itself is the other capture already in this folder. Older frames.
+A title toast is visible on this morning frame. The titles menu itself is the other capture already in this folder.

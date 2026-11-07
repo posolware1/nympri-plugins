@@ -37,8 +37,6 @@ Copy `NP_BattleCmd.js` into the game's `www/js/plugins/` directory. The file nam
 
 ## Screenshots
 
-Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
-
 ![Battle commands as icon plus label. Party cards and the enemy HP window are on the same frame. This does not show a super attack playing.](../../docs/screenshots/historical/BattleCmd_BattleHUD_EnemyHUD.png)
 
 Battle commands as icon plus label. Party cards and the enemy HP window are on the same frame. This does not show a super attack playing.

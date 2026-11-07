@@ -47,8 +47,6 @@ Copy `NP_PriestessDiary.js` into the game's `www/js/plugins/` directory. The fil
 
 ## Screenshots
 
-Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
+![The diary book is open. The corner also shows the volume widget and the RU | EN switch.](../../docs/screenshots/historical/PriestessDiary.png)
 
-![The diary book is open. The corner also shows the volume widget and the RU | EN switch. Older frame.](../../docs/screenshots/historical/PriestessDiary.png)
-
-The diary book is open. The corner also shows the volume widget and the RU | EN switch. Older frame.
+The diary book is open. The corner also shows the volume widget and the RU | EN switch.

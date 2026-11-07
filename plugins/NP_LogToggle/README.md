@@ -36,8 +36,6 @@ Copy `NP_LogToggle.js` into the game's `www/js/plugins/` directory. The file nam
 
 ## Screenshots
 
-Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
+![The map log is expanded. The collapsed counter is not shown.](../../docs/screenshots/historical/LogToggle.png)
 
-![The map log is expanded. Older frame. The collapsed counter is not shown.](../../docs/screenshots/historical/LogToggle.png)
-
-The map log is expanded. Older frame. The collapsed counter is not shown.
+The map log is expanded. The collapsed counter is not shown.

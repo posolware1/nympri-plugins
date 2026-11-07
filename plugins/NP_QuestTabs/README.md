@@ -36,12 +36,10 @@ Copy `NP_QuestTabs.js` into the game's `www/js/plugins/` directory. The file nam
 
 ## Screenshots
 
-Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
-
 ![Quest journal: Story tab empty, Side and Completed counted](screenshots/NP_QuestTabs.png)
 
 Three tabs sit in the header, each with a count: **Сюжет / Story (0)**, **Побочные / Side (5)**, **Выполненные / Completed (1)**. Story is selected and empty, so the list shows a short line instead of a blank page.
 
-![Journal tabs are visible above a where-to-go line. Older frame. The other capture in this folder is the tab row with counts.](../../docs/screenshots/historical/QuestHints.png)
+![Journal tabs are visible above a where-to-go line. The other capture in this folder is the tab row with counts.](../../docs/screenshots/historical/QuestHints.png)
 
-Journal tabs are visible above a where-to-go line. Older frame. The other capture in this folder is the tab row with counts.
+Journal tabs are visible above a where-to-go line. The other capture in this folder is the tab row with counts.

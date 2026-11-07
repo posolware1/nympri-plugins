@@ -47,7 +47,7 @@ Full list and checksums: [INVENTORY.md](../../INVENTORY.md).
 
 ## Screenshots
 
-Pictures below are files shipped with the plugin, not a new gameplay capture.
+These are the picture files the plugin uses.
 
 ![Bloodtrail Wolf](assets/img/characters/$NP_Elite_Wolf_v1.png)
 ![Retribution Spider](assets/img/characters/$NP_Elite_Spider_v1.png)

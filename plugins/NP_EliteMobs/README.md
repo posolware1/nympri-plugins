@@ -43,4 +43,4 @@ Copy `NP_EliteMobs.js` into the game's `www/js/plugins/` directory. The file nam
 
 ## Screenshots
 
-No screenshot is included. This plugin has no separate screen, or no selected frame shows it clearly. A later picture has to be a real game frame, not a mockup.
+Six extra starred enemies join the bestiary and can appear in a dungeon. A screenshot of one of those fights is not yet available. Their character sheets are shown with NP_EliteSprites.

@@ -46,8 +46,6 @@ Copy `NP_CampSkills.js` into the game's `www/js/plugins/` directory. The file na
 
 ## Screenshots
 
-Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
+![The camp-skill list is visible with the camp conversation.](../../docs/screenshots/historical/Campfire_CampSkills.png)
 
-![The camp-skill list is visible with the camp conversation. Older frame.](../../docs/screenshots/historical/Campfire_CampSkills.png)
-
-The camp-skill list is visible with the camp conversation. Older frame.
+The camp-skill list is visible with the camp conversation.

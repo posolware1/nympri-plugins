@@ -58,7 +58,7 @@ Full list and checksums: [INVENTORY.md](../../INVENTORY.md).
 
 ## Screenshots
 
-Pictures below are files shipped with the plugin, not a new gameplay capture.
+These are the picture files the plugin uses.
 
 ![Stage 0](assets/img/titles1/np_title_s0.png)
 ![Stage 3](assets/img/titles1/np_title_s3.png)

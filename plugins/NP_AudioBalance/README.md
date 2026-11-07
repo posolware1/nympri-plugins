@@ -38,4 +38,4 @@ Copy `NP_AudioBalance.js` into the game's `www/js/plugins/` directory. The file 
 
 ## Screenshots
 
-No screenshot is included. This plugin has no separate screen, or no selected frame shows it clearly. A later picture has to be a real game frame, not a mockup.
+Raises or lowers the loudness of music and effects, and adds cues on some silent maps. A still picture would not show the difference.

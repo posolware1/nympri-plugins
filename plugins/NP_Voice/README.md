@@ -37,4 +37,4 @@ Copy `NP_Voice.js` into the game's `www/js/plugins/` directory. The file name mu
 
 ## Screenshots
 
-No screenshot is included. This plugin has no separate screen, or no selected frame shows it clearly. A later picture has to be a real game frame, not a mockup.
+Plays a short sigh, gasp, or moan cut from audio the game already has. A still picture would not show the sound. The switch is an ordinary options row.

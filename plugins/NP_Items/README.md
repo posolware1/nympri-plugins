@@ -40,12 +40,10 @@ Copy `NP_Items.js` into the game's `www/js/plugins/` directory. The file name mu
 
 ## Screenshots
 
-Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
+![Item list with plugin item text.](../../docs/screenshots/historical/Items.png)
 
-![Item list with plugin item text. Older frame.](../../docs/screenshots/historical/Items.png)
+Item list with plugin item text.
 
-Item list with plugin item text. Older frame.
+![Equipment view of those items.](../../docs/screenshots/historical/Items_equip.png)
 
-![Equipment view of those items. Older frame.](../../docs/screenshots/historical/Items_equip.png)
-
-Equipment view of those items. Older frame.
+Equipment view of those items.

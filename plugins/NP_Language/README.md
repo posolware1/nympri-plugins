@@ -41,8 +41,6 @@ Copy `NP_Language.js` into the game's `www/js/plugins/` directory. The file name
 
 ## Screenshots
 
-Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
-
 ![Language switch confirm on the title screen](screenshots/NP_Language.png)
 
 The **RU | EN** button on the title screen opens this confirm window. Accepting reloads the game in the chosen language.

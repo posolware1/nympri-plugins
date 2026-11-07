@@ -38,8 +38,6 @@ Copy `NP_TitleVolume.js` into the game's `www/js/plugins/` directory. The file n
 
 ## Screenshots
 
-Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
-
 ![The volume widget is in the corner of this diary frame. This is not a title-screen capture.](../../docs/screenshots/historical/PriestessDiary.png)
 
 The volume widget is in the corner of this diary frame. This is not a title-screen capture.

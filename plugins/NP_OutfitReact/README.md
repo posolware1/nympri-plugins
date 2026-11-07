@@ -55,7 +55,7 @@ Full list and checksums: [INVENTORY.md](../../INVENTORY.md).
 
 ## Screenshots
 
-Pictures below are files shipped with the plugin, not a new gameplay capture.
+These are the picture files the plugin uses.
 
 ![Yarizo slide face](assets/img/system/np_or_yarizo.png)
 ![Priestess, flush, no hat](assets/img/system/np_or_pri_fl_0.png)

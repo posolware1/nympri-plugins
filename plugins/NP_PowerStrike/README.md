@@ -42,8 +42,6 @@ Copy `NP_PowerStrike.js` into the game's `www/js/plugins/` directory. The file n
 
 ## Screenshots
 
-Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
+![A timed press minigame is on screen. It does not show the damage number afterwards.](../../docs/screenshots/historical/PowerStrike_QTE.png)
 
-![A timed press minigame is on screen. Older frame. It does not show the damage number afterwards.](../../docs/screenshots/historical/PowerStrike_QTE.png)
-
-A timed press minigame is on screen. Older frame. It does not show the damage number afterwards.
+A timed press minigame is on screen. It does not show the damage number afterwards.

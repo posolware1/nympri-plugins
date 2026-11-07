@@ -59,7 +59,7 @@ Full list and checksums: [INVENTORY.md](../../INVENTORY.md).
 
 ## Screenshots
 
-The clips below are files shipped with the plugin, not a new gameplay capture. The installer does not add the events that play them.
+These are the clips the plugin can play. The installer does not add the events that start them.
 
 The four clips are the files under `assets/movies/`. Open them from the repository; they are not still images.
 

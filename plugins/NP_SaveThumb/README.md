@@ -41,8 +41,6 @@ Copy `NP_SaveThumb.js` into the game's `www/js/plugins/` directory. The file nam
 
 ## Screenshots
 
-Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
-
 ![Load-file list with a preview on the occupied slot](screenshots/NP_SaveThumb.png)
 
 The file window is the load list. Empty rows stay blank. An occupied row shows a small preview, the file title, the date, and the play time.

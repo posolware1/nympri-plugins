@@ -43,8 +43,6 @@ Copy `NP_AutoSave.js` into the game's `www/js/plugins/` directory. The file name
 
 ## Screenshots
 
-Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
+![The autosave notice is visible during a morning line. It does not show the save-slot rows.](../../docs/screenshots/historical/MorningHints_AutoSave.png)
 
-![The autosave notice is visible during a morning line. Older frame. It does not show the save-slot rows.](../../docs/screenshots/historical/MorningHints_AutoSave.png)
-
-The autosave notice is visible during a morning line. Older frame. It does not show the save-slot rows.
+The autosave notice is visible during a morning line. It does not show the save-slot rows.

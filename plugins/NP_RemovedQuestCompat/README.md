@@ -32,4 +32,4 @@ Copy `NP_RemovedQuestCompat.js` into the game's `www/js/plugins/` directory. The
 
 ## Screenshots
 
-No screenshot is included. This plugin has no separate screen, or no selected frame shows it clearly. A later picture has to be a real game frame, not a mockup.
+On an old save, removes leftover events and items from three quests the mod dropped. Nothing new is drawn, so a screenshot would not show the change.

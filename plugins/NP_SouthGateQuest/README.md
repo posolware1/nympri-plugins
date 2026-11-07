@@ -32,4 +32,4 @@ Copy `NP_SouthGateQuest.js` into the game's `www/js/plugins/` directory. The fil
 
 ## Screenshots
 
-No screenshot is included. This plugin has no separate screen, or no selected frame shows it clearly. A later picture has to be a real game frame, not a mockup.
+From guild rank 2 the player can take a delivery and turn it in at the southern checkpoint. A screenshot of that conversation is not yet available.

@@ -50,8 +50,6 @@ Full list and checksums: [INVENTORY.md](../../INVENTORY.md).
 
 ## Screenshots
 
-Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
-
 ![Pause menu: command list, party gauges, and status boxes](screenshots/NP_MenuLayout.png)
 
 The command column sits on the left. Jimmy and Kohaku show class, level, and HP, MP, and FP. Under the list are alignment, fame, love, lust, and silver.

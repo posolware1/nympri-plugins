@@ -52,7 +52,7 @@ Full list and checksums: [INVENTORY.md](../../INVENTORY.md).
 
 ## Screenshots
 
-Pictures below are files shipped with the plugin, not a new gameplay capture.
+These are the picture files the plugin uses.
 
 ![Beach background](assets/img/pictures/np_beachanim_bg.png)
 ![Priestess picture used by the mesh](assets/img/pictures/np_beachanim_pri.png)

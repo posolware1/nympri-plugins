@@ -38,4 +38,4 @@ Copy `NP_QuestMarker.js` into the game's `www/js/plugins/` directory. The file n
 
 ## Screenshots
 
-No screenshot is included. This plugin has no separate screen, or no selected frame shows it clearly. A later picture has to be a real game frame, not a mockup.
+A blinking «!» stands on the current quest target, or on the exit that leads there. A screenshot of the marker is not yet available.

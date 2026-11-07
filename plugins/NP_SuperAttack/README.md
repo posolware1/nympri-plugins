@@ -55,7 +55,7 @@ Full list and checksums: [INVENTORY.md](../../INVENTORY.md).
 
 ## Screenshots
 
-Pictures below are files shipped with the plugin, not a new gameplay capture.
+These are the picture files the plugin uses.
 
 ![Priestess cut-in](assets/img/pictures/np_super_cutin_pri.png)
 ![Holy Seal sign](assets/img/pictures/np_super_sign.png)
@@ -63,9 +63,9 @@ Pictures below are files shipped with the plugin, not a new gameplay capture.
 ![Reticle](assets/img/pictures/np_super_reticle.png)
 ![Blood Moon](assets/img/pictures/np_super_moon.png)
 
-![The super command is in the battle menu. Older frame. The attack animation is not shown.](../../docs/screenshots/historical/SuperAttack_menu.png)
+![The super command is in the battle menu. The attack animation is not shown.](../../docs/screenshots/historical/SuperAttack_menu.png)
 
-The super command is in the battle menu. Older frame. The attack animation is not shown.
+The super command is in the battle menu. The attack animation is not shown.
 
 ![A seal minigame is visible. This frame is not proof the super attack connected.](../../docs/screenshots/historical/PowerStrike_QTE.png)
 

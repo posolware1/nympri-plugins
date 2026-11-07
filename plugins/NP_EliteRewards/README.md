@@ -37,4 +37,4 @@ Copy `NP_EliteRewards.js` into the game's `www/js/plugins/` directory. The file 
 
 ## Screenshots
 
-No screenshot is included. This plugin has no separate screen, or no selected frame shows it clearly. A later picture has to be a real game frame, not a mockup.
+Each of the six new rares can leave one permanent trophy in the inventory. A screenshot of a trophy is not yet available.

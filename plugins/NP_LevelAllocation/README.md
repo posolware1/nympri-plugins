@@ -34,4 +34,4 @@ Copy `NP_LevelAllocation.js` into the game's `www/js/plugins/` directory. The fi
 
 ## Screenshots
 
-No screenshot is included. This plugin has no separate screen, or no selected frame shows it clearly. A later picture has to be a real game frame, not a mockup.
+After a level-up the hero and Kohaku spend the new points on one screen. A screenshot of that screen is not yet available.

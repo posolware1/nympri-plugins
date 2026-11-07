@@ -32,8 +32,6 @@ Copy `NP_QuestHints.js` into the game's `www/js/plugins/` directory. The file na
 
 ## Screenshots
 
-Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
+![The quest window shows a where-to-go line. Journal tabs are on the same frame.](../../docs/screenshots/historical/QuestHints.png)
 
-![The quest window shows a where-to-go line. Journal tabs are on the same frame. Older frame.](../../docs/screenshots/historical/QuestHints.png)
-
-The quest window shows a where-to-go line. Journal tabs are on the same frame. Older frame.
+The quest window shows a where-to-go line. Journal tabs are on the same frame.

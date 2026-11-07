@@ -44,4 +44,4 @@ Copy `NP_YarizoQuest.js` into the game's `www/js/plugins/` directory. The file n
 
 ## Screenshots
 
-No screenshot is included. This plugin has no separate screen, or no selected frame shows it clearly. A later picture has to be a real game frame, not a mockup.
+The journal tracks where Yarizo is, and the quest marker follows. A screenshot of that journal entry is not yet available.

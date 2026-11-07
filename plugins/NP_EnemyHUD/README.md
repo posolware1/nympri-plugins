@@ -32,12 +32,10 @@ Copy `NP_EnemyHUD.js` into the game's `www/js/plugins/` directory. The file name
 
 ## Screenshots
 
-Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
+![The enemy HP window is visible. Detail pages on F6 are not shown.](../../docs/screenshots/historical/BattleCmd_BattleHUD_EnemyHUD.png)
 
-![The enemy HP window is visible. Older frame. Detail pages on F6 are not shown.](../../docs/screenshots/historical/BattleCmd_BattleHUD_EnemyHUD.png)
+The enemy HP window is visible. Detail pages on F6 are not shown.
 
-The enemy HP window is visible. Older frame. Detail pages on F6 are not shown.
+![The enemy window is also visible while battle speed and autobattle are on.](../../docs/screenshots/historical/FastBattle_BattleQoL.png)
 
-![The enemy window is also visible while battle speed and autobattle are on. Older frame.](../../docs/screenshots/historical/FastBattle_BattleQoL.png)
-
-The enemy window is also visible while battle speed and autobattle are on. Older frame.
+The enemy window is also visible while battle speed and autobattle are on.

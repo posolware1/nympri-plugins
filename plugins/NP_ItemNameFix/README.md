@@ -34,8 +34,6 @@ Copy `NP_ItemNameFix.js` into the game's `www/js/plugins/` directory. The file n
 
 ## Screenshots
 
-Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
+![Weapon names with a +1 suffix are visible. It does not show the name before the fix.](../../docs/screenshots/historical/ItemNameFix.png)
 
-![Weapon names with a +1 suffix are visible. Older frame. It does not show the name before the fix.](../../docs/screenshots/historical/ItemNameFix.png)
-
-Weapon names with a +1 suffix are visible. Older frame. It does not show the name before the fix.
+Weapon names with a +1 suffix are visible. It does not show the name before the fix.

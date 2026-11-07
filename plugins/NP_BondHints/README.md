@@ -38,4 +38,4 @@ Copy `NP_BondHints.js` into the game's `www/js/plugins/` directory. The file nam
 
 ## Screenshots
 
-No screenshot is included. This plugin has no separate screen, or no selected frame shows it clearly. A later picture has to be a real game frame, not a mockup.
+The map log names the bond gate that was reached and where to sleep next. A screenshot of that line is not yet available.

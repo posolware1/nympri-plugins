@@ -41,8 +41,6 @@ Copy `NP_OptionsCategories.js` into the game's `www/js/plugins/` directory. The 
 
 ## Screenshots
 
-Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
-
 ![Options split into categories, Sound section open](screenshots/NP_OptionsCategories.png)
 
 The left column is the category list with a count on each row. The right column is the open section. This shot is **Звук / Sound**: volume sliders, voice extras, camp music, and loudness balance. Enter or Right opens a section. Escape returns to the list and, from there, saves and leaves.

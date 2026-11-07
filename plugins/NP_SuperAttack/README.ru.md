@@ -55,7 +55,7 @@ Windows, **Alpha 0.80j**. Из скачанного ZIP запустите `inst
 
 ## Скриншоты
 
-Картинки ниже — файлы из состава плагина, а не новый снимок игры.
+Это файлы картинок, которые использует плагин.
 
 ![Кат-ин жрицы](assets/img/pictures/np_super_cutin_pri.png)
 ![Знак Святой печати](assets/img/pictures/np_super_sign.png)
@@ -63,9 +63,9 @@ Windows, **Alpha 0.80j**. Из скачанного ZIP запустите `inst
 ![Прицел](assets/img/pictures/np_super_reticle.png)
 ![Кровавая луна](assets/img/pictures/np_super_moon.png)
 
-![Команда супера в меню боя. Старый кадр. Анимация удара не показана.](../../docs/screenshots/historical/SuperAttack_menu.png)
+![Команда супера в меню боя. Анимация удара не показана.](../../docs/screenshots/historical/SuperAttack_menu.png)
 
-Команда супера в меню боя. Старый кадр. Анимация удара не показана.
+Команда супера в меню боя. Анимация удара не показана.
 
 ![Видна мини-игра с печатью. Кадр не доказывает, что суперудар попал.](../../docs/screenshots/historical/PowerStrike_QTE.png)
 

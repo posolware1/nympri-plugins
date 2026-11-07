@@ -50,20 +50,20 @@ Windows, **Alpha 0.80j**. Из скачанного ZIP запустите `inst
 
 ## Скриншоты
 
-Картинки ниже — файлы из состава плагина, а не новый снимок игры.
+Это файлы картинок, которые использует плагин.
 
 ![Трещины срыва](assets/img/pictures/np_stress_crack.png)
 ![Срыв](assets/img/pictures/np_stress_afflict.png)
 ![Подъём](assets/img/pictures/np_stress_virtue.png)
 
-![В бою видны шкалы напряжения и срыв. Старый кадр.](../../docs/screenshots/historical/Stress_battle.png)
+![В бою видны шкалы напряжения и срыв.](../../docs/screenshots/historical/Stress_battle.png)
 
-В бою видны шкалы напряжения и срыв. Старый кадр.
+В бою видны шкалы напряжения и срыв.
 
-![Видны строки черт и подъём. Старый кадр.](../../docs/screenshots/historical/Stress_traits.png)
+![Видны строки черт и подъём.](../../docs/screenshots/historical/Stress_traits.png)
 
-Видны строки черт и подъём. Старый кадр.
+Видны строки черт и подъём.
 
-![Шкалы напряжения видны и на кадре привала. Старый кадр.](../../docs/screenshots/historical/Campfire_CampSkills.png)
+![Шкалы напряжения видны и на кадре привала.](../../docs/screenshots/historical/Campfire_CampSkills.png)
 
-Шкалы напряжения видны и на кадре привала. Старый кадр.
+Шкалы напряжения видны и на кадре привала.

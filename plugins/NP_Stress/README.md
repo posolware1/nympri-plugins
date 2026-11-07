@@ -50,20 +50,20 @@ Full list and checksums: [INVENTORY.md](../../INVENTORY.md).
 
 ## Screenshots
 
-Pictures below are files shipped with the plugin, not a new gameplay capture.
+These are the picture files the plugin uses.
 
 ![Break cracks](assets/img/pictures/np_stress_crack.png)
 ![Affliction](assets/img/pictures/np_stress_afflict.png)
 ![Rally](assets/img/pictures/np_stress_virtue.png)
 
-![Stress meters and a break are visible in battle. Older frame.](../../docs/screenshots/historical/Stress_battle.png)
+![Stress meters and a break are visible in battle.](../../docs/screenshots/historical/Stress_battle.png)
 
-Stress meters and a break are visible in battle. Older frame.
+Stress meters and a break are visible in battle.
 
-![Trait rows and a rally are visible. Older frame.](../../docs/screenshots/historical/Stress_traits.png)
+![Trait rows and a rally are visible.](../../docs/screenshots/historical/Stress_traits.png)
 
-Trait rows and a rally are visible. Older frame.
+Trait rows and a rally are visible.
 
-![Stress meters are also visible on the camp frame. Older frame.](../../docs/screenshots/historical/Campfire_CampSkills.png)
+![Stress meters are also visible on the camp frame.](../../docs/screenshots/historical/Campfire_CampSkills.png)
 
-Stress meters are also visible on the camp frame. Older frame.
+Stress meters are also visible on the camp frame.

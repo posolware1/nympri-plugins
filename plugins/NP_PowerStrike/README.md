@@ -32,12 +32,18 @@ After `NP_TitleProgress`, before `NP_TitleVolume`. The command is injected into 
 - **Fap Auto Success** `false` — when on, Fap difficulty skips the QTE and scores Perfect.
 - **Command Labels** `true` — draws the command name beside the icon cursor.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_PowerStrike.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_PowerStrike.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_PowerStrike/` folder.
 
 ## Screenshots
 
-screenshots TBD
+Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
 
-No image files are shipped here. The panels described above are drawn by the plugin at runtime inside the game.
+![A timed press minigame is on screen. Older frame. It does not show the damage number afterwards.](../../docs/screenshots/historical/PowerStrike_QTE.png)
+
+A timed press minigame is on screen. Older frame. It does not show the damage number afterwards.

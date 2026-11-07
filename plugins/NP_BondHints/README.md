@@ -28,10 +28,14 @@ After `NP_LogToggle`, the KNS log scene, and `NP_Language`. In the mod list it s
 
 No Plugin Manager parameters. Gates are fixed at 50, 120, 280, and 500. Level 5 is the maximum.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_BondHints.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_BondHints.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_BondHints/` folder.
 
 ## Screenshots
 
-This plugin does not add its own screen.
+No screenshot is included. This plugin has no separate screen, or no selected frame shows it clearly. A later picture has to be a real game frame, not a mockup.

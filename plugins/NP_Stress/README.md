@@ -28,6 +28,10 @@ After `NP_ClothDamage` and `NP_Titles`, before `NP_CampSkills`. `NP_BattleHUD` l
 
 No Plugin Manager parameters. Options row **Напряжение** turns both stress and traits off. The numbers stay in the save.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_Stress.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_Stress.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_Stress/` folder.
@@ -46,6 +50,20 @@ Full list and checksums: [INVENTORY.md](../../INVENTORY.md).
 
 ## Screenshots
 
+Pictures below are files shipped with the plugin, not a new gameplay capture.
+
 ![Break cracks](assets/img/pictures/np_stress_crack.png)
 ![Affliction](assets/img/pictures/np_stress_afflict.png)
 ![Rally](assets/img/pictures/np_stress_virtue.png)
+
+![Stress meters and a break are visible in battle. Older frame.](../../docs/screenshots/historical/Stress_battle.png)
+
+Stress meters and a break are visible in battle. Older frame.
+
+![Trait rows and a rally are visible. Older frame.](../../docs/screenshots/historical/Stress_traits.png)
+
+Trait rows and a rally are visible. Older frame.
+
+![Stress meters are also visible on the camp frame. Older frame.](../../docs/screenshots/historical/Campfire_CampSkills.png)
+
+Stress meters are also visible on the camp frame. Older frame.

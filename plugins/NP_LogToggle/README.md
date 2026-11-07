@@ -26,12 +26,18 @@ After `NP_UIColors`, before `NP_ItemNameFix`. It wraps `MEO_Logwindow`. `NP_Bond
 - **Take Over D** `true` — the original D key (common event 18) also collapses and expands the log, and the choice sticks.
 - **Restore Delay** `24` frames with no message before the log fades back. This bridges the pause between lines.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_LogToggle.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_LogToggle.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_LogToggle/` folder.
 
 ## Screenshots
 
-screenshots TBD
+Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
 
-No image files are shipped here. The panels described above are drawn by the plugin at runtime inside the game.
+![The map log is expanded. Older frame. The collapsed counter is not shown.](../../docs/screenshots/historical/LogToggle.png)
+
+The map log is expanded. Older frame. The collapsed counter is not shown.

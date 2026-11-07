@@ -31,11 +31,17 @@ Last. After every plugin that adds an options row, including the other NP script
 
 - **Show option counts** `true` — the category row can show how many settings it holds.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_OptionsCategories.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_OptionsCategories.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_OptionsCategories/` folder.
 
 ## Screenshots
+
+Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
 
 ![Options split into categories, Sound section open](screenshots/NP_OptionsCategories.png)
 

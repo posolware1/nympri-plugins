@@ -31,6 +31,10 @@ After `NP_SaveThumb`, before `NP_PictureAnim`. Uses KNS slide windows, the same 
 - **Equip Cooldown Seconds** `20` after changing into a swimsuit or revealing outfit.
 - **Voice Volume** `60` for the gasp pool. `0` is silent.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_OutfitReact.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_OutfitReact.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_OutfitReact/` folder.
@@ -50,6 +54,8 @@ That is 28 priestess files plus Yarizo, 29 in total. Example: `img/system/np_or_
 Full list and checksums: [INVENTORY.md](../../INVENTORY.md).
 
 ## Screenshots
+
+Pictures below are files shipped with the plugin, not a new gameplay capture.
 
 ![Yarizo slide face](assets/img/system/np_or_yarizo.png)
 ![Priestess, flush, no hat](assets/img/system/np_or_pri_fl_0.png)

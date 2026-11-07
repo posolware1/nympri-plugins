@@ -22,12 +22,22 @@ After `NP_YarizoQuest`, before `NP_BattleQoL`. Extends KNS `Window_ShopStatus`. 
 
 - **Enabled** `true` — Options label **Сравнение в лавке**. Off restores the original KNS shop status.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_ShopCompare.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_ShopCompare.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_ShopCompare/` folder.
 
 ## Screenshots
 
-screenshots TBD
+Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
 
-No image files are shipped here. The panels described above are drawn by the plugin at runtime inside the game.
+![Buy list: current and new weapon stats. Older frame, not a new capture.](../../docs/screenshots/historical/ShopCompare.png)
+
+Buy list: current and new weapon stats. Older frame, not a new capture.
+
+![The same comparison for armor, two characters. Older frame.](../../docs/screenshots/historical/ShopCompare_armor.png)
+
+The same comparison for armor, two characters. Older frame.

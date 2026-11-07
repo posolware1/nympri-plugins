@@ -24,10 +24,18 @@ After `NP_RareMobs`, before `NP_QuestHints`. It reads the mod's night-absence va
 - **Cooldown** `1` — absences skipped after a hint, so at most every other one.
 - **Delay** `45` free frames on the new map before the lines start.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_MorningHints.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_MorningHints.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_MorningHints/` folder.
 
 ## Screenshots
 
-This plugin does not add its own screen.
+Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
+
+![A morning line is on screen. The autosave notice and a title toast are also visible. Older frame.](../../docs/screenshots/historical/MorningHints_AutoSave.png)
+
+A morning line is on screen. The autosave notice and a title toast are also visible. Older frame.

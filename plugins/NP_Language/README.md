@@ -29,11 +29,19 @@ Enable immediately after `MEO_Util_Node`, before any plugin that reads CSV at bo
 
 No Plugin Manager parameters. The language is stored on `ConfigManager.npLanguage` (`ru` or `en`, default `ru`) in `config.rpgsave`, not inside a save slot.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
+Full English CSV and database text comes from [nympri-ru](https://github.com/posolware1/nympri-ru) (`www/lang/en/build_info.json` and `data_overlay.json`). Without those files the switch stays on Russian and says why. This pack does not include the CSV files.
+
 ## Install
 
 Copy `NP_Language.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_Language.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_Language/` folder.
 
 ## Screenshots
+
+Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
 
 ![Language switch confirm on the title screen](screenshots/NP_Language.png)
 

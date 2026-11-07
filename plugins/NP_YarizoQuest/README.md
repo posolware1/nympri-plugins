@@ -32,10 +32,16 @@ After `NP_CampSkills`, before `NP_ShopCompare`. Uses quest id 201090 and variabl
 
 No Plugin Manager parameters.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
+Journal id 201090. An existing row in `csv/QuestList.csv` is kept. If the row is absent, the plugin adds only that row in memory, in Russian and English. The CSV file is not replaced.
+
 ## Install
 
 Copy `NP_YarizoQuest.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_YarizoQuest.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_YarizoQuest/` folder.
 
 ## Screenshots
 
-This plugin does not add its own screen.
+No screenshot is included. This plugin has no separate screen, or no selected frame shows it clearly. A later picture has to be a real game frame, not a mockup.

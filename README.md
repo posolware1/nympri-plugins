@@ -6,12 +6,17 @@ Personal plugin pack for the Russian mod of **Nymphomania Priestess** (adult RPG
 
 Companion russifier (translation + language switch only): [nympri-ru](https://github.com/posolware1/nympri-ru)
 
-![Title screen](docs/screenshots/title.png)
+![Title screen: RU | EN and the music slider](docs/screenshots/title.png)
+
+Older title capture already in the repository (`NP_Language` button and `NP_TitleVolume` slider). It was not re-shot for this revision.
 
 ## Requirements
 
-- Game **Alpha 0.80j** with a working `www` folder (English original or the RU patch).
+- **Windows** game **Alpha 0.80j** with a working `www` folder (English build or the RU patch). This pack does not claim to run on Linux: the original game uses mixed-case paths of its own (`TB_NPCstate` versus `TB_NPCState.js`, `img/pictures/ui` versus `UI`). Those are not missing NP files, and this installer does not add case aliases or original UI art.
 - These scripts hook MEO / KNS / YEP Item Core / DreamX — keep the rest of the mod data in place.
+- Python 3, only to run the installer.
+- Full English CSV and database text is a separate download: [nympri-ru](https://github.com/posolware1/nympri-ru). Without `www/lang/en/build_info.json` and `data_overlay.json`, `NP_Language` stays on Russian and says so. Those files are not copied from this pack.
+- Two CC0 sounds are required by scripts and are included: campfire crackle (`NP_AudioBalance` and `NP_CampSkills`) and cloth rip (`NP_AudioBalance`). `Rain.ogg` is also included (CC0) because an original event asks for that name; it is not a script dependency. Credits: `audio/CREDITS_NP_CC0.txt` after install.
 
 ## Install (Windows)
 
@@ -23,7 +28,23 @@ Companion russifier (translation + language switch only): [nympri-ru](https://gi
    (Python 3 required. The script copies `.js` files, optional `assets/`, and patches `plugins.js`.)
 3. Start the game.
 
-Manual fallback (no Python): copy every `plugins/NP_*/NP_*.js` into `www/js/plugins/`, copy each `plugins/*/assets/` into `www/` (keep `img/`, `movies/`, …), then run `python install.py "www"` on a machine that has Python — or edit `plugins.js` using `install/plugins_order.txt` (`NP_Language` right after `MEO_Util_Node`, other NP_* at the end, `NP_OptionsCategories` last).
+The installer copies scripts and `assets/` (pictures, movies, the three CC0 sounds), then writes `www/js/plugins.js`. `NP_Language` is placed immediately after `MEO_Util_Node`. The other NP plugins are one block at the end, `NP_OptionsCategories` last. A second run does not add duplicate entries. The first change keeps `plugins.js.bak`.
+
+It prints warnings for a missing nympri-ru pack and for optional audio names. Warnings do not cancel the install. ffmpeg is not required.
+
+Manual fallback (no Python): copy every `plugins/NP_*/NP_*.js` into `www/js/plugins/`, copy each `plugins/*/assets/` into `www/` (keep `img/`, `movies/`, `audio/`, …), then run `python install.py "www"` on a machine that has Python — or edit `plugins.js` using `install/plugins_order.txt`.
+
+### Optional audio names
+
+Some original events ask for filenames that 0.80j did not ship. Fifty of those names can be created from **your** game files:
+
+```bat
+python install.py "C:\path\to\game\www" --repair-audio
+```
+
+Eight are plain copies. Forty-two need ffmpeg for a loudness re-encode. The re-encode is not guaranteed to match any older file byte for byte. Without ffmpeg those forty-two are skipped. `--degraded-copy` plain-copies them instead and is **not** the historical mix. Existing files are never overwritten. This is not part of the normal install, and those files are not CC0.
+
+Nine same-name remasters from an older build, including explicit sound effects, are not included. Historical audio parity is incomplete without doing that work yourself, and this pack does not do it.
 
 ## Plugins by category
 

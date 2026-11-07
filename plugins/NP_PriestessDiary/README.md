@@ -37,12 +37,18 @@ After `NP_TitleVolume`, before `NP_Voice`. `NP_Titles` adds the active title int
 - **Icon Index** `230` — open book.
 - **Toast** `true` — the map log reports a new diary entry.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_PriestessDiary.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_PriestessDiary.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_PriestessDiary/` folder.
 
 ## Screenshots
 
-screenshots TBD
+Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
 
-No image files are shipped here. The panels described above are drawn by the plugin at runtime inside the game.
+![The diary book is open. The corner also shows the volume widget and the RU | EN switch. Older frame.](../../docs/screenshots/historical/PriestessDiary.png)
+
+The diary book is open. The corner also shows the volume widget and the RU | EN switch. Older frame.

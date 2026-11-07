@@ -28,6 +28,12 @@ After `NP_OutfitReact`, before `NP_Campfire`. Run the plugin command after Show 
 
 No Plugin Manager parameters. Presets and keys are plugin-command arguments.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
+The beach pictures are copied by the installer. Event commands that show them are not. The plugin can animate whatever picture the game already displayed.
+
 ## Install
 
 Copy `NP_PictureAnim.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_PictureAnim.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_PictureAnim/` folder.
@@ -45,6 +51,8 @@ The beach pictures the mesh presets are aimed at:
 Full list and checksums: [INVENTORY.md](../../INVENTORY.md).
 
 ## Screenshots
+
+Pictures below are files shipped with the plugin, not a new gameplay capture.
 
 ![Beach background](assets/img/pictures/np_beachanim_bg.png)
 ![Priestess picture used by the mesh](assets/img/pictures/np_beachanim_pri.png)

@@ -31,6 +31,12 @@ After `NP_FastBattle`, before `NP_PowerStrike`. Does not depend on `NP_TitleVolu
 - **Bgm** four tracks, volumes **90,90,90,100**. An empty name falls back to the system title BGM.
 - **Ken Burns** `true` — slow zoom and pan of the background.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
+Title pictures are copied by the installer. The music names are files that already belong to the game.
+
 ## Install
 
 Copy `NP_TitleProgress.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_TitleProgress.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_TitleProgress/` folder.
@@ -51,6 +57,8 @@ Stage backgrounds and logos. Title BGM stays the stock tracks already in the gam
 Full list and checksums: [INVENTORY.md](../../INVENTORY.md).
 
 ## Screenshots
+
+Pictures below are files shipped with the plugin, not a new gameplay capture.
 
 ![Stage 0](assets/img/titles1/np_title_s0.png)
 ![Stage 3](assets/img/titles1/np_title_s3.png)

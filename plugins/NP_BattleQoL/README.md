@@ -26,12 +26,18 @@ After `NP_ShopCompare`, before `NP_SuperAttack`. Independent of `NP_FastBattle`.
 - **Auto Icon** `38`.
 - **Battle Switch** `14`.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_BattleQoL.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_BattleQoL.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_BattleQoL/` folder.
 
 ## Screenshots
 
-screenshots TBD
+Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
 
-No image files are shipped here. The panels described above are drawn by the plugin at runtime inside the game.
+![The corner reads battle speed and autobattle. Older frame.](../../docs/screenshots/historical/FastBattle_BattleQoL.png)
+
+The corner reads battle speed and autobattle. Older frame.

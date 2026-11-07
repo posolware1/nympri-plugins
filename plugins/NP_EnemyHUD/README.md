@@ -22,12 +22,22 @@ After `NP_BattleHUD` and `NP_BossBalance`, before `NP_BondHints` and `NP_Options
 
 No Plugin Manager parameters. Options row **Карточка врага / Enemy card**, category Interface.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_EnemyHUD.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_EnemyHUD.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_EnemyHUD/` folder.
 
 ## Screenshots
 
-screenshots TBD
+Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
 
-No image files are shipped here. The panels described above are drawn by the plugin at runtime inside the game.
+![The enemy HP window is visible. Older frame. Detail pages on F6 are not shown.](../../docs/screenshots/historical/BattleCmd_BattleHUD_EnemyHUD.png)
+
+The enemy HP window is visible. Older frame. Detail pages on F6 are not shown.
+
+![The enemy window is also visible while battle speed and autobattle are on. Older frame.](../../docs/screenshots/historical/FastBattle_BattleQoL.png)
+
+The enemy window is also visible while battle speed and autobattle are on. Older frame.

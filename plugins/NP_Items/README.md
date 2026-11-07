@@ -30,10 +30,22 @@ After `NP_SuperAttack`, `NP_Stress`, `NP_ClothDamage`, and `NP_CampSkills`. In t
 
 No Plugin Manager parameters. Behaviour is selected by note tags `<NP_ITEM:key>`, `<NP_AFFIX:key>`, and `<NP_CURSED>`.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_Items.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_Items.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_Items/` folder.
 
 ## Screenshots
 
-This plugin does not add its own screen.
+Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
+
+![Item list with plugin item text. Older frame.](../../docs/screenshots/historical/Items.png)
+
+Item list with plugin item text. Older frame.
+
+![Equipment view of those items. Older frame.](../../docs/screenshots/historical/Items_equip.png)
+
+Equipment view of those items. Older frame.

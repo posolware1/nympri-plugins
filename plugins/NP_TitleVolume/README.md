@@ -28,12 +28,18 @@ After `NP_PowerStrike`, before `NP_PriestessDiary`. Independent of `NP_TitleProg
 - **Corner** `topright` (`topright` or `bottomright`).
 - **Hotkey** `77` — key code M. `0` disables the key.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_TitleVolume.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_TitleVolume.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_TitleVolume/` folder.
 
 ## Screenshots
 
-screenshots TBD
+Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
 
-No image files are shipped here. The panels described above are drawn by the plugin at runtime inside the game.
+![The volume widget is in the corner of this diary frame. This is not a title-screen capture.](../../docs/screenshots/historical/PriestessDiary.png)
+
+The volume widget is in the corner of this diary frame. This is not a title-screen capture.

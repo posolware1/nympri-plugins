@@ -33,12 +33,18 @@ After `NP_VideoPortrait`, before `NP_QuestMarker`. Independent of `NP_SaveThumb`
 - **Idle Frames** `20` — the map must be idle this long before the write.
 - **Slot Label** `Автосохранение`, **Toast Text** `Автосохранение…`, **Option Label** `Автосохранение`. Empty toast hides the popup. Empty option label hides the Options row.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_AutoSave.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_AutoSave.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_AutoSave/` folder.
 
 ## Screenshots
 
-screenshots TBD
+Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
 
-No image files are shipped here. The panels described above are drawn by the plugin at runtime inside the game.
+![The autosave notice is visible during a morning line. Older frame. It does not show the save-slot rows.](../../docs/screenshots/historical/MorningHints_AutoSave.png)
+
+The autosave notice is visible during a morning line. Older frame. It does not show the save-slot rows.

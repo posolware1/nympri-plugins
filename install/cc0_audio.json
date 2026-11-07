@@ -1,0 +1,35 @@
+{
+  "note": "These three recordings are CC0 and are shipped under plugins/NP_AudioBalance/assets/audio/. They are not copies of the game's audio. The other historical names in install/audio_aliases.json are optional repairs made from the player's own files and are not CC0.",
+  "files": [
+    {
+      "www_path": "audio/bgs/NP_Campfire_Crackle.ogg",
+      "sha256": "6e0b1120cd0c013ee613f54852bbaf673ade899f83aea4e111e3294292744604",
+      "bytes": 624854,
+      "role": "direct",
+      "plugins": ["NP_AudioBalance", "NP_CampSkills"],
+      "license": "CC0-1.0",
+      "author": "PagDev",
+      "source_url": "https://opengameart.org/content/fireplace-sound-loop"
+    },
+    {
+      "www_path": "audio/se/NP_ClothRip.ogg",
+      "sha256": "42c8e870854461a3c2bdb403e570e213972f30a0133ea1ef0c50aba85910347c",
+      "bytes": 27869,
+      "role": "direct",
+      "plugins": ["NP_AudioBalance"],
+      "license": "CC0-1.0",
+      "author": "Joseph SARDIN (BigSoundBank.com)",
+      "source_url": "https://bigsoundbank.com/cloth-s0013.html"
+    },
+    {
+      "www_path": "audio/bgs/Rain.ogg",
+      "sha256": "4595ff414291e73d21de0e0b192e014c69f54a296b921eecdbcf74a9a5abca2f",
+      "bytes": 815006,
+      "role": "event",
+      "plugins": [],
+      "license": "CC0-1.0",
+      "author": "Ylmir",
+      "source_url": "https://opengameart.org/content/rain-loopable"
+    }
+  ]
+}

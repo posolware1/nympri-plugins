@@ -22,10 +22,14 @@ After `NP_SouthGateQuest`, before `NP_OptionsCategories`. It never writes a save
 
 No Plugin Manager parameters. Quest ids removed from the navigator when they are gone from the quest list: 201092, 201093, 201094.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_RemovedQuestCompat.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_RemovedQuestCompat.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_RemovedQuestCompat/` folder.
 
 ## Screenshots
 
-This plugin does not add its own screen.
+No screenshot is included. This plugin has no separate screen, or no selected frame shows it clearly. A later picture has to be a real game frame, not a mockup.

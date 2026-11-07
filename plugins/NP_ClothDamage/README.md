@@ -26,6 +26,12 @@ After `NP_Titles`, before `NP_Stress`. `NP_Titles` reads the level for one title
 - **LevelFiles** `t1,t2,t3` — picture suffix. Spare sets `ta` and `tb` exist in the art naming. A missing file keeps the intact picture.
 - **BattleLog** `true` — a line in the battle log when the level changes.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
+Torn-clothing pictures are in this plugin's `assets/` and are copied by the installer. The rip sound is the CC0 file `audio/se/NP_ClothRip.ogg` from NP_AudioBalance, played by that plugin.
+
 ## Install
 
 Copy `NP_ClothDamage.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_ClothDamage.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_ClothDamage/` folder.
@@ -42,6 +48,8 @@ Copy the contents of this plugin's `assets/` folder into the game's `www/` direc
 Full list and checksums: [INVENTORY.md](../../INVENTORY.md).
 
 ## Screenshots
+
+Pictures below are files shipped with the plugin, not a new gameplay capture.
 
 Shipped tear levels for face 0 (the plugin swaps these onto the standing picture during battle):
 

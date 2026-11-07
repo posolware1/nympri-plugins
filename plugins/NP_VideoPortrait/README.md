@@ -34,6 +34,12 @@ First of the NP block at the end of `plugins.js`, before `NP_AutoSave`. Map scen
 - **Fade Frames** `20` — fade in and out.
 - **Volume Source** `bgm` — which Options volume scales the clip (`bgm`, `bgs`, `se`, `me`, or `none`).
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
+The installer copies the four webm clips and does not add the event commands that play them. There is no mp4 fallback in this pack. This is not a claim that phones or browsers will play them.
+
 ## Install
 
 Copy `NP_VideoPortrait.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_VideoPortrait.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_VideoPortrait/` folder.
@@ -52,6 +58,8 @@ Four example movies. The plugin plays any `movies/<name>.webm` (`.mp4` is the fa
 Full list and checksums: [INVENTORY.md](../../INVENTORY.md).
 
 ## Screenshots
+
+The clips below are files shipped with the plugin, not a new gameplay capture. The installer does not add the events that play them.
 
 The four clips are the files under `assets/movies/`. Open them from the repository; they are not still images.
 

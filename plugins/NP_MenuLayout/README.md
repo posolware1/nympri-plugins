@@ -30,6 +30,10 @@ After the original `Scene_Menu` extensions and after `NP_LevelAllocation`. Befor
 
 No Plugin Manager parameters. Options row **Компактное меню паузы / Compact pause menu**, category Interface.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_MenuLayout.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_MenuLayout.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_MenuLayout/` folder.
@@ -45,6 +49,8 @@ The script loads these by name: `users` (Party, character list), `backpack` (Ite
 Full list and checksums: [INVENTORY.md](../../INVENTORY.md).
 
 ## Screenshots
+
+Older in-game frame. It is not a new capture of this revision, and the game was not launched for this change.
 
 ![Pause menu: command list, party gauges, and status boxes](screenshots/NP_MenuLayout.png)
 

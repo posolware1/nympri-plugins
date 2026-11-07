@@ -7,6 +7,8 @@
  *
  * @help
  * Задание в журнале (QuestList.csv, $quest_id=201090, переменная 3570).
+ * Если строки 201090 ещё нет (чистый 0.80j), плагин добавляет только её в памяти
+ * из своего RU/EN текста. Уже существующую строку не перезаписывает.
  * Не меняет события Яризо: только следит за его переключателями
  * (S290 встреча, S291 спасён, S2040 уведён матросами, S643 контракт,
  * S503 погиб) и концом разговоров M13 ev45 (наём) / M171 ev67 (выкуп).
@@ -236,11 +238,73 @@ var NP_YarizoQuest = NP_YarizoQuest || {};
         } catch (e) { console.error(e); }
     };
 
+    var ROW = {
+  "ru": {
+    "title": "Наёмник из таверны",
+    "map_name": "Портовый город",
+    "client": "Слухи",
+    "progress": "$progress1=Говорят, в Портовом городе ошивается бродяга с копьём и ищет отряд. Загляните туда (нужен ранг 2 звезды). \\c[6][Портовый город]\\c[0]\n$progress2=Бродягу выручили. Он ищет отряд в Гильдии авантюристов — поговорите с ним и возьмите в спутники. \\c[6][Гильдия авантюристов, столица]\\c[0]\n$progress3=Вы ему отказали, но он всё ещё ждёт в Гильдии авантюристов. Передумаете — подойдите к нему снова. \\c[6][Гильдия авантюристов, столица]\\c[0]\n$progress4=Матросы увели бродягу отрабатывать долг. Его можно выкупить на причале за 200 серебра (со следующего дня). \\c[6][Портовый город, причал]\\c[0]\n$progress5=Выкуп не состоялся — бродяга всё ещё на причале. Принесите 200 серебра. \\c[6][Портовый город, причал]\\c[0]\n$progress99=Выполнено! \\c[2]Яризо\\c[0] — ваш спутник. Теперь он ждёт в таверне столицы.\n$progress100=Задание закрыто: бродяга погиб или пропал — нанять его больше нельзя.",
+    "short_desc": "Найти бродягу с копьём.",
+    "long_desc": "В столице болтают о бродяге-безбилетнике с копьём: его сняли с корабля в Портовом городе, и теперь он рвётся в авантюристы."
+  },
+  "en": {
+    "title": "The Tavern Mercenary",
+    "map_name": "Port Town",
+    "client": "Rumors",
+    "progress": "$progress1=Word is a tramp with a spear is hanging around the Port Town looking for a party. Go take a look (requires 2-star rank). \\c[6][Port Town]\\c[0]\n$progress2=You got the tramp out of trouble. He is looking for a party at the Adventurers' Guild — talk to him and take him on as a companion. \\c[6][Adventurers' Guild, capital]\\c[0]\n$progress3=You turned him down, but he is still waiting at the Adventurers' Guild. If you change your mind, talk to him again. \\c[6][Adventurers' Guild, capital]\\c[0]\n$progress4=The sailors took the tramp away to work off his debt. You can buy him out at the pier for 200 silver (from the next day). \\c[6][Port Town, pier]\\c[0]\n$progress5=The ransom has not been paid — the tramp is still at the pier. Bring 200 silver. \\c[6][Port Town, pier]\\c[0]\n$progress99=Complete! \\c[2]Yarizo\\c[0] is your companion. He now waits at the capital's tavern.\n$progress100=Quest closed: the tramp is dead or gone — he can no longer be hired.",
+    "short_desc": "Find the tramp with the spear.",
+    "long_desc": "People in the capital gossip about a stowaway tramp with a spear: he was dragged off a ship at the Port Town and now he is eager to become an adventurer."
+  }
+};
+
+
+    function parseProgressCell(cell) {
+        var out = [];
+        String(cell || '').split('\n').forEach(function(line) {
+            var m = /^\$progress(\d+)=(.*)$/.exec(line);
+            if (m) out.push([Number(m[1]), m[2]]);
+        });
+        return out;
+    }
+    function rowText(key) {
+        var pack = $.isEn() && ROW.en ? ROW.en : ROW.ru;
+        return pack[key] || (ROW.ru && ROW.ru[key]) || '';
+    }
+    // Vanilla 0.80j has no quest 201090. Add only this row in memory.
+    // If nympri-ru (or anything else) already defined it, keep that row.
+    function ensureQuest() {
+        if (typeof $csvQuestList === 'undefined' || !$csvQuestList) return;
+        if ($csvQuestList[QID]) return;
+        var quest = {
+            id: QID,
+            var_id: VAR,
+            difficulty: 2,
+            map_id: 171,
+            no_retire: true,
+            release_conds: '$v[1] == 9999',
+            rewards: [],
+            _npYarizoBuiltin: true
+        };
+        ['title', 'map_name', 'client', 'short_desc', 'long_desc'].forEach(function(key) {
+            Object.defineProperty(quest, key, {
+                get: function() { return rowText(key); },
+                enumerable: true
+            });
+        });
+        Object.defineProperty(quest, 'progress', {
+            get: function() { return parseProgressCell(rowText('progress')); },
+            enumerable: true
+        });
+        $csvQuestList[QID] = quest;
+    }
+    $.ensureQuest = ensureQuest;
+
     // ------------------------------------------------------------------ journal: branch-aware progress
     // Progress lines come from QuestList.csv ($progressN = text of stage N);
     // shown in the order the stages actually happened.
     function wrapQuest() {
         if (typeof $csvQuestList === 'undefined' || !$csvQuestList) return;
+        ensureQuest();
         var o = $csvQuestList[QID];
         if (!o || o._npYq) return;
         var w = Object.create(o);
@@ -308,5 +372,14 @@ var NP_YarizoQuest = NP_YarizoQuest || {};
                 return out;
             };
         }
+    }
+
+    if (typeof KNS_CsvReader !== 'undefined' && KNS_CsvReader.loadDatabase) {
+        var _npYqLoad = KNS_CsvReader.loadDatabase;
+        KNS_CsvReader.loadDatabase = function() {
+            var result = _npYqLoad.apply(this, arguments);
+            try { ensureQuest(); } catch (e) { console.error(e); }
+            return result;
+        };
     }
 })(NP_YarizoQuest);

@@ -56,7 +56,9 @@ Not shipped, on purpose: nine same-name remasters of files the game already had 
 python3 -m unittest tests.test_install -v
 ```
 
-The tests use temporary folders. They do not launch the game, and they do not prove a clean 0.80j install. A Windows playtest is still required before calling the pack verified in-game.
+Those tests use temporary folders. They do not launch the game.
+
+A separate file-install check of commit `40a1351` on an isolated copy of original 0.80j is recorded in [install-test.md](install-test.md). It covers the installer only. It does not include a Windows launch, play, the language switch, sound playback, or the in-memory Yarizo row.
 
 Screenshots under `docs/screenshots/historical/` and the older shots already next to some plugins are previous captures. Captions must say what is actually visible. Do not add mockups.
 

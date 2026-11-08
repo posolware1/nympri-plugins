@@ -176,6 +176,24 @@ def names_of(entries: list[dict]) -> list[str]:
     return [obj.get("name", "") for obj in entries]
 
 
+def _manual_line(name: str, infos: dict, comma: bool) -> str:
+    text = json.dumps(plugin_entry(name, None, infos), ensure_ascii=False, separators=(",", ":"))
+    return text + ("," if comma else "")
+
+
+def manual_paste_texts() -> tuple[str, str]:
+    """Text a player pastes into plugins.js. Same new-plugin parameters as the installer."""
+    meta = load_order()
+    infos = meta["entries"]
+    order = [name for name in meta["load_order"] if name in infos]
+    if "NP_Language" not in order or order[-1] != "NP_OptionsCategories":
+        raise SystemExit("ERROR: manual paste requires NP_Language and NP_OptionsCategories last")
+    after_meo = _manual_line("NP_Language", infos, True) + "\n"
+    rest = [name for name in order if name != "NP_Language"]
+    tail = "\n".join(_manual_line(name, infos, i < len(rest) - 1) for i, name in enumerate(rest)) + "\n"
+    return after_meo, tail
+
+
 def order_errors(names: list[str], order: list[str], managed: set[str]) -> list[str]:
     errors = []
     if names.count("NP_Language") != 1:

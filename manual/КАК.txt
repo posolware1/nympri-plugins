@@ -1,0 +1,33 @@
+﻿Ручная установка. Питон не нужен. Игра — Alpha 0.80j для Windows.
+Папка игры — та, где лежит Game.exe. Внутри неё папка www. Папку www\save не трогайте.
+Не копируйте весь архив в игру и не подменяйте plugins.js другим файлом целиком.
+Если в plugins.js уже есть NP_Language, шаги 6 и 7 не делайте.
+
+1. Распакуйте весь ZIP в обычную папку. Не работайте внутри окна архива.
+2. Откройте www\js игры. Скопируйте plugins.js и назовите копию plugins.js.manual-bak в этой же папке. Откат: закройте игру, удалите plugins.js и переименуйте plugins.js.manual-bak обратно в plugins.js.
+3. В архиве откройте папку plugins. В поиске проводника напишите *.js и нажмите Enter. Выделите все 44 файла (только файлы, не папки). Скопируйте. Вставьте в www\js\plugins игры. Если Windows спросит заменить файл, имя которого начинается с NP_, заменить можно. Остальные файлы не заменяйте.
+4. Картинки и звуки. Для каждой папки ниже откройте в ней папку assets. Выделите всё внутри assets (папки img, movies или audio). Скопируйте. Вставьте в www игры. «Объединить папки?» — Да. «Заменить файл?» — Пропустить.
+   plugins\NP_AudioBalance\assets
+   plugins\NP_ClothDamage\assets
+   plugins\NP_EliteSprites\assets
+   plugins\NP_MenuLayout\assets
+   plugins\NP_OutfitReact\assets
+   plugins\NP_PictureAnim\assets
+   plugins\NP_Stress\assets
+   plugins\NP_SuperAttack\assets
+   plugins\NP_TitleProgress\assets
+   plugins\NP_VideoPortrait\assets
+5. Правой кнопкой по www\js\plugins.js → Открыть с помощью → Блокнот.
+6. Ctrl+F, найдите MEO_Util_Node. Строка должна заканчиваться запятой. Если нет — допишите запятую. Курсор в начало следующей строки. Откройте manual\paste-after-MEO_Util_Node.txt, Ctrl+A, скопируйте и вставьте.
+7. Внизу файла строка ];. Строка над ней должна заканчиваться запятой. Если нет — допишите запятую. Курсор в начало строки ];. Откройте manual\paste-at-end.txt, Ctrl+A, скопируйте и вставьте.
+8. Ctrl+S, закройте блокнот.
+9. Проверка до запуска:
+   есть www\js\plugins\NP_Language.js
+   есть www\audio\bgs\NP_Campfire_Crackle.ogg
+   есть www\audio\se\NP_ClothRip.ogg
+   в plugins.js имя NP_Language стоит сразу после MEO_Util_Node
+   последнее имя перед ]; — NP_OptionsCategories
+10. Запустите игру.
+
+Английский текст сюда не входит. Он отдельно: nympri-ru.
+Три новых звука (костёр, дождь, разрыв ткани) копируются на шаге 4. Остальные 50 имён звуков в эту ручную установку не входят.

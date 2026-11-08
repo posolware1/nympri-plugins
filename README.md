@@ -10,7 +10,7 @@ Companion russifier (translation + language switch only): [nympri-ru](https://gi
 
 The RU | EN button is `NP_Language`. The speaker and slider are `NP_TitleVolume`.
 
-You need **Python 3**. The simplest way is to install it from https://www.python.org/downloads/ and tick **Add python.exe to PATH** on the first screen. If Windows opens the Store instead of the installer window, Python is not installed yet.
+You need **Python 3**. The simplest way is to install it from https://www.python.org/downloads/ and tick **Add python.exe to PATH** on the first screen. If Windows opens the Store, that command is only the Store shortcut. Check that Python 3 itself is installed and can be started.
 
 The game is **Alpha 0.80j** for Windows. English text is a separate download: [nympri-ru](https://github.com/posolware1/nympri-ru).
 
@@ -20,7 +20,7 @@ The game is **Alpha 0.80j** for Windows. English text is a separate download: [n
 2. Extract the whole ZIP into a normal folder. Open the folder that contains `install.bat`. Do not start `install.bat` from inside the ZIP window.
 3. Double-click `install.bat`.
 4. When the window asks, choose the game folder. That is the folder with `Game.exe`, or the `www` folder inside it.
-5. Wait until the window says **Готово. Плагины установлены.** and **Done. Plugins are installed.**
+5. Wait until the window says **Готово. Плагины установлены.** and **Done. Plugins are installed.** Press Enter to close the window.
 6. Start the game.
 
 If it says **Не получилось.**, open `install-log.txt` in the same folder as `install.bat` and send that file.

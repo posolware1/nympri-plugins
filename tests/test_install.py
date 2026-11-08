@@ -191,6 +191,26 @@ class InstallTests(unittest.TestCase):
         self.assertIn("install-log.txt", log)
         self.assertIn("Game.exe", log)
 
+    def test_help_does_not_say_it_failed(self):
+        env = os.environ.copy()
+        env["NP_INSTALL_LOG"] = str(self.tmp / "help-log.txt")
+        proc = subprocess.run(
+            [sys.executable, str(ROOT / "install.py"), "--help"],
+            cwd=str(ROOT),
+            capture_output=True,
+            text=True,
+            env=env,
+        )
+        self.assertEqual(proc.returncode, 0)
+        combined = proc.stdout + proc.stderr
+        self.assertIn("--help", combined)
+        self.assertNotIn(install.FAIL_RU, combined)
+        self.assertNotIn(install.FAIL_EN, combined)
+        self.assertNotIn(install.SUCCESS_RU, combined)
+        log = (self.tmp / "help-log.txt").read_text(encoding="utf-8-sig")
+        self.assertNotIn(install.FAIL_RU, log)
+        self.assertNotIn(install.FAIL_EN, log)
+
     def test_no_folder_without_console_does_not_hang(self):
         env = os.environ.copy()
         env["NP_INSTALL_LOG"] = str(self.tmp / "noargs-log.txt")

@@ -25,3 +25,13 @@ Date: 2026-11-07, Europe/Belgrade. An untouched local copy of original 0.80j was
 - The second repair created nothing and left all 50 in place. The content inventory did not change. `plugins.js.bak` still matched the original.
 
 The installer printed its note about mixed-case paths in the original game. The game was not started on Linux or Windows, so that note was not checked by launching.
+
+## PR 3 file install, Linux only
+
+Checked locally on 2026-11-08 against commits `b186ad15298e6955e1560d2abc5485bb5705f1f5` and `27c54c952fc06203888ccfa55734282564bc59d8`. `install.py` was the same file in both. An isolated copy of original 0.80j was used. The original tree stayed unchanged (8764 files). `csv/` and `data/` stayed unchanged.
+
+`python3 install.py` with the game folder, with `www`, and with a path that has a space and Cyrillic letters, exited 0. Repeat exited 0 and the file-content inventory matched. 44 NP scripts and 44 entries, order correct, no new NP duplicates. 102 assets matched the zip by hash. `plugins.js.bak` was the first backup and stayed that way. An empty or missing folder exited 1 and named `Game.exe` or `www`, with no traceback. No arguments and a pipe exited 2 and did not read a path from the pipe. In a real terminal, typing a path then Enter succeeded, a blank line cancelled with exit 1, and both then waited for Enter to close. `install-log.txt` was appended beside the installer and kept both success and failure text.
+
+`python3 install.py --help` exited 0 but also printed «Не получилось.» That was a defect in both commits. It is fixed after this record. The fix itself was not part of that run.
+
+Not run: `install.bat` on Windows, the folder window, a Store Python, Wine, a browser, or the game. The 20 unit tests passed on that head. `--repair-audio` was not repeated on this copy.

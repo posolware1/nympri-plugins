@@ -530,11 +530,18 @@ def _main(argv: list[str] | None, prompted: dict) -> int:
         code = _run(argv, prompted)
         return code
     except SystemExit as exc:
-        if exc.code and not isinstance(exc.code, int):
-            print(exc.code)
+        # argparse uses SystemExit(0) for --help and SystemExit(2) for bad arguments.
+        code = exc.code
+        if code is None or code == 0:
+            return 0
+        if not isinstance(code, int):
+            print(code)
+            print(FAIL_RU)
+            print(FAIL_EN)
+            return 1
         print(FAIL_RU)
         print(FAIL_EN)
-        return exc.code if isinstance(exc.code, int) else 1
+        return code
     finally:
         try:
             print(f"Log file: {LOG_NAME}")

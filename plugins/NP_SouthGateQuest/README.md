@@ -22,10 +22,14 @@ After `NP_BondHints`, before `NP_RemovedQuestCompat`. Added after the CSV transl
 
 No Plugin Manager parameters. Quest id 201091, stage variable 3571 (0, 1, or 99), key item 2950.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_SouthGateQuest.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_SouthGateQuest.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_SouthGateQuest/` folder.
 
 ## Screenshots
 
-This plugin does not add its own screen.
+From guild rank 2 the player can take a delivery and turn it in at the southern checkpoint. A screenshot of that conversation is not yet available.

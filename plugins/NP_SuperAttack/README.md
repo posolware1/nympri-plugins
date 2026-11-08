@@ -29,6 +29,10 @@ After `NP_PowerStrike`, `NP_Stress`, `NP_FastBattle`, and `NP_BattleQoL`. In the
 - **Charge fill rate** `0.44` — about a full bar in 6–7 ordinary rounds. `1` is the old, faster rate.
 - **Min damage: base** `5`, **per level** `0.25`, **stat divisor** `4`. The super's base hit is at least this, before the QTE multiplier and armor. The stat is attack for Yarizo and the higher of attack and magic attack for the others. Divisor `0` turns the stat term off.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_SuperAttack.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_SuperAttack.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_SuperAttack/` folder.
@@ -51,8 +55,18 @@ Full list and checksums: [INVENTORY.md](../../INVENTORY.md).
 
 ## Screenshots
 
+These are the picture files the plugin uses.
+
 ![Priestess cut-in](assets/img/pictures/np_super_cutin_pri.png)
 ![Holy Seal sign](assets/img/pictures/np_super_sign.png)
 ![Flask](assets/img/pictures/np_super_flask.png)
 ![Reticle](assets/img/pictures/np_super_reticle.png)
 ![Blood Moon](assets/img/pictures/np_super_moon.png)
+
+![The super command is in the battle menu. The attack animation is not shown.](../../docs/screenshots/historical/SuperAttack_menu.png)
+
+The super command is in the battle menu. The attack animation is not shown.
+
+![A seal minigame is visible. This frame is not proof the super attack connected.](../../docs/screenshots/historical/PowerStrike_QTE.png)
+
+A seal minigame is visible. This frame is not proof the super attack connected.

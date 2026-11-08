@@ -33,6 +33,10 @@ After `NP_Campfire`, before `NP_ClothDamage`. Place it before `NP_Stress`. It wr
 - **Popup** `true` — Options label **Уведомления о титулах**.
 - **Menu Label** `Титулы` — empty hides the main-menu command.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_Titles.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_Titles.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_Titles/` folder.
@@ -42,3 +46,7 @@ Copy `NP_Titles.js` into the game's `www/js/plugins/` directory. The file name m
 ![Priestess titles: unlocked list and the equipped title's detail](screenshots/NP_Titles.png)
 
 The header shows how many titles are unlocked and which one is active. Locked rows read `???`. The detail pane for **Скромная жрица / Humble Priestess** shows the description, the condition, the faith bonus, and that it is equipped. OK removes it.
+
+![A title toast is visible on this morning frame. The titles menu itself is the other capture already in this folder.](../../docs/screenshots/historical/MorningHints_AutoSave.png)
+
+A title toast is visible on this morning frame. The titles menu itself is the other capture already in this folder.

@@ -22,12 +22,16 @@ After `NP_MorningHints`, before `NP_QuestTabs`. It writes into the KNS quest det
 
 No Plugin Manager parameters. Options row **Подсказки в журнале / Journal hints**. Off removes the added lines. QuestList.csv is not edited, so the places are not baked into the progress text.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_QuestHints.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_QuestHints.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_QuestHints/` folder.
 
 ## Screenshots
 
-screenshots TBD
+![The quest window shows a where-to-go line. Journal tabs are on the same frame.](../../docs/screenshots/historical/QuestHints.png)
 
-No image files are shipped here. The panels described above are drawn by the plugin at runtime inside the game.
+The quest window shows a where-to-go line. Journal tabs are on the same frame.

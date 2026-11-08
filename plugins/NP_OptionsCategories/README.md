@@ -31,12 +31,16 @@ Last. After every plugin that adds an options row, including the other NP script
 
 - **Show option counts** `true` — the category row can show how many settings it holds.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_OptionsCategories.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_OptionsCategories.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_OptionsCategories/` folder.
 
 ## Screenshots
 
-![Options split into categories, Sound section open](screenshots/NP_OptionsCategories.png)
+![Options, Interface section open](screenshots/NP_OptionsCategories.png)
 
-The left column is the category list with a count on each row. The right column is the open section. This shot is **Звук / Sound**: volume sliders, voice extras, camp music, and loudness balance. Enter or Right opens a section. Escape returns to the list and, from there, saves and leaves.
+The same save. Interface is open (16 rows). The header is that section’s line: controls, notifications, hints, quest markers, the shop, and the screen. Visible rows include «Метки заданий: ON». That switch is only a setting; this frame does not show a marker on a map. Empty sections stay off the list, so Other is not on this screen. Sound, Battle, Mechanics, and Language & Text are the other rows, with their counts.

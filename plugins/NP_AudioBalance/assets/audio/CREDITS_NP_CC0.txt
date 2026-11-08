@@ -1,0 +1,18 @@
+New external audio recordings used by NP plugins — CC0 1.0 (public domain)
+
+bgs/NP_Campfire_Crackle.ogg
+  Fireplace Sound Loop — PagDev
+  https://opengameart.org/content/fireplace-sound-loop
+  Processed seamless loop / loudness adjustment.
+
+bgs/Rain.ogg
+  Rain (loopable), source 3.ogg — Ylmir
+  https://opengameart.org/content/rain-loopable
+  Processed seamless loop / loudness adjustment.
+
+se/NP_ClothRip.ogg
+  Cloth S0013 — Joseph SARDIN (BigSoundBank.com)
+  https://bigsoundbank.com/cloth-s0013.html
+  Processed excerpt / filtering / dynamics adjustment.
+
+These three recordings only are CC0. Original game audio and locally generated aliases retain their own rights; they are NOT licensed CC0 by this notice and are not distributed with this payload. Exact processed output hashes and source evidence are in the handoff manifest.

@@ -1,5 +1,8 @@
 # NymPri plugin assets inventory
 
+Picture and movie counts below are the older image inventory. Three CC0 ogg files and `CREDITS_NP_CC0.txt` were added later under `plugins/NP_AudioBalance/assets/audio/` and are not in the tables. They are the only CC0 audio in this pack. Game audio is not redistributed and is not CC0.
+
+
 Staged under `plugin_assets_for_repo/plugins/<Plugin>/assets/` for push into
 `https://github.com/posolware1/nympri-plugins` (not pushed by this step).
 

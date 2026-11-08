@@ -24,12 +24,16 @@ After `NP_EliteSprites`, before `NP_MenuLayout`. Replaces common event 860 once 
 
 No Plugin Manager parameters. Point variables 172 (hero) and 173 (Kohaku) and the native `addParam` call are kept.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_LevelAllocation.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_LevelAllocation.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_LevelAllocation/` folder.
 
 ## Screenshots
 
-screenshots TBD
+![Attribute allocation, nothing drafted](screenshots/NP_LevelAllocation.png)
 
-No image files are shipped here. The panels described above are drawn by the plugin at runtime inside the game.
+Save file 15. Jimmy is selected: 20 points left, and «Будет потрачено: 0». Strength is highlighted; its line says the cost is 2. Apply and Reset are disabled because nothing is drafted. No point on this screen was applied.

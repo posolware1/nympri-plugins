@@ -25,10 +25,16 @@ After `NP_PriestessDiary`, before `NP_SaveThumb`. Other scripts call it (`NP_Out
 - **Enabled** `true` — Options label **Озвучка добавок**.
 - **Fast Battle Max** `0.7` — maximum clip length in seconds while a battle is running and Fast Battle is on.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
+Uses two sounds already in the game, `audio/bgs/!voice_moan1.ogg` and `audio/se/!voice_cumming1.ogg`. This pack does not redistribute them.
+
 ## Install
 
 Copy `NP_Voice.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_Voice.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_Voice/` folder.
 
 ## Screenshots
 
-This plugin does not add its own screen.
+Plays a short sigh, gasp, or moan cut from audio the game already has. A still picture would not show the sound. The switch is an ordinary options row.

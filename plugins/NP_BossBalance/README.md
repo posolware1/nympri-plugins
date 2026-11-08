@@ -33,10 +33,14 @@ Immediately after `NP_SuperAttack` and before `NP_RareMobs`. The help text says 
 
 No Plugin Manager parameters. Two Options rows, category Battle: **Баланс боссов / Boss balance** (default on) and **Защита врагов от суперов / Enemy guard vs supers** (default on).
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_BossBalance.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_BossBalance.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_BossBalance/` folder.
 
 ## Screenshots
 
-This plugin does not add its own screen.
+Boss fights show phase warnings and a stun limit. A screenshot of a phase warning is not yet available.

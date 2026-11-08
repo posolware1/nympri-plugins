@@ -32,10 +32,20 @@ After `NP_QuestMarker`, before `NP_TitleProgress`. Separate from `NP_BattleQoL` 
 - **Hide Dice** `true` — pictures `dice1`–`dice6` and `diceN_red` are not shown. The roll still prints in the log.
 - **Battle Common Events** and **Battle Map Event Pages** — the only interpreters that get the speed-up. Defaults are the pure battle common events and map 53 pages `9:2` and `9:4`.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_FastBattle.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_FastBattle.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_FastBattle/` folder.
 
 ## Screenshots
 
-This plugin does not add its own screen.
+![The corner shows battle speed and autobattle. It does not by itself prove the shorter waits.](../../docs/screenshots/historical/FastBattle_BattleQoL.png)
+
+The corner shows battle speed and autobattle. It does not by itself prove the shorter waits.
+
+![Battle speed is also visible on this command-list frame.](../../docs/screenshots/historical/BattleCmd_BattleHUD_EnemyHUD.png)
+
+Battle speed is also visible on this command-list frame.

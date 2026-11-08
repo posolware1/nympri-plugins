@@ -27,10 +27,14 @@ After `NP_Items` and `NP_EliteMobs`, before `NP_EliteSprites`. Records are appen
 
 No Plugin Manager parameters. Reserved ids: weapon 701 Twin Needle; armors 1000 Hunt Compass, 1001 Second-Chance Lens, 1002 Spore Case, 1003 Dusk Tuning Fork, 1004 Reserve Droplet.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_EliteRewards.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_EliteRewards.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_EliteRewards/` folder.
 
 ## Screenshots
 
-This plugin does not add its own screen.
+Each of the six new rares can leave one permanent trophy in the inventory. A screenshot of a trophy is not yet available.

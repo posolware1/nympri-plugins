@@ -42,12 +42,14 @@ After `NP_BossBalance`, before `NP_MorningHints`. `NP_EliteMobs`, `NP_EliteRewar
 
 No Plugin Manager parameters. The Options toggle is the on/off switch. Off means no rare spawns, no rare mechanics, and no extra rewards. The bestiary stays readable.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_RareMobs.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_RareMobs.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_RareMobs/` folder.
 
 ## Screenshots
 
-screenshots TBD
-
-No image files are shipped here. The panels described above are drawn by the plugin at runtime inside the game.
+The menu opens a bestiary of silhouettes, omens, and loot. A screenshot of that bestiary is not yet available.

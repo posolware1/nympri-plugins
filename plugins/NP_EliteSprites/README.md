@@ -22,6 +22,10 @@ After `NP_EliteRewards`. The help text requires the elite expansion. It does not
 
 No Plugin Manager parameters.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_EliteSprites.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_EliteSprites.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_EliteSprites/` folder.
@@ -42,6 +46,8 @@ Six single-character sheets. The `$` prefix is the RPG Maker MV "one character" 
 Full list and checksums: [INVENTORY.md](../../INVENTORY.md).
 
 ## Screenshots
+
+These are the picture files the plugin uses.
 
 ![Bloodtrail Wolf](assets/img/characters/$NP_Elite_Wolf_v1.png)
 ![Retribution Spider](assets/img/characters/$NP_Elite_Spider_v1.png)

@@ -30,6 +30,10 @@ After the original `Scene_Menu` extensions and after `NP_LevelAllocation`. Befor
 
 No Plugin Manager parameters. Options row **Компактное меню паузы / Compact pause menu**, category Interface.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_MenuLayout.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_MenuLayout.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_MenuLayout/` folder.
@@ -46,6 +50,6 @@ Full list and checksums: [INVENTORY.md](../../INVENTORY.md).
 
 ## Screenshots
 
-![Pause menu: command list, party gauges, and status boxes](screenshots/NP_MenuLayout.png)
+![Pause menu from save file 15](screenshots/NP_MenuLayout.png)
 
-The command column sits on the left. Jimmy and Kohaku show class, level, and HP, MP, and FP. Under the list are alignment, fame, love, lust, and silver.
+The same save. Command list on the left, with Settings selected. Jimmy and Kohaku have cards for level, health, magic, fatigue, and stress. The quest line says there is no bookmarked or story quest. «Распределить очки» is on the right. Love 50 and Lust 200 are the numbers the menu reads from the save.

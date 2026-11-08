@@ -1,25 +1,41 @@
 #!/usr/bin/env python3
-"""Install NymPri NP_* plugins into a game www folder.
+"""Install NymPri NP_* plugins into a Windows 0.80j www folder.
 
 Usage:
   python install.py "C:\\Games\\NymPri\\www"
   python install.py /path/to/game/www
+  python install.py "C:\\Games\\NymPri\\www" --repair-audio
 
 Copies every plugins/NP_*/NP_*.js into www/js/plugins/,
-copies plugins/*/assets/* into www/ (img/, movies/, …),
+copies plugins/*/assets/** into www/ (pictures, movies, and the three CC0 sounds),
 and patches www/js/plugins.js:
   - NP_Language immediately after MEO_Util_Node
-  - remaining NP_* from install/plugins_order.json appended (OptionsCategories last)
+  - remaining NP_* from install/plugins_order.json at the end
+  - NP_OptionsCategories last
+  - no duplicate names for plugins in that order
 
-Idempotent. Creates plugins.js.bak once.
+Idempotent. Creates plugins.js.bak once, before the first change.
+Does not require ffmpeg. --repair-audio is optional and separate.
 """
 from __future__ import annotations
-import argparse, json, re, shutil, sys
+
+import argparse
+import hashlib
+import importlib.util
+import json
+import os
+import re
+import shutil
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 ORDER_PATH = ROOT / "install" / "plugins_order.json"
+CC0_PATH = ROOT / "install" / "cc0_audio.json"
+ALIAS_PATH = ROOT / "install" / "audio_aliases.json"
 PLUGINS_DIR = ROOT / "plugins"
+NYMPRI_RU = "https://github.com/posolware1/nympri-ru"
+EN_FILES = ("lang/en/build_info.json", "lang/en/data_overlay.json")
 
 ENTRY = re.compile(
     r'\{\s*"name"\s*:\s*"(?P<name>[^"]+)"\s*,\s*"status"\s*:\s*(?:true|false)\s*,\s*'
@@ -27,123 +43,382 @@ ENTRY = re.compile(
     re.S,
 )
 
-def entries(text: str):
-    return list(ENTRY.finditer(text))
 
-def fmt_entry(name: str, meta: dict) -> str:
-    return json.dumps(
-        {"name": name, "status": True, "description": meta["description"], "parameters": meta.get("parameters") or {}},
-        ensure_ascii=False, separators=(",", ":"),
-    )
+def load_order() -> dict:
+    if not ORDER_PATH.is_file():
+        raise SystemExit(f"ERROR: missing {ORDER_PATH}")
+    return json.loads(ORDER_PATH.read_text(encoding="utf-8"))
+
+
+def load_cc0() -> dict:
+    return json.loads(CC0_PATH.read_text(encoding="utf-8"))
+
+
+def plugin_js_files() -> list[Path]:
+    found = []
+    for folder in sorted(PLUGINS_DIR.glob("NP_*")):
+        js = folder / f"{folder.name}.js"
+        if js.is_file():
+            found.append(js)
+        else:
+            print("WARN: missing", js)
+    return found
+
+
+def asset_files() -> list[tuple[Path, Path]]:
+    """Return (source, path relative to that plugin's assets/)."""
+    rows = []
+    for assets in sorted(PLUGINS_DIR.glob("*/assets")):
+        for src in sorted(assets.rglob("*")):
+            if src.is_file():
+                rows.append((src, src.relative_to(assets)))
+    return rows
+
 
 def copy_js(www: Path) -> list[str]:
     dest = www / "js" / "plugins"
     dest.mkdir(parents=True, exist_ok=True)
     copied = []
-    for folder in sorted(PLUGINS_DIR.glob("NP_*")):
-        js = folder / f"{folder.name}.js"
-        if not js.is_file():
-            print("WARN: missing", js)
-            continue
+    for js in plugin_js_files():
         shutil.copy2(js, dest / js.name)
         copied.append(js.name)
     return copied
 
+
 def copy_assets(www: Path) -> int:
     n = 0
-    for assets in PLUGINS_DIR.glob("*/assets"):
-        for src in assets.rglob("*"):
-            if not src.is_file():
-                continue
-            rel = src.relative_to(assets)
-            dst = www / rel
-            dst.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(src, dst)
-            n += 1
+    for src, rel in asset_files():
+        dst = www / rel
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(src, dst)
+        n += 1
     return n
 
-def patch_plugins_js(plugins_js: Path, meta: dict) -> None:
-    order = meta["load_order"]
-    infos = meta["entries"]
-    t = plugins_js.read_text(encoding="utf-8")
-    ms = entries(t)
-    names = [m.group("name") for m in ms]
-    if "MEO_Util_Node" not in names:
-        sys.exit("ERROR: MEO_Util_Node not found in plugins.js — is this NymPri 0.80j www?")
 
-    changed = False
+def missing_assets(www: Path) -> list[str]:
+    missing = []
+    for _src, rel in asset_files():
+        if not (www / rel).is_file():
+            missing.append(rel.as_posix())
+    return missing
 
-    # 1) NP_Language after MEO_Util_Node
-    if "NP_Language" not in names:
-        m = next(x for x in ms if x.group("name") == "MEO_Util_Node")
-        i = m.end()
-        while i < len(t) and t[i] in " \t\r\n":
-            i += 1
-        if i < len(t) and t[i] == ",":
-            i += 1
-        line = fmt_entry("NP_Language", infos["NP_Language"])
-        t = t[:i] + "\n" + line + "," + t[i:]
-        print("Inserted NP_Language after MEO_Util_Node")
-        changed = True
-        ms = entries(t)
-        names = [m.group("name") for m in ms]
-    else:
-        print("NP_Language already present — skip")
 
-    # 2) append the rest in order (skip Language; keep OptionsCategories last via order file)
-    for name in order:
+def parse_plugins(text: str) -> list[dict]:
+    parsed = []
+    for match in ENTRY.finditer(text):
+        try:
+            obj = json.loads(match.group(0))
+        except json.JSONDecodeError as exc:
+            raise SystemExit(f"ERROR: could not read plugin entry {match.group('name')}: {exc}")
+        if "name" not in obj:
+            raise SystemExit("ERROR: plugin entry without a name")
+        parsed.append(obj)
+    return parsed
+
+
+def plugin_entry(name: str, existing: dict | None, infos: dict) -> dict:
+    meta = infos.get(name) or {}
+    if existing:
+        entry = {
+            "name": name,
+            "status": bool(existing.get("status", True)),
+            "description": existing.get("description") if existing.get("description") not in (None, "") else meta.get("description", ""),
+            "parameters": existing.get("parameters") if isinstance(existing.get("parameters"), dict) else {},
+        }
+        return entry
+    return {
+        "name": name,
+        "status": True,
+        "description": meta.get("description", ""),
+        "parameters": meta.get("parameters") or {},
+    }
+
+
+def arrange_plugins(parsed: list[dict], order: list[str], infos: dict, managed: set[str]) -> tuple[list[dict], list[str]]:
+    """Place managed plugins in load order. Keep every other plugin where it was."""
+    managed_order = [name for name in order if name in managed]
+    managed_set = set(managed_order)
+    base: list[dict] = []
+    found: dict[str, dict] = {}
+    duplicates: list[str] = []
+    for obj in parsed:
+        name = obj.get("name")
+        if name in managed_set:
+            if name in found:
+                duplicates.append(name)
+                continue
+            found[name] = obj
+        else:
+            base.append(obj)
+    out: list[dict] = []
+    placed_language = False
+    for obj in base:
+        out.append(obj)
+        if obj.get("name") == "MEO_Util_Node" and "NP_Language" in managed_set:
+            out.append(plugin_entry("NP_Language", found.get("NP_Language"), infos))
+            placed_language = True
+    if "NP_Language" in managed_set and not placed_language:
+        raise SystemExit("ERROR: MEO_Util_Node not found in plugins.js — is this NymPri 0.80j www?")
+    for name in managed_order:
         if name == "NP_Language":
             continue
-        if name in names:
-            print(f"{name} already present — skip")
-            continue
-        if name not in infos:
-            print("WARN: no metadata for", name)
-            continue
-        ms = entries(t)
-        last = ms[-1]
-        after = t[last.end():]
-        after2 = re.sub(r"^\s*,", "", after, count=1)
-        m2 = re.match(r"\s*\]", after2)
-        if not m2:
-            sys.exit("ERROR: cannot find ] after last plugin")
-        line = fmt_entry(name, infos[name])
-        t = t[: last.end()] + ",\n" + line + after2[m2.start() :]
-        print("Appended", name)
-        changed = True
-        names.append(name)
+        out.append(plugin_entry(name, found.get(name), infos))
+    return out, duplicates
 
-    if not changed:
-        print("plugins.js: nothing to do")
-        return
+
+def names_of(entries: list[dict]) -> list[str]:
+    return [obj.get("name", "") for obj in entries]
+
+
+def order_errors(names: list[str], order: list[str], managed: set[str]) -> list[str]:
+    errors = []
+    if names.count("NP_Language") != 1:
+        errors.append(f"NP_Language count is {names.count('NP_Language')}, expected 1")
+    if "MEO_Util_Node" not in names:
+        errors.append("MEO_Util_Node missing")
+    elif "NP_Language" in names and names[names.index("MEO_Util_Node") + 1] != "NP_Language":
+        errors.append("NP_Language is not immediately after MEO_Util_Node")
+    managed_order = [name for name in order if name in managed]
+    tail = [name for name in managed_order if name != "NP_Language"]
+    if names[-len(tail):] != tail:
+        errors.append("NP plugins are not in load order at the end of plugins.js")
+    if names and names[-1] != "NP_OptionsCategories":
+        errors.append("NP_OptionsCategories is not last")
+    for name in managed_order:
+        if names.count(name) != 1:
+            errors.append(f"duplicate or missing plugin entry: {name}")
+    return errors
+
+
+def replace_plugin_array(text: str, entries: list[dict]) -> str:
+    match = re.search(r"var\s+\$plugins\s*=\s*\[", text)
+    if not match:
+        raise SystemExit("ERROR: plugins.js has no var $plugins = [")
+    start = match.end()
+    i = start
+    depth = 1
+    in_str = False
+    esc = False
+    while i < len(text):
+        ch = text[i]
+        if in_str:
+            if esc:
+                esc = False
+            elif ch == "\\":
+                esc = True
+            elif ch == '"':
+                in_str = False
+        else:
+            if ch == '"':
+                in_str = True
+            elif ch == "[":
+                depth += 1
+            elif ch == "]":
+                depth -= 1
+                if depth == 0:
+                    break
+        i += 1
+    else:
+        raise SystemExit("ERROR: plugins.js array is not closed")
+    nl = "\r\n" if "\r\n" in text else "\n"
+    body = ("," + nl).join(
+        json.dumps(obj, ensure_ascii=False, separators=(",", ":")) for obj in entries
+    )
+    return text[:start] + nl + body + nl + text[i:]
+
+
+def read_plugins_text(path: Path) -> tuple[str, bool]:
+    raw = path.read_bytes()
+    bom = raw.startswith(b"\xef\xbb\xbf")
+    return raw.decode("utf-8-sig"), bom
+
+
+def write_plugins_text(path: Path, text: str, bom: bool) -> None:
+    data = text.encode("utf-8")
+    if bom:
+        data = b"\xef\xbb\xbf" + data
+    path.write_bytes(data)
+
+
+def patch_plugins_js(plugins_js: Path, meta: dict, managed: set[str]) -> list[str]:
+    order = meta["load_order"]
+    infos = meta["entries"]
+    text, bom = read_plugins_text(plugins_js)
+    parsed = parse_plugins(text)
+    if not any(obj.get("name") == "MEO_Util_Node" for obj in parsed):
+        raise SystemExit("ERROR: MEO_Util_Node not found in plugins.js — is this NymPri 0.80j www?")
+    arranged, duplicates = arrange_plugins(parsed, order, infos, managed)
+    if duplicates:
+        print("Removed duplicate plugin entries:", ", ".join(duplicates))
+    if names_of(arranged) == names_of(parsed) and not duplicates:
+        print("plugins.js: order already correct")
+        return names_of(parsed)
+    new_text = replace_plugin_array(text, arranged)
     bak = plugins_js.with_suffix(plugins_js.suffix + ".bak")
     if not bak.exists():
         shutil.copy2(plugins_js, bak)
         print("Backup:", bak)
-    plugins_js.write_text(t, encoding="utf-8")
+    write_plugins_text(plugins_js, new_text, bom)
     print("Wrote", plugins_js)
+    written, _bom = read_plugins_text(plugins_js)
+    return names_of(parse_plugins(written))
 
-def main():
+
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def cc0_errors(www: Path, manifest: dict | None = None) -> list[str]:
+    data = manifest if manifest is not None else load_cc0()
+    errors = []
+    for row in data["files"]:
+        path = www / row["www_path"]
+        if not path.is_file():
+            errors.append(f"missing CC0 file {row['www_path']}")
+            continue
+        digest = sha256_file(path)
+        if digest != row["sha256"] or path.stat().st_size != row["bytes"]:
+            errors.append(f"CC0 file changed or incomplete: {row['www_path']}")
+    return errors
+
+
+def companion_warnings(www: Path) -> list[str]:
+    warnings = []
+    missing = [rel for rel in EN_FILES if not (www / rel).is_file()]
+    if missing:
+        warnings.append(
+            "English text files are not installed (" + ", ".join(missing) + "). "
+            "NP_Language keeps Russian until the separate pack is added: " + NYMPRI_RU
+        )
+    quest = www / "csv" / "QuestList.csv"
+    if quest.is_file():
+        try:
+            text = quest.read_text(encoding="utf-8", errors="replace")
+        except OSError:
+            text = ""
+        if "201090" not in text:
+            warnings.append(
+                "csv/QuestList.csv has no quest 201090. NP_YarizoQuest adds that one journal row in memory "
+                "and does not replace the file. The nympri-ru row is used instead when it is already there."
+            )
+    else:
+        warnings.append("csv/QuestList.csv was not found. NP_YarizoQuest can add its journal row only after the game loads quest data.")
+    return warnings
+
+
+def alias_counts(www: Path) -> tuple[int, int]:
+    if not ALIAS_PATH.is_file():
+        return 0, 0
+    data = json.loads(ALIAS_PATH.read_text(encoding="utf-8"))
+    present = missing = 0
+    for row in data.get("aliases") or []:
+        rel = row.get("target_path") or ""
+        if (www / rel).is_file():
+            present += 1
+        else:
+            missing += 1
+    return present, missing
+
+
+def platform_note() -> str | None:
+    if os.name == "nt":
+        return None
+    return (
+        "NOTE: This pack is for the Windows 0.80j ZIP install. "
+        "The original game refers to some of its own files with mixed case "
+        "(TB_NPCstate versus TB_NPCState.js, img/pictures/ui versus UI). "
+        "On a case-sensitive disk that stops startup. Those are base-game paths, not missing NP files. "
+        "This installer does not add case aliases or original UI assets, and it does not claim Linux support."
+    )
+
+
+def load_alias_tool():
+    path = ROOT / "install_audio_aliases.py"
+    spec = importlib.util.spec_from_file_location("np_audio_aliases", path)
+    if spec is None or spec.loader is None:
+        raise SystemExit(f"ERROR: cannot load {path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def main(argv: list[str] | None = None) -> int:
+    try:
+        return _main(argv)
+    except SystemExit as exc:
+        if isinstance(exc.code, int):
+            return exc.code
+        if exc.code:
+            print(exc.code, file=sys.stderr)
+        return 1
+
+
+def _main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description="Install NymPri NP_* plugins into a game www folder")
     ap.add_argument("www", help="Path to the game www folder")
     ap.add_argument("--skip-assets", action="store_true", help="Do not copy plugins/*/assets")
-    args = ap.parse_args()
+    ap.add_argument("--repair-audio", action="store_true",
+                    help="Optionally create missing historical audio names from this game's own files. Not required for the NP scripts.")
+    ap.add_argument("--degraded-copy", action="store_true",
+                    help="With --repair-audio, if ffmpeg is missing, plain-copy names that normally need a loudness re-encode.")
+    args = ap.parse_args(argv)
+    if args.degraded_copy and not args.repair_audio:
+        print("ERROR: --degraded-copy is only valid with --repair-audio", file=sys.stderr)
+        return 1
     www = Path(args.www).expanduser().resolve()
     if not www.is_dir():
-        sys.exit(f"ERROR: not a folder: {www}")
-    if not (www / "js" / "plugins.js").is_file():
-        sys.exit(f"ERROR: missing {www / 'js' / 'plugins.js'}")
-    if not ORDER_PATH.is_file():
-        sys.exit(f"ERROR: missing {ORDER_PATH}")
-    meta = json.loads(ORDER_PATH.read_text(encoding="utf-8"))
-
+        print(f"ERROR: not a folder: {www}", file=sys.stderr)
+        return 1
+    plugins_js = www / "js" / "plugins.js"
+    if not plugins_js.is_file():
+        print(f"ERROR: missing {plugins_js}", file=sys.stderr)
+        return 1
+    note = platform_note()
+    if note:
+        print(note)
+    meta = load_order()
+    managed = {path.stem for path in plugin_js_files()}
     copied = copy_js(www)
     print(f"Copied {len(copied)} plugin .js files → {www / 'js' / 'plugins'}")
     if not args.skip_assets:
         n = copy_assets(www)
         print(f"Copied {n} asset files into {www}")
-    patch_plugins_js(www / "js" / "plugins.js", meta)
+    else:
+        print("Skipped asset copy")
+    names = patch_plugins_js(plugins_js, meta, managed)
+    errors = order_errors(names, meta["load_order"], managed)
+    if not args.skip_assets:
+        errors.extend(f"missing asset {rel}" for rel in missing_assets(www))
+        errors.extend(cc0_errors(www))
+    for warning in companion_warnings(www):
+        print("WARNING:", warning)
+    present, missing_alias = alias_counts(www)
+    if missing_alias:
+        print(
+            f"Optional: {missing_alias} of {present + missing_alias} historical audio names are not in this game. "
+            "They are original-event filenames, not files the NP scripts ship. "
+            'Create them from your own files with: python install.py "<www>" --repair-audio'
+        )
+    elif present:
+        print(f"Optional historical audio names already present: {present}")
+    if errors:
+        for err in errors:
+            print("ERROR:", err)
+        return 1
+    repair_code = 0
+    if args.repair_audio:
+        tool = load_alias_tool()
+        report = tool.repair(www, degraded_copy=args.degraded_copy)
+        print(tool.format_report(report))
+        if tool.incomplete(report):
+            repair_code = 2
     print("Done. Launch the game.")
+    return repair_code
+
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

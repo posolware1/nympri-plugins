@@ -22,10 +22,18 @@ After `NP_LogToggle`, before `NP_BattleHUD`. A language switch restarts the game
 
 No Plugin Manager parameters. Call `NP_ItemNameFix.run()` if you need the counters `{checked, renamed, desc, skipped}`.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
+With English mode on, names can be read from `www/lang/en/csv/` (nympri-ru). Without that pack, names come from the database that is already loaded.
+
 ## Install
 
 Copy `NP_ItemNameFix.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_ItemNameFix.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_ItemNameFix/` folder.
 
 ## Screenshots
 
-This plugin does not add its own screen.
+![Weapon names with a +1 suffix are visible. It does not show the name before the fix.](../../docs/screenshots/historical/ItemNameFix.png)
+
+Weapon names with a +1 suffix are visible. It does not show the name before the fix.

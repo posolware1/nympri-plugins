@@ -30,12 +30,20 @@ After `NP_Stress` and `NP_SuperAttack` (in the mod list, after `NP_ItemNameFix` 
 
 No Plugin Manager parameters. Options row **Компактная панель боя / Compact battle panel**, category Interface, default on.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_BattleHUD.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_BattleHUD.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_BattleHUD/` folder.
 
 ## Screenshots
 
-screenshots TBD
+![Party cards are visible beside the command list and the enemy window.](../../docs/screenshots/historical/BattleCmd_BattleHUD_EnemyHUD.png)
 
-No image files are shipped here. The panels described above are drawn by the plugin at runtime inside the game.
+Party cards are visible beside the command list and the enemy window.
+
+![Four party cards are also visible on this stress-traits frame.](../../docs/screenshots/historical/Stress_traits.png)
+
+Four party cards are also visible on this stress-traits frame.

@@ -31,6 +31,10 @@ After `NP_Voice`, before `NP_OutfitReact`. Does not change `NP_AutoSave` files. 
 - **Thumb Width** `160`, **Thumb Height** `120`, **Jpeg Quality** `0.6`.
 - **Stage Labels** `Верная жрица,Смятение,Двойная жизнь,Падение` — used only when the diary plugin is absent.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_SaveThumb.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_SaveThumb.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_SaveThumb/` folder.

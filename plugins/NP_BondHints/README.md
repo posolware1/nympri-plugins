@@ -28,10 +28,14 @@ After `NP_LogToggle`, the KNS log scene, and `NP_Language`. In the mod list it s
 
 No Plugin Manager parameters. Gates are fixed at 50, 120, 280, and 500. Level 5 is the maximum.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_BondHints.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_BondHints.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_BondHints/` folder.
 
 ## Screenshots
 
-This plugin does not add its own screen.
+The map log names the bond gate that was reached and where to sleep next. A screenshot of that line is not yet available.

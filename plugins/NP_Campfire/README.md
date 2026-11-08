@@ -26,10 +26,16 @@ After `NP_PictureAnim`, before `NP_Titles`. It injects into common events 474 (c
 - **Chance** `40` percent per night. A bond increase since the last night raises the chance to 85%.
 - **Cooldown** `2` nights that must pass after a talk.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_Campfire.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_Campfire.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_Campfire/` folder.
 
 ## Screenshots
 
-This plugin does not add its own screen.
+![A camp conversation and the camp-skill list are on one frame. Stress meters are also visible.](../../docs/screenshots/historical/Campfire_CampSkills.png)
+
+A camp conversation and the camp-skill list are on one frame. Stress meters are also visible.

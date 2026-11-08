@@ -27,12 +27,20 @@ After `MPP_ChoiceEX`, `MNKR_ChoiceCols`, `NP_PowerStrike`, `NP_BattleQoL`, `NP_S
 
 No Plugin Manager parameters. Options row **Новое меню команд / New command menu**.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_BattleCmd.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_BattleCmd.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_BattleCmd/` folder.
 
 ## Screenshots
 
-screenshots TBD
+![Battle commands as icon plus label. Party cards and the enemy HP window are on the same frame. This does not show a super attack playing.](../../docs/screenshots/historical/BattleCmd_BattleHUD_EnemyHUD.png)
 
-No image files are shipped here. The panels described above are drawn by the plugin at runtime inside the game.
+Battle commands as icon plus label. Party cards and the enemy HP window are on the same frame. This does not show a super attack playing.
+
+![A super command is visible in the battle menu. The move itself is not shown.](../../docs/screenshots/historical/SuperAttack_menu.png)
+
+A super command is visible in the battle menu. The move itself is not shown.

@@ -33,12 +33,14 @@ After `NP_Items` and `NP_RareMobs`, before `NP_EliteRewards`. It does not replac
 
 No Plugin Manager parameters. The existing **Редкие враги** option still gates all of them.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_EliteMobs.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_EliteMobs.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_EliteMobs/` folder.
 
 ## Screenshots
 
-screenshots TBD
-
-No image files are shipped here. The panels described above are drawn by the plugin at runtime inside the game.
+Six extra starred enemies join the bestiary and can appear in a dungeon. A screenshot of one of those fights is not yet available. Their character sheets are shown with NP_EliteSprites.

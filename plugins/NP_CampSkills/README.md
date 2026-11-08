@@ -34,12 +34,18 @@ After `NP_Stress`, before `NP_YarizoQuest`. It opens before `NP_Campfire`'s talk
 - **CampBgs** `NP_Campfire_Crackle` — camp menu ambience. Empty means silence.
 - **InnBgm** `PerituneMaterial_Taverne_loop` — inn rest music.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
+The camp ambience file `audio/bgs/NP_Campfire_Crackle.ogg` is the CC0 sound shipped with NP_AudioBalance and copied by the same installer.
+
 ## Install
 
 Copy `NP_CampSkills.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_CampSkills.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_CampSkills/` folder.
 
 ## Screenshots
 
-screenshots TBD
+![The camp-skill list is visible with the camp conversation.](../../docs/screenshots/historical/Campfire_CampSkills.png)
 
-No image files are shipped here. The panels described above are drawn by the plugin at runtime inside the game.
+The camp-skill list is visible with the camp conversation.

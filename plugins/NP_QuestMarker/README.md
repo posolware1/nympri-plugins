@@ -28,12 +28,14 @@ After `NP_AutoSave`, before `NP_FastBattle`. `NP_QuestTabs` and `NP_YarizoQuest`
 - **Color** `#ffe040`.
 - **Font Size** `34`.
 
+## Requires
+
+Windows **Alpha 0.80j**. From the downloaded ZIP, run `install.bat` and give it the game `www` folder. README categories are not the load order.
+
 ## Install
 
 Copy `NP_QuestMarker.js` into the game's `www/js/plugins/` directory. The file name must stay `NP_QuestMarker.js`. In Plugin Manager, turn it ON in the order in [Load order](#load-order). RPG Maker MV loads plugins from `www/js/plugins/`, not from this repository's `plugins/NP_QuestMarker/` folder.
 
 ## Screenshots
 
-screenshots TBD
-
-No image files are shipped here. The panels described above are drawn by the plugin at runtime inside the game.
+A blinking «!» stands on the current quest target, or on the exit that leads there. A screenshot of the marker is not yet available.

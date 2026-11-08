@@ -181,6 +181,11 @@ def _manual_line(name: str, infos: dict, comma: bool) -> str:
     return text + ("," if comma else "")
 
 
+def manual_copy_is_clean(plugins_js_text: str) -> bool:
+    """True only when plugins.js has no NP_ name. One NP_ plugin is not a clean 0.80j."""
+    return "NP_" not in plugins_js_text
+
+
 def manual_paste_texts() -> tuple[str, str]:
     """Text a player pastes into plugins.js. Same new-plugin parameters as the installer."""
     meta = load_order()

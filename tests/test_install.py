@@ -278,6 +278,15 @@ class InstallTests(unittest.TestCase):
                 self.assertEqual(left["description"], right["description"])
         self.assertEqual(manual_entries[0]["name"], "Community_Basic")
         self.assertEqual(manual_entries[1]["parameters"]["keep"], "MEO_Util_Node")
+        self.assertTrue(install.manual_copy_is_clean(original))
+        self.assertFalse(install.manual_copy_is_clean(plugins_js(["MEO_Util_Node", "NP_Language"])))
+        self.assertFalse(install.manual_copy_is_clean(plugins_js(["MEO_Util_Node", "NP_AutoSave"])))
+        for doc in (ROOT / "README.md", ROOT / "README.ru.md", ROOT / "manual" / "HOW.txt", ROOT / "manual" / "КАК.txt"):
+            wording = doc.read_text(encoding="utf-8-sig")
+            self.assertNotIn("skip steps", wording.lower())
+            self.assertNotIn("шаги 6 и 7 не делайте", wording)
+            self.assertIn("plugins.js.manual-bak", wording)
+            self.assertIn("NP_AutoSave", wording)
         self.assertEqual((www / "audio" / "bgs" / "Rain.ogg").read_bytes(), b"already-there")
         # Fresh copy of the packaged sounds matches the files the installer would write.
         fresh = self.tmp / "fresh-www"

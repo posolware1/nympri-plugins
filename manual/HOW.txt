@@ -1,12 +1,15 @@
-Manual install. Python is not required. Game: Alpha 0.80j for Windows.
+Manual install. Python is not used. Only a clean Alpha 0.80j for Windows whose plugins.js contains no text NP_.
 The game folder contains Game.exe. Inside it is www. Do not touch www\save.
 Do not copy this whole download into the game. Do not replace plugins.js with another whole file.
-If plugins.js already contains NP_Language, skip steps 6 and 7.
+If plugins.js already contains NP_, stop. Do not paste and do not copy files into that game. One name such as NP_Language or NP_AutoSave means the copy is already changed. Leave it alone. Use a separate clean copy of Alpha 0.80j.
+This copy does not update files that are already there. If Windows asks to replace a file, click Skip and stop.
 
 1. Extract the whole ZIP into a normal folder. Do not work inside the ZIP window.
-2. Open the game www\js. Copy plugins.js and name the copy plugins.js.manual-bak in that same folder. To undo: close the game, delete plugins.js, rename plugins.js.manual-bak back to plugins.js.
-3. In the extracted pack, open plugins. In the search box type *.js and press Enter. Select all 44 files (files only, not folders). Copy. Paste into the game www\js\plugins. If Windows asks to replace a file whose name starts with NP_, you may replace it. Do not replace any other file.
-4. Pictures and sounds. For each folder below, open its assets folder. Select everything inside assets (img, movies, or audio). Copy. Paste into the game www. If asked to merge folders, click Yes. If asked to replace a file, click Skip.
+2. Open the game www\js\plugins.js in Notepad. Press Ctrl+F and search for NP_. If Notepad finds it, close without saving. Stop. Use a separate clean copy.
+3. In that same js folder, if plugins.js.manual-bak is already there, stop. Do not replace it. Use a separate clean copy.
+4. Copy plugins.js and name the copy plugins.js.manual-bak. Putting that copy back later turns the new plugins off in the list. It does not delete the 44 scripts and 102 other files you add below. Those files stay in www. This is not a full return of the folder.
+5. In the extracted pack, open plugins. In the search box type *.js and press Enter. Select all 44 files (files only). Copy. Paste into the game www\js\plugins.
+6. For each folder below, open its assets folder. Select everything inside assets. Copy. Paste into the game www. Merge folders: Yes. Replace a file: Skip, then stop.
    plugins\NP_AudioBalance\assets
    plugins\NP_ClothDamage\assets
    plugins\NP_EliteSprites\assets
@@ -17,17 +20,12 @@ If plugins.js already contains NP_Language, skip steps 6 and 7.
    plugins\NP_SuperAttack\assets
    plugins\NP_TitleProgress\assets
    plugins\NP_VideoPortrait\assets
-5. Right-click the game www\js\plugins.js. Open with Notepad.
-6. Press Ctrl+F and find MEO_Util_Node. That line must end with a comma. If it does not, type one. Click at the start of the next line. Open manual\paste-after-MEO_Util_Node.txt, press Ctrl+A, copy, and paste.
-7. Go to the line ]; at the bottom. The line above ]; must end with a comma. If it does not, type one. Click at the start of the ]; line. Open manual\paste-at-end.txt, press Ctrl+A, copy, and paste.
-8. Press Ctrl+S and close Notepad.
-9. Check before you start the game:
-   www\js\plugins\NP_Language.js exists.
-   www\audio\bgs\NP_Campfire_Crackle.ogg exists.
-   www\audio\se\NP_ClothRip.ogg exists.
-   In plugins.js, NP_Language is the next plugin after MEO_Util_Node.
-   The last plugin name before ]; is NP_OptionsCategories.
-10. Start the game.
+7. Right-click the game www\js\plugins.js. Open with Notepad.
+8. Press Ctrl+F and find MEO_Util_Node. That line must end with a comma. If it does not, type one. Click at the start of the next line. Open manual\paste-after-MEO_Util_Node.txt, press Ctrl+A, copy, and paste.
+9. Go to the line ]; at the bottom. The line above ]; must end with a comma. If it does not, type one. Click at the start of the ]; line. Open manual\paste-at-end.txt, press Ctrl+A, copy, and paste.
+10. Press Ctrl+S and close Notepad.
+11. Check: www\js\plugins\NP_Language.js exists. www\audio\bgs\NP_Campfire_Crackle.ogg exists. www\audio\se\NP_ClothRip.ogg exists. NP_Language is the next plugin after MEO_Util_Node. The last name before ]; is NP_OptionsCategories.
+12. Start the game.
 
 English text is not included. It is a separate download: nympri-ru.
-The three new sounds (campfire, rain, cloth) are copied in step 4. The other 50 sound names are not part of this manual copy.
+The three new sounds are copied in step 6. The other 50 sound names are not part of this manual copy.

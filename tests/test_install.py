@@ -20,6 +20,47 @@ import install  # noqa: E402
 import install_audio_aliases as aliases  # noqa: E402
 
 
+def apply_documented_paste(text: str, after: str, tail: str) -> str:
+    """Notepad steps: comma after MEO_Util_Node, paste language, comma before ];, paste the block."""
+    newline = "\r\n" if "\r\n" in text else "\n"
+    lines = text.splitlines()
+    meo = next(i for i, line in enumerate(lines) if "MEO_Util_Node" in line and "name" in line)
+    if not lines[meo].rstrip().endswith(","):
+        lines[meo] = lines[meo].rstrip() + ","
+    lines[meo + 1:meo + 1] = after.splitlines()
+    end = next(i for i, line in enumerate(lines) if line.strip().startswith("];"))
+    previous = end - 1
+    while previous >= 0 and not lines[previous].strip():
+        previous -= 1
+    if previous >= 0 and not lines[previous].rstrip().endswith(","):
+        lines[previous] = lines[previous].rstrip() + ","
+    lines[end:end] = tail.splitlines()
+    body = newline.join(lines)
+    if text.endswith(("\n", "\r\n")):
+        body += newline
+    return body
+
+
+def copy_manual_files(www: Path, skip_existing: bool) -> None:
+    """Explorer steps: copy the 44 scripts, then each assets folder into www, skipping existing files."""
+    dest = www / "js" / "plugins"
+    dest.mkdir(parents=True, exist_ok=True)
+    for js in (ROOT / "plugins").glob("NP_*/*.js"):
+        target = dest / js.name
+        if skip_existing and target.exists():
+            continue
+        shutil.copy2(js, target)
+    for assets in (ROOT / "plugins").glob("NP_*/assets"):
+        for src in assets.rglob("*"):
+            if not src.is_file():
+                continue
+            target = www / src.relative_to(assets)
+            if skip_existing and target.exists():
+                continue
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(src, target)
+
+
 def plugins_js(names):
     rows = []
     for name in names:
@@ -190,6 +231,76 @@ class InstallTests(unittest.TestCase):
         self.assertIn(install.FAIL_EN, log)
         self.assertIn("install-log.txt", log)
         self.assertIn("Game.exe", log)
+
+    def test_manual_paste_matches_installer(self):
+        after_path = ROOT / "manual" / "paste-after-MEO_Util_Node.txt"
+        tail_path = ROOT / "manual" / "paste-at-end.txt"
+        after = after_path.read_text(encoding="utf-8-sig")
+        tail = tail_path.read_text(encoding="utf-8-sig")
+        expect_after, expect_tail = install.manual_paste_texts()
+        self.assertEqual(after, expect_after)
+        self.assertEqual(tail, expect_tail)
+        self.assertTrue(after.strip().endswith(","))
+        self.assertFalse(tail.strip().splitlines()[-1].endswith(","))
+        self.assertIn('"name":"NP_Language"', after)
+        self.assertIn('"name":"NP_OptionsCategories"', tail.splitlines()[-1])
+
+        game = self.tmp / "игра тест"
+        www = game / "www"
+        (www / "js").mkdir(parents=True)
+        original = plugins_js(["Community_Basic", "MEO_Util_Node", "YEP_ItemCore"])
+        (www / "js" / "plugins.js").write_text(original, encoding="utf-8")
+        (game / "Game.exe").write_bytes(b"MZ")
+        # A file the game already has must stay if the player clicks Skip.
+        kept = www / "audio" / "bgs"
+        kept.mkdir(parents=True)
+        (kept / "Rain.ogg").write_bytes(b"already-there")
+
+        edited = apply_documented_paste(original, after, tail)
+        (www / "js" / "plugins.js").write_text(edited, encoding="utf-8")
+        copy_manual_files(www, skip_existing=True)
+
+        other = self.tmp / "installer-www"
+        shutil.copytree(www, other)
+        # Installer copy starts from the unedited plugins.js and no skipped file.
+        (other / "js" / "plugins.js").write_text(original, encoding="utf-8")
+        (other / "audio" / "bgs" / "Rain.ogg").unlink()
+        code = install.main([str(other), "--skip-assets"])
+        self.assertEqual(code, 0)
+        # Compare registration. Asset bytes are compared separately below.
+        manual_entries = install.parse_plugins(edited)
+        installed_entries = install.parse_plugins((other / "js" / "plugins.js").read_text(encoding="utf-8"))
+        self.assertEqual(install.names_of(manual_entries), install.names_of(installed_entries))
+        for left, right in zip(manual_entries, installed_entries):
+            if str(left.get("name", "")).startswith("NP_"):
+                self.assertEqual(left["parameters"], right["parameters"])
+                self.assertEqual(left["status"], right["status"])
+                self.assertEqual(left["description"], right["description"])
+        self.assertEqual(manual_entries[0]["name"], "Community_Basic")
+        self.assertEqual(manual_entries[1]["parameters"]["keep"], "MEO_Util_Node")
+        self.assertTrue(install.manual_copy_is_clean(original))
+        self.assertFalse(install.manual_copy_is_clean(plugins_js(["MEO_Util_Node", "NP_Language"])))
+        self.assertFalse(install.manual_copy_is_clean(plugins_js(["MEO_Util_Node", "NP_AutoSave"])))
+        for doc in (ROOT / "README.md", ROOT / "README.ru.md", ROOT / "manual" / "HOW.txt", ROOT / "manual" / "КАК.txt"):
+            wording = doc.read_text(encoding="utf-8-sig")
+            self.assertNotIn("skip steps", wording.lower())
+            self.assertNotIn("шаги 6 и 7 не делайте", wording)
+            self.assertIn("plugins.js.manual-bak", wording)
+            self.assertIn("NP_AutoSave", wording)
+        self.assertEqual((www / "audio" / "bgs" / "Rain.ogg").read_bytes(), b"already-there")
+        # Fresh copy of the packaged sounds matches the files the installer would write.
+        fresh = self.tmp / "fresh-www"
+        (fresh / "js").mkdir(parents=True)
+        (fresh / "js" / "plugins.js").write_text(original, encoding="utf-8")
+        copy_manual_files(fresh, skip_existing=True)
+        installed_assets = self.tmp / "asset-www"
+        (installed_assets / "js").mkdir(parents=True)
+        (installed_assets / "js" / "plugins.js").write_text(original, encoding="utf-8")
+        self.assertEqual(install.main([str(installed_assets)]), 0)
+        for src, rel in install.asset_files():
+            self.assertEqual((fresh / rel).read_bytes(), (installed_assets / rel).read_bytes(), rel.as_posix())
+        for js in (ROOT / "plugins").glob("NP_*/*.js"):
+            self.assertEqual((fresh / "js" / "plugins" / js.name).read_bytes(), js.read_bytes())
 
     def test_help_does_not_say_it_failed(self):
         env = os.environ.copy()

@@ -350,17 +350,24 @@ class DocTests(unittest.TestCase):
             self.assertIn("Download ZIP", text) if name == "README.md" else self.assertIn("Download ZIP", text)
             self.assertNotIn("plugins.js.bak", text)
 
-    def test_bat_stays_open_and_skips_store_alias(self):
+    def test_bat_accepts_real_python_and_stays_open(self):
         raw = (ROOT / "install.bat").read_bytes()
         self.assertIn(b"\r\n", raw)
         raw.decode("ascii")
         text = raw.decode("ascii")
         self.assertIn("pause", text)
         self.assertIn("install-log.txt", text)
-        self.assertIn("WindowsApps", text)
+        self.assertIn("NP_PY_OK", text)
         self.assertIn("py -3", text)
+        self.assertLess(text.index("py -3"), text.index("where python"))
+        self.assertNotIn('find /I "WindowsApps"', text)
         self.assertLess(text.index("pause"), text.rindex("exit /b"))
         self.assertNotIn("exit /b 2", text)
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        self.assertIn("python.org/downloads", readme)
+        self.assertNotIn("does not run this installer", readme)
+        ru = (ROOT / "README.ru.md").read_text(encoding="utf-8")
+        self.assertNotIn("не запускает", ru)
 
 
 if __name__ == "__main__":

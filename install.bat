@@ -6,9 +6,14 @@ set "RC=1"
 set "NP_MODE="
 set "NP_PY="
 
+REM py -3 is preferred. Any other python.exe is accepted only if it
+REM actually runs Python 3 and prints NP_PY_OK. A Store alias that only
+REM opens the Store does not print that line. A real Store install does,
+REM even when its path contains WindowsApps.
+
 where py >nul 2>&1
 if not errorlevel 1 (
-  py -3 -c "import sys; raise SystemExit(0 if sys.version_info[0]>=3 else 1)" >nul 2>&1
+  py -3 -c "import sys; print('NP_PY_OK' if sys.version_info[0]>=3 else 'NP_PY_BAD')" 2>nul | findstr /C:"NP_PY_OK" >nul
   if not errorlevel 1 set "NP_MODE=py"
 )
 
@@ -16,12 +21,12 @@ if defined NP_MODE goto run
 where python >nul 2>&1
 if errorlevel 1 goto no_python
 for /f "delims=" %%F in ('where python 2^>nul') do (
-  echo %%F | find /I "WindowsApps" >nul
-  if errorlevel 1 if not defined NP_PY set "NP_PY=%%F"
+  if not defined NP_PY (
+    "%%F" -c "import sys; print('NP_PY_OK' if sys.version_info[0]>=3 else 'NP_PY_BAD')" 2>nul | findstr /C:"NP_PY_OK" >nul
+    if not errorlevel 1 set "NP_PY=%%F"
+  )
 )
 if not defined NP_PY goto no_python
-"%NP_PY%" -c "import sys; raise SystemExit(0 if sys.version_info[0]>=3 else 1)" >nul 2>&1
-if errorlevel 1 goto no_python
 set "NP_MODE=direct"
 
 :run
@@ -37,12 +42,12 @@ goto after
 
 :no_python
 echo Python 3 was not found.
-echo Install it from https://www.python.org/downloads/
+echo The simplest way is to install it from https://www.python.org/downloads/
 echo On the first screen, tick Add python.exe to PATH.
-echo The python icon from the Microsoft Store does not run this installer.
+echo If Windows opens the Store instead of running Python, Python is not installed yet.
 echo.
 echo Failed. Open install-log.txt next to install.bat and send that file.
->>"%LOG%" echo Python 3 was not found. Install from https://www.python.org/downloads/ and tick Add python.exe to PATH. The Microsoft Store python alias does not run this installer.
+>>"%LOG%" echo Python 3 was not found. A command that only opens the Microsoft Store is not a working Python. The simplest fix is https://www.python.org/downloads/ with Add python.exe to PATH.
 set "RC=1"
 
 :after

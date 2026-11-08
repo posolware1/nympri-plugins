@@ -10,7 +10,7 @@ Companion russifier (translation + language switch only): [nympri-ru](https://gi
 
 The RU | EN button is `NP_Language`. The speaker and slider are `NP_TitleVolume`.
 
-You need **Python 3** before the installer will run. Download it from https://www.python.org/downloads/ . On the first screen, tick **Add python.exe to PATH**. The Python app from the Microsoft Store does not run this installer.
+You need **Python 3**. The simplest way is to install it from https://www.python.org/downloads/ and tick **Add python.exe to PATH** on the first screen. If Windows opens the Store instead of the installer window, Python is not installed yet.
 
 The game is **Alpha 0.80j** for Windows. English text is a separate download: [nympri-ru](https://github.com/posolware1/nympri-ru).
 

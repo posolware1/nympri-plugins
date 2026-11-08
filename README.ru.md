@@ -10,7 +10,7 @@
 
 Кнопка RU | EN — `NP_Language`. Динамик и ползунок — `NP_TitleVolume`.
 
-Сначала нужен **Python 3**. Скачайте его с https://www.python.org/downloads/ . На первом экране отметьте **Add python.exe to PATH**. Программа Python из Microsoft Store этот установщик не запускает.
+Сначала нужен **Python 3**. Проще всего скачать его с https://www.python.org/downloads/ и на первом экране отметить **Add python.exe to PATH**. Если вместо окна установщика открывается Store, Python ещё не установлен.
 
 Игра — **Alpha 0.80j** для Windows. Английский текст ставится отдельно: [nympri-ru](https://github.com/posolware1/nympri-ru).
 

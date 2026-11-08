@@ -27,6 +27,7 @@ import os
 import re
 import shutil
 import sys
+from datetime import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -36,6 +37,11 @@ ALIAS_PATH = ROOT / "install" / "audio_aliases.json"
 PLUGINS_DIR = ROOT / "plugins"
 NYMPRI_RU = "https://github.com/posolware1/nympri-ru"
 EN_FILES = ("lang/en/build_info.json", "lang/en/data_overlay.json")
+LOG_NAME = "install-log.txt"
+SUCCESS_RU = "Готово. Плагины установлены."
+SUCCESS_EN = "Done. Plugins are installed."
+FAIL_RU = "Не получилось."
+FAIL_EN = "Failed. Open install-log.txt next to install.bat and send that file."
 
 ENTRY = re.compile(
     r'\{\s*"name"\s*:\s*"(?P<name>[^"]+)"\s*,\s*"status"\s*:\s*(?:true|false)\s*,\s*'
@@ -346,20 +352,206 @@ def load_alias_tool():
     return module
 
 
-def main(argv: list[str] | None = None) -> int:
+def log_path() -> Path:
+    override = os.environ.get("NP_INSTALL_LOG")
+    return Path(override) if override else (ROOT / LOG_NAME)
+
+
+class _Tee:
+    def __init__(self, stream, handle):
+        self.stream = stream
+        self.handle = handle
+
+    def write(self, data):
+        try:
+            self.stream.write(data)
+        except Exception:
+            pass
+        try:
+            self.handle.write(data)
+            self.handle.flush()
+        except Exception:
+            pass
+
+    def flush(self):
+        try:
+            self.stream.flush()
+        except Exception:
+            pass
+        try:
+            self.handle.flush()
+        except Exception:
+            pass
+
+
+def configure_stdio() -> None:
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except Exception:
+            pass
+
+
+def open_log():
+    path = log_path()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    new = (not path.exists()) or path.stat().st_size == 0
+    handle = path.open("a", encoding="utf-8", newline="\n")
+    if new:
+        handle.write("\ufeff")
+    handle.write("\n==== " + datetime.now().isoformat(timespec="seconds") + " ====\n")
+    handle.write(f"python {sys.version}\n")
+    handle.flush()
+    return path, handle
+
+
+def pack_problem() -> str | None:
+    if ORDER_PATH.is_file() and PLUGINS_DIR.is_dir() and any(PLUGINS_DIR.glob("NP_*/*.js")):
+        return None
+    return (
+        "Похоже, архив распакован не целиком, или install.bat запущен прямо из окна ZIP.\n"
+        "Распакуйте весь ZIP в обычную папку и запустите install.bat уже оттуда.\n"
+        "The ZIP was not fully extracted, or install.bat was started from inside the ZIP window.\n"
+        "Extract the whole ZIP into a normal folder, then start install.bat there.\n"
+        + FAIL_RU + "\n" + FAIL_EN
+    )
+
+
+def resolve_www(raw: str) -> Path:
+    """Accept the game folder (with Game.exe), the www folder, or www/js/plugins.js."""
+    text = str(raw).strip().strip('"').strip()
+    if not text:
+        raise ValueError("empty")
+    path = Path(text).expanduser()
+    if path.is_file():
+        if path.name.lower() == "plugins.js" and path.parent.name.lower() == "js":
+            www = path.parent.parent
+            if www.name.lower() == "www" and path.is_file():
+                return www.resolve()
+        path = path.parent
+    candidates = [path, path / "www"]
+    if path.name.lower() == "js":
+        candidates.append(path.parent)
+    seen = set()
+    for cand in candidates:
+        key = str(cand)
+        if key in seen:
+            continue
+        seen.add(key)
+        if (cand / "js" / "plugins.js").is_file():
+            return cand.resolve()
+    raise FileNotFoundError(text)
+
+
+def try_folder_dialog() -> str | None:
+    """Windows folder picker. Returns None when it is unavailable or cancelled."""
+    if os.name != "nt":
+        return None
     try:
-        return _main(argv)
+        import tkinter as tk
+        from tkinter import filedialog
+    except Exception:
+        return None
+    root = tk.Tk()
+    try:
+        root.withdraw()
+        try:
+            root.attributes("-topmost", True)
+        except Exception:
+            pass
+        chosen = filedialog.askdirectory(title="Папка игры / Game folder")
+    except Exception:
+        return None
+    finally:
+        try:
+            root.destroy()
+        except Exception:
+            pass
+    if not chosen:
+        return None
+    return str(chosen)
+
+
+def ask_for_folder() -> str:
+    print("Сейчас откроется выбор папки. Если окна нет, введите путь ниже.")
+    print("A folder window should open. If it does not, type the path below.")
+    picked = try_folder_dialog()
+    if picked:
+        print(picked)
+        return picked
+    print("Введите путь к папке игры и нажмите Enter.")
+    print("Type the game folder path and press Enter.")
+    try:
+        return input("> ")
+    except EOFError:
+        return ""
+
+
+def stdin_is_console() -> bool:
+    try:
+        return sys.stdin is not None and sys.stdin.isatty()
+    except Exception:
+        return False
+
+
+def wait_if_interactive(prompted: bool) -> None:
+    if not prompted or not stdin_is_console():
+        return
+    try:
+        input("Нажмите Enter, чтобы закрыть окно. / Press Enter to close this window.")
+    except EOFError:
+        pass
+
+
+def main(argv: list[str] | None = None) -> int:
+    prompted = {"v": False}
+    try:
+        return _main(argv, prompted)
     except SystemExit as exc:
         if isinstance(exc.code, int):
-            return exc.code
-        if exc.code:
-            print(exc.code, file=sys.stderr)
-        return 1
+            code = exc.code
+        else:
+            if exc.code:
+                print(exc.code, file=sys.stderr)
+            code = 1
+        return code
+    finally:
+        wait_if_interactive(prompted["v"])
 
 
-def _main(argv: list[str] | None = None) -> int:
-    ap = argparse.ArgumentParser(description="Install NymPri NP_* plugins into a game www folder")
-    ap.add_argument("www", help="Path to the game www folder")
+def _main(argv: list[str] | None, prompted: dict) -> int:
+    configure_stdio()
+    log_file, handle = open_log()
+    stdout, stderr = sys.stdout, sys.stderr
+    sys.stdout = _Tee(stdout, handle)
+    sys.stderr = _Tee(stderr, handle)
+    code = 1
+    try:
+        code = _run(argv, prompted)
+        return code
+    except SystemExit as exc:
+        if exc.code and not isinstance(exc.code, int):
+            print(exc.code)
+        print(FAIL_RU)
+        print(FAIL_EN)
+        return exc.code if isinstance(exc.code, int) else 1
+    finally:
+        try:
+            print(f"Log file: {LOG_NAME}")
+            handle.flush()
+        except Exception:
+            pass
+        sys.stdout = stdout
+        sys.stderr = stderr
+        try:
+            handle.close()
+        except Exception:
+            pass
+
+
+def _run(argv: list[str] | None, prompted: dict) -> int:
+    ap = argparse.ArgumentParser(description="Install NymPri NP_* plugins into a game folder")
+    ap.add_argument("www", nargs="?", help="Game folder (with Game.exe) or the www folder")
     ap.add_argument("--skip-assets", action="store_true", help="Do not copy plugins/*/assets")
     ap.add_argument("--repair-audio", action="store_true",
                     help="Optionally create missing historical audio names from this game's own files. Not required for the NP scripts.")
@@ -368,15 +560,35 @@ def _main(argv: list[str] | None = None) -> int:
     args = ap.parse_args(argv)
     if args.degraded_copy and not args.repair_audio:
         print("ERROR: --degraded-copy is only valid with --repair-audio", file=sys.stderr)
+        print(FAIL_RU)
+        print(FAIL_EN)
         return 1
-    www = Path(args.www).expanduser().resolve()
-    if not www.is_dir():
-        print(f"ERROR: not a folder: {www}", file=sys.stderr)
+    problem = pack_problem()
+    if problem:
+        print(problem)
         return 1
+    raw = args.www
+    if not raw:
+        if not stdin_is_console():
+            print("Укажите папку игры: install.bat")
+            print("Choose the game folder: install.bat")
+            print(FAIL_RU)
+            print(FAIL_EN)
+            return 2
+        prompted["v"] = True
+        raw = ask_for_folder()
+    try:
+        www = resolve_www(raw or "")
+    except (ValueError, FileNotFoundError):
+        print("В этой папке нет игры.")
+        print("Нужна папка, где лежит Game.exe, или папка www внутри неё.")
+        print("This folder is not the game.")
+        print("Choose the folder that contains Game.exe, or the www folder inside it.")
+        print(FAIL_RU)
+        print(FAIL_EN)
+        return 1
+    print(f"Game folder: {www}")
     plugins_js = www / "js" / "plugins.js"
-    if not plugins_js.is_file():
-        print(f"ERROR: missing {plugins_js}", file=sys.stderr)
-        return 1
     note = platform_note()
     if note:
         print(note)
@@ -408,6 +620,8 @@ def _main(argv: list[str] | None = None) -> int:
     if errors:
         for err in errors:
             print("ERROR:", err)
+        print(FAIL_RU)
+        print(FAIL_EN)
         return 1
     repair_code = 0
     if args.repair_audio:
@@ -415,8 +629,11 @@ def _main(argv: list[str] | None = None) -> int:
         report = tool.repair(www, degraded_copy=args.degraded_copy)
         print(tool.format_report(report))
         if tool.incomplete(report):
-            repair_code = 2
-    print("Done. Launch the game.")
+            print(FAIL_RU)
+            print(FAIL_EN)
+            return 2
+    print(SUCCESS_RU)
+    print(SUCCESS_EN)
     return repair_code
 
 

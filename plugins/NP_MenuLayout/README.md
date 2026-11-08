@@ -50,6 +50,6 @@ Full list and checksums: [INVENTORY.md](../../INVENTORY.md).
 
 ## Screenshots
 
-![Pause menu: command list, party gauges, and status boxes](screenshots/NP_MenuLayout.png)
+![Pause menu from save file 15](screenshots/NP_MenuLayout.png)
 
-The command column sits on the left. Jimmy and Kohaku show class, level, and HP, MP, and FP. Under the list are alignment, fame, love, lust, and silver.
+The same save. Command list on the left, with Settings selected. Jimmy and Kohaku have cards for level, health, magic, fatigue, and stress. The quest line says there is no bookmarked or story quest. «Распределить очки» is on the right. Love 50 and Lust 200 are the numbers the menu reads from the save.

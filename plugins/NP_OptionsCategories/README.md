@@ -41,6 +41,6 @@ Copy `NP_OptionsCategories.js` into the game's `www/js/plugins/` directory. The 
 
 ## Screenshots
 
-![Options split into categories, Sound section open](screenshots/NP_OptionsCategories.png)
+![Options, Interface section open](screenshots/NP_OptionsCategories.png)
 
-The left column is the category list with a count on each row. The right column is the open section. This shot is **Звук / Sound**: volume sliders, voice extras, camp music, and loudness balance. Enter or Right opens a section. Escape returns to the list and, from there, saves and leaves.
+The same save. Interface is open (16 rows). The header is that section’s line: controls, notifications, hints, quest markers, the shop, and the screen. Visible rows include «Метки заданий: ON». That switch is only a setting; this frame does not show a marker on a map. Empty sections stay off the list, so Other is not on this screen. Sound, Battle, Mechanics, and Language & Text are the other rows, with their counts.

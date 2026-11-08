@@ -34,4 +34,6 @@ Copy `NP_LevelAllocation.js` into the game's `www/js/plugins/` directory. The fi
 
 ## Screenshots
 
-After a level-up the hero and Kohaku spend the new points on one screen. A screenshot of that screen is not yet available.
+![Attribute allocation, nothing drafted](screenshots/NP_LevelAllocation.png)
+
+Save file 15. Jimmy is selected: 20 points left, and «Будет потрачено: 0». Strength is highlighted; its line says the cost is 2. Apply and Reset are disabled because nothing is drafted. No point on this screen was applied.

@@ -60,6 +60,8 @@ Those tests use temporary folders. They do not launch the game.
 
 A separate file-install check of commit `40a1351` on an isolated copy of original 0.80j is recorded in [install-test.md](install-test.md). It covers the installer only. It does not include a Windows launch, play, the language switch, sound playback, or the in-memory Yarizo row.
 
+A later Linux shot copy, with case aliases for the original game’s own files, did start and load save file 15. Four frames from that session are in the plugin folders. See [screenshots/2026-11-08.md](screenshots/2026-11-08.md). That session is not official Linux support, not a Windows check, and not a full playtest.
+
 Screenshots under `docs/screenshots/historical/` and the older shots already next to some plugins are previous captures. Captions must say what is actually visible. Do not add mockups.
 
 ## Platform

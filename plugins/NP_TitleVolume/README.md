@@ -38,6 +38,6 @@ Copy `NP_TitleVolume.js` into the game's `www/js/plugins/` directory. The file n
 
 ## Screenshots
 
-![The volume widget is in the corner of this diary frame. This is not a title-screen capture.](../../docs/screenshots/historical/PriestessDiary.png)
+![Title-bar crop: RU | EN and the volume slider at 100%](screenshots/NP_TitleVolume_bar.png)
 
-The volume widget is in the corner of this diary frame. This is not a title-screen capture.
+A crop of the title bar, not the whole title screen. It was taken before save file 15 was loaded. RU is marked, and the slider reads 100%. The RU | EN control beside it is `NP_Language`; it was not used. This crop does not show a changed title background, so it is not a picture of `NP_TitleProgress`.

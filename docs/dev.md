@@ -56,7 +56,11 @@ Not shipped, on purpose: nine same-name remasters of files the game already had 
 python3 -m unittest tests.test_install -v
 ```
 
-Those tests use temporary folders. They do not launch the game.
+Those tests use temporary folders. They do not launch the game, and they were not run on Windows.
+
+`install.bat` is the player entry. With no folder it asks for one, accepts the folder that contains `Game.exe` or the `www` folder, and writes `install-log.txt` beside itself. A double-click used to close the window immediately because the old file exited when no path was given and never paused. The same shape is in nympri-ru `install.bat` / `install.py` (no pause, no folder prompt). That repository was not changed.
+
+Python detection prefers `py -3`. Any other `python.exe`, including one under `WindowsApps`, is used when it actually runs Python 3 and prints `NP_PY_OK`. A Store execution alias that only opens the Store does not print that line, so it is not treated as Python. This was not executed on Windows.
 
 A separate file-install check of commit `40a1351` on an isolated copy of original 0.80j is recorded in [install-test.md](install-test.md). It covers the installer only. It does not include a Windows launch, play, the language switch, sound playback, or the in-memory Yarizo row.
 

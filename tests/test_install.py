@@ -10,6 +10,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+import unittest.mock
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -38,8 +39,14 @@ class InstallTests(unittest.TestCase):
         (self.www / "js").mkdir(parents=True)
         self.meta = install.load_order()
         self.managed = {path.stem for path in install.plugin_js_files()}
+        self._prev_log = os.environ.get("NP_INSTALL_LOG")
+        os.environ["NP_INSTALL_LOG"] = str(self.tmp / "install-log.txt")
 
     def tearDown(self):
+        if self._prev_log is None:
+            os.environ.pop("NP_INSTALL_LOG", None)
+        else:
+            os.environ["NP_INSTALL_LOG"] = self._prev_log
         shutil.rmtree(self.tmp, ignore_errors=True)
 
     def write_js(self, names):
@@ -151,6 +158,87 @@ class InstallTests(unittest.TestCase):
     def test_degraded_flag_requires_repair_mode(self):
         self.write_js(["MEO_Util_Node"])
         self.assertEqual(install.main([str(self.www), "--skip-assets", "--degraded-copy"]), 1)
+
+    def test_game_root_www_and_exe_all_resolve(self):
+        game = self.tmp / "игра тест"
+        www = game / "www" / "js"
+        www.mkdir(parents=True)
+        plugins = www / "plugins.js"
+        plugins.write_text(plugins_js(["MEO_Util_Node"]), encoding="utf-8")
+        exe = game / "Game.exe"
+        exe.write_bytes(b"MZ")
+        self.assertEqual(install.resolve_www(str(game)), (game / "www").resolve())
+        self.assertEqual(install.resolve_www(str(game / "www")), (game / "www").resolve())
+        self.assertEqual(install.resolve_www(str(plugins)), (game / "www").resolve())
+        self.assertEqual(install.resolve_www(str(exe)), (game / "www").resolve())
+        spaced = self.tmp / "My Game"
+        (spaced / "www" / "js").mkdir(parents=True)
+        (spaced / "www" / "js" / "plugins.js").write_text(plugins_js(["MEO_Util_Node"]), encoding="utf-8")
+        code = install.main([str(spaced), "--skip-assets"])
+        self.assertEqual(code, 0)
+        log = (self.tmp / "install-log.txt").read_text(encoding="utf-8-sig")
+        self.assertIn(install.SUCCESS_RU, log)
+        self.assertIn(install.SUCCESS_EN, log)
+        self.assertIn("My Game", log)
+
+    def test_wrong_folder_names_the_log(self):
+        missing = self.tmp / "not the game"
+        missing.mkdir()
+        code = install.main([str(missing), "--skip-assets"])
+        self.assertEqual(code, 1)
+        log = (self.tmp / "install-log.txt").read_text(encoding="utf-8-sig")
+        self.assertIn(install.FAIL_EN, log)
+        self.assertIn("install-log.txt", log)
+        self.assertIn("Game.exe", log)
+
+    def test_help_does_not_say_it_failed(self):
+        env = os.environ.copy()
+        env["NP_INSTALL_LOG"] = str(self.tmp / "help-log.txt")
+        proc = subprocess.run(
+            [sys.executable, str(ROOT / "install.py"), "--help"],
+            cwd=str(ROOT),
+            capture_output=True,
+            text=True,
+            env=env,
+        )
+        self.assertEqual(proc.returncode, 0)
+        combined = proc.stdout + proc.stderr
+        self.assertIn("--help", combined)
+        self.assertNotIn(install.FAIL_RU, combined)
+        self.assertNotIn(install.FAIL_EN, combined)
+        self.assertNotIn(install.SUCCESS_RU, combined)
+        log = (self.tmp / "help-log.txt").read_text(encoding="utf-8-sig")
+        self.assertNotIn(install.FAIL_RU, log)
+        self.assertNotIn(install.FAIL_EN, log)
+
+    def test_no_folder_without_console_does_not_hang(self):
+        env = os.environ.copy()
+        env["NP_INSTALL_LOG"] = str(self.tmp / "noargs-log.txt")
+        proc = subprocess.run(
+            [sys.executable, str(ROOT / "install.py")],
+            cwd=str(ROOT),
+            stdin=subprocess.DEVNULL,
+            capture_output=True,
+            text=True,
+            env=env,
+        )
+        self.assertEqual(proc.returncode, 2)
+        combined = proc.stdout + proc.stderr
+        self.assertIn(install.FAIL_EN, combined)
+        log = (self.tmp / "noargs-log.txt").read_text(encoding="utf-8-sig")
+        self.assertIn(install.FAIL_EN, log)
+
+    def test_typed_folder_prompt(self):
+        game = self.tmp / "picked"
+        (game / "www" / "js").mkdir(parents=True)
+        (game / "www" / "js" / "plugins.js").write_text(plugins_js(["MEO_Util_Node"]), encoding="utf-8")
+        with unittest.mock.patch("install.stdin_is_console", return_value=True), \
+                unittest.mock.patch("install.try_folder_dialog", return_value=None), \
+                unittest.mock.patch("install.input", side_effect=[str(game), ""]):
+            code = install.main(["--skip-assets"])
+        self.assertEqual(code, 0)
+        names = install.names_of(install.parse_plugins((game / "www" / "js" / "plugins.js").read_text(encoding="utf-8")))
+        self.assertEqual(names[names.index("MEO_Util_Node") + 1], "NP_Language")
 
 
 class AliasTests(unittest.TestCase):
@@ -271,6 +359,35 @@ class DocTests(unittest.TestCase):
         text = (ROOT / "plugins" / "NP_AudioBalance" / "assets" / "audio" / "CREDITS_NP_CC0.txt").read_text(encoding="utf-8")
         self.assertIn("CC0", text)
         self.assertIn("NOT licensed CC0", text)
+
+    def test_novice_readme_names_the_success_line_and_log(self):
+        for name in ("README.md", "README.ru.md"):
+            text = (ROOT / name).read_text(encoding="utf-8")
+            self.assertIn("install.bat", text)
+            self.assertIn("install-log.txt", text)
+            self.assertIn(install.SUCCESS_RU, text)
+            self.assertIn(install.SUCCESS_EN, text)
+            self.assertIn("Download ZIP", text) if name == "README.md" else self.assertIn("Download ZIP", text)
+            self.assertNotIn("plugins.js.bak", text)
+
+    def test_bat_accepts_real_python_and_stays_open(self):
+        raw = (ROOT / "install.bat").read_bytes()
+        self.assertIn(b"\r\n", raw)
+        raw.decode("ascii")
+        text = raw.decode("ascii")
+        self.assertIn("pause", text)
+        self.assertIn("install-log.txt", text)
+        self.assertIn("NP_PY_OK", text)
+        self.assertIn("py -3", text)
+        self.assertLess(text.index("py -3"), text.index("where python"))
+        self.assertNotIn('find /I "WindowsApps"', text)
+        self.assertLess(text.index("pause"), text.rindex("exit /b"))
+        self.assertNotIn("exit /b 2", text)
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        self.assertIn("python.org/downloads", readme)
+        self.assertNotIn("does not run this installer", readme)
+        ru = (ROOT / "README.ru.md").read_text(encoding="utf-8")
+        self.assertNotIn("не запускает", ru)
 
 
 if __name__ == "__main__":

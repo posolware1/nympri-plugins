@@ -6,7 +6,7 @@ Russian / English language switch.
 
 ## Version
 
-1.1 (`@plugindesc`).
+1.2 (`@plugindesc`).
 
 ## Purpose
 
@@ -20,6 +20,13 @@ English mode, for the player, means:
 - Every other NP plugin asks `NP_L(russian, english)` (also `NP_Language.t`) and follows this switch.
 
 Saves stay compatible both ways: the save holds switches and variables, not a second copy of the database. Default language on a fresh install is Russian. In English, the title logo drops the «Русская версия» caption.
+
+In Russian mode only, a Show Text line or a choice whose whole text equals a key in the optional file `www/lang/ru/bypass.json` is replaced by that key’s value. Control codes stay part of the string. English mode does not read the file. A missing file, or a file that is not a JSON object, leaves those lines as they are.
+
+## Changes
+
+- 1.2 — Optional `www/lang/ru/bypass.json`. Exact replacement of Show Text lines and choices, Russian mode only.
+- 1.1 — English stays off when the English pack is incomplete, and the title button sits beside the volume control.
 
 ## Load order
 

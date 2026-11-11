@@ -37,6 +37,7 @@ The installer rewrites `plugins.js` when that order is wrong or a managed name i
 | `audio/bgs/NP_Campfire_Crackle.ogg`, `audio/se/NP_ClothRip.ogg` | CC0 files in `NP_AudioBalance/assets/audio/` | installer error after a normal asset copy |
 | `audio/bgs/Rain.ogg` | same CC0 folder; an original event name, not a script call | installer error only because the file is part of the shipped asset set |
 | `www/lang/en/build_info.json` and `data_overlay.json` | [nympri-ru](https://github.com/posolware1/nympri-ru) | warning; `NP_Language` refuses English and stays on Russian |
+| `www/lang/ru/bypass.json` | optional exact replacements for Show Text lines and choices | missing file is fine; Russian lines stay as shipped. English mode does not read it |
 | Quest row 201090 | kept if already in `csv/QuestList.csv`; otherwise `NP_YarizoQuest` inserts only that row in memory | no CSV is shipped or replaced |
 | 50 historical audio names | optional `install.py --repair-audio` from the player's own files | normal install still succeeds |
 

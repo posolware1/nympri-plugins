@@ -29,6 +29,32 @@ Staged under `plugin_assets_for_repo/plugins/<Plugin>/assets/` for push into
 - **NP_PowerStrike** — Procedural QTE glow bitmaps; no shipped art.
 - **NP_AudioBalance** — Volume routing only; does not ship audio files (uses existing BGM/BGS/SE).
 - **NP_TitleVolume** — Config UI only; no assets.
+- **NP_Language** — Language switch. No shipped art.
+- **NP_AutoSave** — Autosave. No shipped art.
+- **NP_QuestMarker** — Quest target marker drawn in code. No shipped art.
+- **NP_FastBattle** — Shorter battle waits. No shipped art.
+- **NP_PriestessDiary** — Diary and meters. No shipped art.
+- **NP_Voice** — Plays sounds already in the game. No shipped art.
+- **NP_Campfire** — Night talk. No shipped art.
+- **NP_CampSkills** — Rest skills. No shipped art.
+- **NP_YarizoQuest** — Journal quest for meeting and hiring Yarizo. No shipped art.
+- **NP_SoftlockFix** — Runtime repairs for story conditions that never match. No shipped art.
+- **NP_StoryHint** — Pinned “What's next” line on the Story tab. No shipped art.
+- **NP_ShopCompare** — Shop stat deltas. No shipped art.
+- **NP_BattleQoL** — Battle speed and autobattle. No shipped art.
+- **NP_BossBalance** — Boss phase rules. No shipped art.
+- **NP_MorningHints** — One line after a night away. No shipped art.
+- **NP_QuestHints** — “Where to go” line. No shipped art.
+- **NP_QuestTabs** — Story, side, and completed tabs. No shipped art.
+- **NP_UIColors** — Recolours existing windows. No shipped art.
+- **NP_LogToggle** — Map-log show and hide. No shipped art.
+- **NP_ItemNameFix** — Renames saved weapon copies. No shipped art.
+- **NP_Items** — Item effects in script. No shipped art.
+- **NP_LevelAllocation** — Stat point screen. No shipped art.
+- **NP_BondHints** — Bond log lines. No shipped art.
+- **NP_SouthGateQuest** — Southern checkpoint delivery. No shipped art.
+- **NP_RemovedQuestCompat** — Cleans leftover events from removed quests. No shipped art.
+- **NP_OptionsCategories** — Options menu sections. No shipped art.
 
 ## Per plugin
 

@@ -33,7 +33,7 @@ The installer rewrites `plugins.js` when that order is wrong or a managed name i
 
 | Need | Where it comes from | If it is missing |
 |---|---|---|
-| 47 `NP_*.js` and packaged `assets/` | this pack, copied by `install.py` | installer error |
+| 48 `NP_*.js` and packaged `assets/` | this pack, copied by `install.py` | installer error |
 | `audio/bgs/NP_Campfire_Crackle.ogg`, `audio/se/NP_ClothRip.ogg` | CC0 files in `NP_AudioBalance/assets/audio/` | installer error after a normal asset copy |
 | `audio/bgs/Rain.ogg` | same CC0 folder; an original event name, not a script call | installer error only because the file is part of the shipped asset set |
 | `www/lang/en/build_info.json` and `data_overlay.json` | [nympri-ru](https://github.com/posolware1/nympri-ru) | warning; `NP_Language` refuses English and stays on Russian |

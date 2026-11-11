@@ -22,6 +22,7 @@ NP_Stress
 NP_CampSkills
 NP_YarizoQuest
 NP_SoftlockFix
+NP_Progression
 NP_ShopCompare
 NP_BattleQoL
 NP_SuperAttack

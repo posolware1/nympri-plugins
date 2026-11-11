@@ -21,6 +21,7 @@
     "NP_CampSkills",
     "NP_YarizoQuest",
     "NP_SoftlockFix",
+    "NP_Progression",
     "NP_ShopCompare",
     "NP_BattleQoL",
     "NP_SuperAttack",
@@ -387,6 +388,13 @@
       "parameters": {},
       "status": true
     },
+    "NP_Progression": {
+      "description": "v1.0 Ранг 3 гильдии по достижимой славе и правки середины игры 0.80j.",
+      "parameters": {
+        "Rank3Fame": "60"
+      },
+      "status": true
+    },
     "NP_StoryHint": {
       "description": "v1.0 Подсказка «Что дальше» на вкладке «Сюжет»: следующий шаг основной истории и конец контента 0.80j.",
       "parameters": {},
@@ -458,6 +466,7 @@
         "NP_StoryHint",
         "NP_YarizoQuest",
         "NP_SoftlockFix",
+        "NP_Progression",
         "NP_SouthGateQuest",
         "NP_MorningHints",
         "NP_BondHints",

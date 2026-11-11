@@ -28,6 +28,7 @@
     "NP_MorningHints",
     "NP_QuestHints",
     "NP_QuestTabs",
+    "NP_StoryHint",
     "NP_AudioBalance",
     "NP_UIColors",
     "NP_LogToggle",
@@ -384,6 +385,11 @@
       "description": "v1.0 Открывает шаги сюжета 0.80j, чьи условия в оригинале не срабатывают.",
       "parameters": {},
       "status": true
+    },
+    "NP_StoryHint": {
+      "description": "v1.0 Подсказка «Что дальше» на вкладке «Сюжет»: следующий шаг основной истории и конец контента 0.80j.",
+      "parameters": {},
+      "status": true
     }
   },
   "categories": [
@@ -443,6 +449,7 @@
         "NP_QuestMarker",
         "NP_QuestHints",
         "NP_QuestTabs",
+        "NP_StoryHint",
         "NP_YarizoQuest",
         "NP_SoftlockFix",
         "NP_SouthGateQuest",

@@ -25,6 +25,7 @@
 {"name":"NP_MorningHints","status":true,"description":"[RU mod] Morning hints after a night absence","parameters":{"Chance":"60","Cooldown":"1","Delay":"45"}},
 {"name":"NP_QuestHints","status":true,"description":"[RU mod] Quest journal: where to go + tab counts","parameters":{}},
 {"name":"NP_QuestTabs","status":true,"description":"[RU mod] Quest journal tabs: Story / Side / Completed","parameters":{}},
+{"name":"NP_StoryHint","status":true,"description":"v1.0 Подсказка «Что дальше» на вкладке «Сюжет»: следующий шаг основной истории и конец контента 0.80j.","parameters":{}},
 {"name":"NP_AudioBalance","status":true,"description":"[RU mod] Loudness balance (EBU R128) + ambience for silent maps, scene and mod-mechanic sounds","parameters":{}},
 {"name":"NP_UIColors","status":true,"description":"[RU mod] Unified colour scheme: quests, inventory, shop, logs. Option «Цветное оформление»","parameters":{}},
 {"name":"NP_LogToggle","status":true,"description":"[RU mod] Map log: auto-hide in dialogue + collapse tab (L/D)","parameters":{"Hotkey":"76","Take Over D":"true","Restore Delay":"24"}},

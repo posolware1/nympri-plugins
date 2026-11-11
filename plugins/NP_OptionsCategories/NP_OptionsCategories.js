@@ -84,7 +84,7 @@ var NP_OptionsCategories = window.NP_OptionsCategories = {};
         npStress: 'mech', npCampSkills: 'mech', npCampTalk: 'mech', npOutfitTalk: 'mech',
         npSaveAnywhere: 'mech', npAutoSave: 'mech', npMorningHints: 'mech',
         npTitlePopup: 'ui', npTitleProgress: 'ui', npShopCompare: 'ui', npQuestHints: 'ui', npQuestMarkers: 'ui',
-        npSoftlockFix: 'mech'
+        npSoftlockFix: 'mech', npStoryHint: 'ui'
     };
     // CustomizeConfigItem generates symbols Boolean1.. / Number1..; match those by their name.
     C.NAME_RULES = [

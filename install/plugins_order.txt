@@ -29,6 +29,7 @@ NP_RareMobs
 NP_MorningHints
 NP_QuestHints
 NP_QuestTabs
+NP_StoryHint
 NP_AudioBalance
 NP_UIColors
 NP_LogToggle

@@ -19,6 +19,7 @@
     "NP_Stress",
     "NP_CampSkills",
     "NP_YarizoQuest",
+    "NP_SoftlockFix",
     "NP_ShopCompare",
     "NP_BattleQoL",
     "NP_SuperAttack",
@@ -378,6 +379,11 @@
         "showCounts": "true"
       },
       "status": true
+    },
+    "NP_SoftlockFix": {
+      "description": "v1.0 Открывает шаги сюжета 0.80j, чьи условия в оригинале не срабатывают.",
+      "parameters": {},
+      "status": true
     }
   },
   "categories": [
@@ -438,6 +444,7 @@
         "NP_QuestHints",
         "NP_QuestTabs",
         "NP_YarizoQuest",
+        "NP_SoftlockFix",
         "NP_SouthGateQuest",
         "NP_MorningHints",
         "NP_BondHints",

@@ -83,7 +83,8 @@ var NP_OptionsCategories = window.NP_OptionsCategories = {};
         npClothDamage: 'battle', npSuperAttackAuto: 'battle', npSuperAuto: 'battle', npQteAuto: 'battle', npSuperAttack: 'battle',
         npStress: 'mech', npCampSkills: 'mech', npCampTalk: 'mech', npOutfitTalk: 'mech',
         npSaveAnywhere: 'mech', npAutoSave: 'mech', npMorningHints: 'mech',
-        npTitlePopup: 'ui', npTitleProgress: 'ui', npShopCompare: 'ui', npQuestHints: 'ui', npQuestMarkers: 'ui'
+        npTitlePopup: 'ui', npTitleProgress: 'ui', npShopCompare: 'ui', npQuestHints: 'ui', npQuestMarkers: 'ui',
+        npSoftlockFix: 'mech'
     };
     // CustomizeConfigItem generates symbols Boolean1.. / Number1..; match those by their name.
     C.NAME_RULES = [

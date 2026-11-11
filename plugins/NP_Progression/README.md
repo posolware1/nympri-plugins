@@ -6,7 +6,7 @@ Open guild rank 3, and fix the midgame walls that were stuck.
 
 ## Version
 
-1.0 (`@plugindesc`).
+1.1 (`@plugindesc`).
 
 ## Purpose
 
@@ -40,13 +40,30 @@ Not counted, on purpose: repeatable hunts past those few extra clears; quest 301
 - **Common events 46 and 926.** No 922-versus-912 script swap exists in the loaded commands, so they are left alone.
 - **Rank 1.** The promotion line requires rank 2 or more, so fame cannot skip the tower exam.
 
-### Left locked
+### Quest 301010 and the camp agent
 
-Quest **301010 “The Immortal”** and the guild agent on camp map **288** (event 16) both open at rank 3 or more. They stay locked.
+Quest **301010 “The Immortal”** is open again at rank 3 or more. Its chain already runs on registered maps, from the sister in the crossroad village through the vampire castle and the doctor’s lab back to the guild. The journal reward was empty. Other rank-3 jobs pay 150 to 500 silver: the four Titan hunts pay 200, the kidnapped villagers pay 150, the orc general and the dryad honey pay 300, and the smith pays 500. 301010 is a long chain, so it receives **300** silver, the same amount as those longer jobs, not the short 200 hunts and not the 500 smith.
 
-The quest text runs through a doctor, a vampire castle in the Abyssal Woods, and a report back to the guild, but the journal has no reward, and the only step that was found in the event hints is step 14. The three finished endings of 0.80j are other quests. Opening this one would drop you into a chain that is not known to finish. Its release check becomes rank 99 or more, which does not happen.
+Quest **301011** is not in the quest list at all, so there is nothing to lock. Its scenes sit on maps 406, 407, 432, and 433, which are not in the map list, so those transfers stay blocked.
 
-The agent's rank door is a conditional branch, variable 9 at least 3, not a page condition. That constant becomes 99. The other people on the camp map are not touched.
+The guild agent on camp map 288 (event 16) is back to the original check, variable 9 at least 3. The plugin does not change that branch.
+
+### Shop and drop prices
+
+Prices are changed in the loaded item database, and in a shop line only when that line names its own price. Hard leather stays 2800 and moves from the rank-3 shelf to the rank-2 shelf. Brigandine stays 26800.
+
+| What | Was | Now |
+|---|---:|---:|
+| Chainmail (armor 11) | 4500 | 3000 |
+| Hard leather (armor 4) | rank 3, 2800 | rank 2, 2800 |
+| Falchion (weapon 42) | 5200 | 3600 |
+| Plate (armor 12) | 9800 | 6000 |
+| Iron round shield (armor 48) | 6200 | 4000 |
+| Dock potion and scroll (map 176, named prices 200 and 2000) | 200 / 2000 | 120 / 1000 |
+| Camp gambeson (armor 5) | 9800 | 4500 |
+| Camp brigandine (armor 14) | 26800 | 26800 |
+| Dire wolf drop (enemy 112) | hides only | G:30:60 |
+| Cerberus and Yatagarasu (enemies 905 and 906) | no gold | G:80:100 |
 
 If a patch looks at the map it is meant for and matches nothing, it writes a warning. Doing the same patch again matches nothing and does not warn, because the commands are already in the new shape.
 

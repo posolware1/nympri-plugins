@@ -110,10 +110,10 @@ Python 3 нужен только этому способу. Проще всег�
 - [NP_QuestMarker](plugins/NP_QuestMarker/) — Мигающий «!» на цели задания или на выходе к ней.
 - [NP_QuestHints](plugins/NP_QuestHints/) — Строка «Куда идти: …» в подробностях задания.
 - [NP_QuestTabs](plugins/NP_QuestTabs/) — Вкладки журнала: Сюжет / Побочные / Выполненные.
-- [NP_StoryHint](plugins/NP_StoryHint/) — Закреплённое «Что дальше» на вкладке «Сюжет»; честно говорит, где кончается 0.80j.
+- [NP_StoryHint](plugins/NP_StoryHint/) — Закреплённое «Что дальше» на вкладке «Сюжет»; говорит, где кончается 0.80j и когда в продаже снаряжение ранга 3.
 - [NP_YarizoQuest](plugins/NP_YarizoQuest/) — Задание следит, где Яризо, и ставит метку.
 - [NP_SoftlockFix](plugins/NP_SoftlockFix/) — Открывает шаги сюжета, чьи исходные условия не срабатывают.
-- [NP_Progression](plugins/NP_Progression/) — Ранг 3 гильдии при 60 славы, плюс лавка, лес экзамена и проверки славы.
+- [NP_Progression](plugins/NP_Progression/) — Ранг 3 гильдии при 60 славы, квест 301010, дешевле середина витрины и немного золота с волков и боссов.
 - [NP_SouthGateQuest](plugins/NP_SouthGateQuest/) — С ранга 2: доставка за 200 G на южной заставе.
 - [NP_MorningHints](plugins/NP_MorningHints/) — После ночной отлучки герой замечает мелочь на следующей карте.
 - [NP_BondHints](plugins/NP_BondHints/) — Журнал карты: какой порог связи и где ночевать дальше.
@@ -133,7 +133,7 @@ Python 3 нужен только этому способу. Проще всег�
 ### Прочее
 
 - [NP_AutoSave](plugins/NP_AutoSave/) — Автосейв при переходах, после сна и перед боссами.
-- [NP_OriginalBugFix](plugins/NP_OriginalBugFix/) — Чинит краши скриптов оригинала и переходы на отсутствующие карты.
+- [NP_OriginalBugFix](plugins/NP_OriginalBugFix/) — Чинит краши скриптов оригинала. Отсутствующие карты остаются закрытыми, кроме Горгоды и горной хижины: они открывают уже существующие города.
 
 ## Язык
 
@@ -141,4 +141,4 @@ Python 3 нужен только этому способу. Проще всег�
 
 ## Для разработчиков
 
-[docs/dev.md](docs/dev.md). English: [README.md](README.md).
+[docs/dev.md](docs/dev.md). Заметки версий: [CHANGELOG.md](CHANGELOG.md). English: [README.md](README.md).

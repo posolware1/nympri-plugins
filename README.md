@@ -110,10 +110,10 @@ Categories are for browsing only. **Load order is separate** — see `install/pl
 - [NP_QuestMarker](plugins/NP_QuestMarker/) — Blinking «!» on the current quest target (or the exit to it).
 - [NP_QuestHints](plugins/NP_QuestHints/) — Quest detail line «Where to go: …» when known.
 - [NP_QuestTabs](plugins/NP_QuestTabs/) — Journal tabs: Story / Side / Completed.
-- [NP_StoryHint](plugins/NP_StoryHint/) — Pinned «What's next» on the Story tab; says where 0.80j ends.
+- [NP_StoryHint](plugins/NP_StoryHint/) — Pinned «What's next» on the Story tab; says where 0.80j ends, and when rank 3 gear is for sale.
 - [NP_YarizoQuest](plugins/NP_YarizoQuest/) — Quest tracks where Yarizo is and places the marker.
 - [NP_SoftlockFix](plugins/NP_SoftlockFix/) — Opens story steps whose original conditions never match.
-- [NP_Progression](plugins/NP_Progression/) — Guild rank 3 at 60 fame, plus shop, forest, and fame-check repairs.
+- [NP_Progression](plugins/NP_Progression/) — Guild rank 3 at 60 fame, quest 301010, cheaper midgame gear, and a little gold from wolves and bosses.
 - [NP_SouthGateQuest](plugins/NP_SouthGateQuest/) — From guild rank 2: 200 G delivery at the southern checkpoint.
 - [NP_MorningHints](plugins/NP_MorningHints/) — After a night away, the hero notices something small next map.
 - [NP_BondHints](plugins/NP_BondHints/) — Map log: which bond gate was reached and where to sleep next.
@@ -133,7 +133,7 @@ Categories are for browsing only. **Load order is separate** — see `install/pl
 ### Misc
 
 - [NP_AutoSave](plugins/NP_AutoSave/) — Autosave on map transfers, after sleep, and before bosses.
-- [NP_OriginalBugFix](plugins/NP_OriginalBugFix/) — Patches original script crashes and missing-map transfers.
+- [NP_OriginalBugFix](plugins/NP_OriginalBugFix/) — Patches original script crashes. Missing maps stay blocked, except Gorgoda and the mountain hut, which open the towns that already exist.
 
 ## Language switch
 
@@ -141,4 +141,4 @@ Categories are for browsing only. **Load order is separate** — see `install/pl
 
 ## Dev notes
 
-See [docs/dev.md](docs/dev.md). Russian readme: [README.ru.md](README.ru.md).
+See [docs/dev.md](docs/dev.md). Version notes: [CHANGELOG.md](CHANGELOG.md). Russian readme: [README.ru.md](README.ru.md).

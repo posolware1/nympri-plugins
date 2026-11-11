@@ -40,7 +40,7 @@ Staged under `plugin_assets_for_repo/plugins/<Plugin>/assets/` for push into
 - **NP_CampSkills** — Rest skills. No shipped art.
 - **NP_YarizoQuest** — Journal quest for meeting and hiring Yarizo. No shipped art.
 - **NP_SoftlockFix** — Runtime repairs for story conditions that never match. No shipped art.
-- **NP_Progression** — Guild rank 3 and midgame balance repairs in loaded events. No shipped art.
+- **NP_Progression** — Guild rank 3, shop prices, and enemy gold drops edited in loaded data. No shipped art.
 - **NP_StoryHint** — Pinned “What's next” line on the Story tab. No shipped art.
 - **NP_ShopCompare** — Shop stat deltas. No shipped art.
 - **NP_BattleQoL** — Battle speed and autobattle. No shipped art.

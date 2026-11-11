@@ -6,11 +6,11 @@
 
 ## Version
 
-1.0 (`@plugindesc`).
+1.1 (`@plugindesc`).
 
 ## Purpose
 
-A short hint for the next step of the main story. The table has 53 steps, checked from the end of the story back toward the start. The first step whose condition matches is the one shown. Each condition is read on its own; a broken row is skipped.
+A short hint for the next step of the main story. The table has 55 steps, checked from the end of the story back toward the start. Two of them are for rank 3: apply at the capital guild once fame is 60, and buy the falchion and plate once that rank is yours. They only show before the southern line starts, so they do not hide Titan's Step or the Poison Pink route. Short sentences were added to the south, forest, town, and Bloody Ruins hints. The first step whose condition matches is the one shown. Each condition is read on its own; a broken row is skipped.
 
 On the **Сюжет / Story** tab the hint is pinned at the top, titled **Что дальше / What's next**. Russian or English follows `NP_Language`. If that tab is not available, the main menu gets the same command and opens a plain window. There is no popup and no extra tip window.
 

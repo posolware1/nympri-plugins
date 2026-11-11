@@ -60,6 +60,14 @@
     "condition": "$gameVariables.value(922) >= 1 && $gameVariables.value(922) < 2"
   },
   {
+    "id": "rank3_gear",
+    "condition": "$gameSwitches.value(299) == true && $gameVariables.value(9) >= 3 && $gameVariables.value(922) == 0 && $gameVariables.value(923) == 0 && $gameVariables.value(913) == 0"
+  },
+  {
+    "id": "rank3_apply",
+    "condition": "$gameSwitches.value(299) == true && $gameVariables.value(9) == 2 && $gameVariables.value(322) >= 60 && $gameVariables.value(922) == 0 && $gameVariables.value(923) == 0 && $gameVariables.value(913) == 0"
+  },
+  {
     "id": "after_exam_south",
     "condition": "$gameSwitches.value(300) == true && $gameVariables.value(922) == 0 && $gameVariables.value(923) == 0 && $gameVariables.value(913) == 0"
   },

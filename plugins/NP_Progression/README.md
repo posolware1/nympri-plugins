@@ -10,7 +10,7 @@ Open guild rank 3, and fix the midgame walls that were stuck.
 
 ## Purpose
 
-Alpha 0.80j already contains the guild promotion from rank 2 to rank 3. The menu line is hidden behind a check that never happens (`v[1] > 9999`). This plugin shows that line once your rank is at least 2. The game's own commands still take the two-star tag, give the three-star tag, and set the rank. This plugin never writes variable 8 or variable 9.
+Alpha 0.80j already contains the guild promotion from rank 2 to rank 3. The menu line is stored as `\v[64]` with a check that never happens (`if(v[1]>9999)`). This plugin shows that line once your rank is at least 2. Inside the rank-2 branch the game stores 150 in variable 54, then asks whether fame (variable 322) is at least variable 54. The plugin changes that 150 to the parameter. The game's own commands still take the two-star tag, give the three-star tag, and set the rank. There is no separate “you must already hold tag 888” check. This plugin never writes variable 8, variable 9, variable 912, or variable 922.
 
 The old price was 150 fame. A normal play of the route that exists in 0.80j does not reach 150 without repeating hunts. The plugin uses **60** fame instead. You can change that number in the Plugin Manager (`Rank3Fame`).
 
@@ -18,7 +18,7 @@ Doing the repair twice changes nothing. Turning the option off stops new repairs
 
 ### Why 60 fame
 
-Fame from a turned-in quest is its star rating. One star pays 1. The extra fame bonus in common event 46 for the later story quests reads the wrong variables, so those extras are not counted as fame you can already pick up.
+Fame from a turned-in quest is its star rating. One star pays 1. Common events 46 and 926 were checked on the real commands: the exam block uses ordinary variable commands on 922, and the Titan reward block uses 942. There is no script read of 922 that should have been 912, so those events are not rewritten, and their extra lines are not added on top of this count.
 
 - The chapter 1 story pays about **27** fame. That number already includes **+11** from God's Mercy.
 - The goblin raid asks for 30 fame *before* that mercy bonus. The story alone is not enough, so you finish one-star jobs. Seventeen distinct jobs are open in chapter 1, counted once: 101002, 101003, 101004, 101005, 101008, 101009, 101010, 106002, 106003 (no extra gate), 101001, 106001, 106006 (the repeatable hunts, once), 101006, 101011, 101012, 101007 (potion-maker bond 1 or 2), and 102001 (beach shells). About **20** turn-ins — those seventeen once, plus a few single extra clears of a repeatable hunt — is what it takes to reach 30. That is the route, not an endless farm.
@@ -34,11 +34,10 @@ Not counted, on purpose: repeatable hunts past those few extra clears; quest 301
 ### What else changes
 
 - **Capital weapon shop** (map 18). The +1 gear used to need chapter variable 12 at 2 or more. Plate and the falchion needed it at 3 or more. That variable is almost never set, so both layers stayed hidden. +1 gear now opens at rank 2 or more. Plate and the falchion open at rank 3 or more. Both of those ranks can actually happen.
-- **Exam forest** (maps 176–179). The maps had no dungeon level, so they stayed at 1, and they copied rats and spiders from the template map, the same animals as the sewers. The note becomes dungeon level **2** when it had no level tag. Those rat and spider copies (`add_event` of map 29, ids 101 and 102) become thieves (id 304), the enemy the south forest already uses. Bees, wolves, and the story knight are left alone. A level tag that is already there is not replaced.
+- **Exam forest** (maps 176–179). The maps had no dungeon level, so they stayed at 1. The note becomes dungeon level **2** when it had no level tag. Rats and spiders are not enemy numbers inside `add_event`. The script sets `id = 1` (map 29 event 1, the rat) or `id = 8` (event 8, the spider), then calls `add_event(x, y, id, 29, 6)`. Those two slots become **37**, the thief template (enemy 304), which the south forest already uses. Other slots, including bees and wolves, stay. A level tag that is already there is not replaced. Map 177 alone has six rats and five spiders.
 - **Blood Ruins** (map 263). No level tag, so the last fight of this stretch stayed at dungeon level 1 even though Titan Step is already 3. The note becomes dungeon level **3** when it had no tag. Level 3 is the first level that lets the rare enemies with a gate of 3 appear. It is not 4, because the later slum interior (map 265) is already 4.
-- **Fame checks.** “Fame equals 10” and “fame equals 30” are read as “at least”. A check for exactly 0 is left alone. Spoken lines are not edited.
-- **Common event 46** (and 926, the same reward family). When a block names the exam (900201 or 900202) and then reads variable 922, that read is pointed at 912, which is the exam's variable in the quest list. When a block names Titan Step (900301) and reads 912, that read is pointed at 922. Lines that set variable 8 or 9, and lines that write 912 or 922, are not touched. If the event does not name those quests, it is left alone.
-- **Three-star tag** (item 888). The item exists. No quest reward gives it. The promotion branch is what hands it out, and the later story scene that would also promote you is past the end of 0.80j. If that branch demands the tag before it gives the tag, the demand is removed. The give, and the rank change, stay in the game's own commands.
+- **Fame “equals 10” and “equals 30”.** On this version those checks are already “at least”. Nothing is rewritten there.
+- **Common events 46 and 926.** No 922-versus-912 script swap exists in the loaded commands, so they are left alone.
 - **Rank 1.** The promotion line requires rank 2 or more, so fame cannot skip the tower exam.
 
 ### Left locked
@@ -47,7 +46,9 @@ Quest **301010 “The Immortal”** and the guild agent on camp map **288** (eve
 
 The quest text runs through a doctor, a vampire castle in the Abyssal Woods, and a report back to the guild, but the journal has no reward, and the only step that was found in the event hints is step 14. The three finished endings of 0.80j are other quests. Opening this one would drop you into a chain that is not known to finish. Its release check becomes rank 99 or more, which does not happen.
 
-The agent's page is the same kind of rank-3 door. The camp's place on the world map is not confirmed for a normal route, and the scene itself was not shown to be finished. That page's rank check becomes 99 as well. The other people on the camp map are not touched.
+The agent's rank door is a conditional branch, variable 9 at least 3, not a page condition. That constant becomes 99. The other people on the camp map are not touched.
+
+If a patch looks at the map it is meant for and matches nothing, it writes a warning. Doing the same patch again matches nothing and does not warn, because the commands are already in the new shape.
 
 Rank 4 and rank 5 stay on the original “not ready” line.
 

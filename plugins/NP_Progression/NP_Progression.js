@@ -15,8 +15,9 @@ var NP_L = window.NP_L || function(r) { return r; };
  * @help
  * Открывает уже написанный пункт «Запрос на повышение» у администратора
  * гильдии (карта 13, событие 12), когда ранг не ниже 2. Порог славы в этой
- * ветке берётся из параметра (по умолчанию 60, не 150). Значок 888 плагин
- * сам не выдаёт и переменные 8 и 9 не пишет: это делает ветка игры.
+ * ветке берётся из параметра (по умолчанию 60, не 150). В данных 0.80j
+ * строка меню — «\\v[64] if(v[1]>9999)», а порог — команда «V54 = 150»
+ * при ранге 2, затем «V322 >= V54». Плагин не пишет V8, V9, V912 и V922.
  * Квест 301010 и агент лагеря 288 остаются закрытыми.
  * Правки применяются к уже загруженным данным карты и общих событий.
  * Файлы игры на диске не меняются. Повтор ничего не меняет.
@@ -51,12 +52,12 @@ var NP_Progression = NP_Progression || {};
     $.EXAM_DLV = 2;
     $.RUINS_MAP = 263;
     $.RUINS_DLV = 3;
-    $.THIEF_ID = 304;
-    var RANK_LABEL = /昇級申請|select_rank_up|Запрос на повышение|Promotion Request/;
-
-    function compact(text) {
-        return String(text || '').toLowerCase().replace(/\s+/g, '').replace(/===/g, '==').replace(/!==/g, '!=');
-    }
+    // Map029 event 37 is named enemyID:304. Events 1 and 8 are the rat and the spider.
+    $.THIEF_SLOT = 37;
+    $.PATCH_NAMES = ['rankChoice', 'rankFame', 'shop', 'examNote', 'spawns', 'ruinsNote', 'camp', 'quest301010'];
+    $.hits = {};
+    $.warnings = [];
+    $.warned = {};
     $.fameThreshold = function() {
         var n = $.DEFAULT_FAME;
         try {
@@ -74,55 +75,33 @@ var NP_Progression = NP_Progression || {};
         if (typeof ConfigManager === 'undefined' || ConfigManager.npProgression === undefined) return true;
         return ConfigManager.npProgression !== false;
     };
-    $.log = function(id) {
-        try { console.log('[NP_Progression] ' + id); } catch (e) {}
-    };
-
-    $.isDeadPlayerGate = function(script) {
-        var body = compact(script);
-        return body === 'v[1]>9999' || body === '$gamevariables.value(1)>9999';
-    };
-    $.isRank3Script = function(script) {
-        var body = compact(script);
-        return body === 'v[9]>=3' || body === '$gamevariables.value(9)>=3' ||
-            body === 'v[9]>2' || body === '$gamevariables.value(9)>2';
+    $.record = function(name, hits, pending) {
+        $.hits[name] = ($.hits[name] || 0) + hits;
+        if (hits === 0 && pending && !$.warned[name]) {
+            $.warned[name] = true;
+            var line = '[NP_Progression] warning: ' + name + ' matched 0 times';
+            $.warnings.push(line);
+            try { console.warn(line); } catch (e) {}
+        }
+        return hits;
     };
     $.openRankChoice = function(text) {
         var raw = String(text || '');
-        if (!RANK_LABEL.test(raw)) return raw;
-        var next = raw.replace(/v\[\s*1\s*\]\s*>\s*9999\s*&&\s*/gi, '');
-        next = next.replace(/\s*&&\s*v\[\s*1\s*\]\s*>\s*9999/gi, '');
-        next = next.replace(/\s*if\s*\(\s*v\[\s*1\s*\]\s*>\s*9999\s*\)/gi, '');
-        next = next.replace(/i\[\s*888\s*\]\s*&&\s*/gi, '');
-        next = next.replace(/\s*&&\s*i\[\s*888\s*\]/gi, '');
-        next = next.replace(/\s*if\s*\(\s*i\[\s*888\s*\]\s*\)/gi, '');
-        next = next.replace(/\(\s*\)/g, '').replace(/\s{2,}/g, ' ').replace(/\s+$/, '');
-        if (!/v\[\s*9\s*\]\s*>=\s*2/.test(next)) {
-            if (/if\s*\(/i.test(next)) next = next.replace(/if\s*\(/i, 'if(v[9] >= 2 && ');
-            else next += ' if(v[9] >= 2)';
-        }
-        return next;
+        // 0.80j stores the promotion line as \v[64], not the visible label.
+        if (!/\\v\[\s*64\s*\]/.test(raw) || !/v\[\s*1\s*\]\s*>\s*9999/.test(raw)) return raw;
+        return raw.replace(/v\[\s*1\s*\]\s*>\s*9999/g, 'v[9] >= 2');
     };
-    $.retargetFame150 = function(text, threshold) {
-        var raw = String(text || '');
-        if (/setValue\s*\(\s*[89]\b/.test(raw)) return raw;
-        return raw.replace(/(\$gameVariables\.value\(\s*322\s*\)|v\[\s*322\s*\])\s*(>=|===|==|>)\s*150\b/g,
-            function(all, expr, op) {
-                var use = (op === '==' || op === '===') ? '>=' : op;
-                return expr + ' ' + use + ' ' + threshold;
-            });
+    $.isRank2Check = function(cmd) {
+        var p = cmd && cmd.code === 111 && cmd.parameters;
+        return !!(p && p[0] === 1 && p[1] === 9 && p[2] === 0 && p[3] === 2 && p[4] === 0);
     };
-    $.neutralize888 = function(text) {
-        var raw = String(text || '');
-        if (/setValue\s*\(\s*[89]\b/.test(raw)) return raw;
-        if (/gainItem\(\s*\$dataItems\[\s*888\s*\]/.test(raw)) return raw;
-        if (!/hasItem\(\s*\$dataItems\[\s*888\s*\]/.test(raw)) return raw;
-        return raw.replace(/\$gameParty\.hasItem\(\s*\$dataItems\[\s*888\s*\]\s*(?:,\s*true\s*)?\)/g, 'true');
+    $.isFameAgainstV54 = function(cmd) {
+        var p = cmd && cmd.code === 111 && cmd.parameters;
+        return !!(p && p[0] === 1 && p[1] === 322 && p[2] === 1 && p[3] === 54 && p[4] === 1);
     };
-    $.widenFameText = function(text) {
-        return String(text || '').replace(
-            /(\$gameVariables\.value\(\s*322\s*\)|v\[\s*322\s*\])\s*===?\s*(10|30)\b/g,
-            function(all, expr, n) { return expr + ' >= ' + n; });
+    $.isV54Set150 = function(cmd) {
+        var p = cmd && cmd.code === 122 && cmd.parameters;
+        return !!(p && p[0] === 54 && p[1] === 54 && p[2] === 0 && p[3] === 0 && p[4] === 150);
     };
     $.retieShopText = function(text) {
         return String(text || '')
@@ -133,9 +112,13 @@ var NP_Progression = NP_Progression || {};
                 return expr.replace(/12/, '9') + ' >= 2';
             });
     };
-    $.retargetSpawnText = function(text) {
-        return String(text || '').replace(/add_event(\s*\(\s*|\s+)29(\s*,\s*|\s+)(101|102)\b/g,
-            function(all, open, sep) { return 'add_event' + open + '29' + sep + $.THIEF_ID; });
+    $.assignSpawnSlot = function(line) {
+        return String(line || '').replace(/(^|[^.\w])id\s*=\s*(1|8)\b/g, function(all, pre) {
+            return pre + 'id = ' + $.THIEF_SLOT;
+        });
+    };
+    $.callsTemplateMap = function(text) {
+        return /add_event\s*\(/.test(text) && /,\s*29\s*,/.test(text);
     };
     $.ensureDungeonNote = function(note, level) {
         var text = String(note || '');
@@ -155,32 +138,6 @@ var NP_Progression = NP_Progression || {};
         cmd.parameters = patchStrings(cmd.parameters, fn);
         return JSON.stringify(cmd.parameters) !== before;
     }
-    $.patchFameCommand = function(cmd) {
-        if (!cmd || cmd.code !== 111 || !cmd.parameters) return false;
-        var p = cmd.parameters;
-        if (p[0] !== 1 || p[1] !== 322 || p[2] !== 0 || p[4] !== 0) return false;
-        if (p[3] !== 10 && p[3] !== 30) return false;
-        p[4] = 1;
-        return true;
-    };
-    $.patchFame150Command = function(cmd, threshold) {
-        if (!cmd || cmd.code !== 111 || !cmd.parameters) return false;
-        var p = cmd.parameters;
-        if (p[0] !== 1 || p[1] !== 322 || p[2] !== 0 || p[3] !== 150) return false;
-        if (p[4] !== 0 && p[4] !== 1 && p[4] !== 3) return false;
-        p[3] = threshold;
-        if (p[4] === 0) p[4] = 1;
-        return true;
-    };
-    $.patchBadgeCommand = function(cmd) {
-        if (!cmd || cmd.code !== 111 || !cmd.parameters) return false;
-        var p = cmd.parameters;
-        if (p[0] === 8 && p[1] === 888) {
-            cmd.parameters = [12, 'true'];
-            return true;
-        }
-        return false;
-    };
     $.patchShopCommand = function(cmd) {
         if (!cmd || cmd.code !== 111 || !cmd.parameters) return false;
         var p = cmd.parameters;
@@ -190,10 +147,24 @@ var NP_Progression = NP_Progression || {};
         return true;
     };
 
+    function choiceText(list) {
+        var out = [];
+        (list || []).forEach(function(cmd) {
+            if (cmd && cmd.code === 102 && cmd.parameters && Array.isArray(cmd.parameters[0])) {
+                cmd.parameters[0].forEach(function(choice) { out.push(String(choice)); });
+            }
+        });
+        return out.join('\n');
+    }
     $.patchRankList = function(list, threshold) {
-        var result = { choice: 0, gate: 0, fame: 0, badge: 0 };
+        var result = { choice: 0, fame: 0 };
         if (!list) return result;
-        result.gate = $.patchDeadGates(list);
+        var rank2 = false;
+        var compared = false;
+        list.forEach(function(cmd) {
+            if ($.isRank2Check(cmd)) rank2 = true;
+            if ($.isFameAgainstV54(cmd)) compared = true;
+        });
         list.forEach(function(cmd) {
             if (!cmd || cmd.code === 101 || cmd.code === 401) return;
             if (cmd.code === 102 && cmd.parameters && Array.isArray(cmd.parameters[0])) {
@@ -203,77 +174,31 @@ var NP_Progression = NP_Progression || {};
                     return next;
                 });
             }
-            if ($.patchFame150Command(cmd, threshold)) result.fame++;
-            if ($.patchBadgeCommand(cmd)) result.badge++;
-        });
-        return result;
-    };
-    $.patchDeadGates = function(list) {
-        var n = 0;
-        for (var i = 0; i < list.length; i++) {
-            var cmd = list[i];
-            if (!cmd || cmd.code !== 111 || !cmd.parameters || cmd.parameters[0] !== 12) continue;
-            if (!$.isDeadPlayerGate(cmd.parameters[1])) continue;
-            var indent = cmd.indent || 0;
-            var body = '';
-            var choices = 0;
-            for (var j = i + 1; j < list.length; j++) {
-                var next = list[j];
-                if (!next) continue;
-                if ((next.indent || 0) === indent && (next.code === 412 || next.code === 411)) break;
-                if (next.code === 102) choices++;
-                body += JSON.stringify(next.parameters || []);
+            if (rank2 && compared && $.isV54Set150(cmd)) {
+                cmd.parameters[4] = threshold;
+                result.fame++;
             }
-            if (choices > 1 || !RANK_LABEL.test(body)) continue;
-            cmd.parameters[1] = '$gameVariables.value(9) >= 2';
-            n++;
-        }
-        return n;
-    };
-
-    // Script edits need a visible count. Do them in a second pass that reports changes.
-    $.patchRankScripts = function(list, threshold) {
-        var fame = 0;
-        var badge = 0;
-        if (!list) return { fame: fame, badge: badge };
-        list.forEach(function(cmd) {
-            if (!cmd || cmd.code === 101 || cmd.code === 401 || !cmd.parameters) return;
-            var before = JSON.stringify(cmd.parameters);
-            cmd.parameters = patchStrings(cmd.parameters, function(text) {
-                return $.neutralize888($.retargetFame150(text, threshold));
-            });
-            var after = JSON.stringify(cmd.parameters);
-            if (before === after) return;
-            if (/150/.test(before)) fame++;
-            if (/888/.test(before)) badge++;
-        });
-        return { fame: fame, badge: badge };
-    };
-
-    $.patchRankEvent = function(event, threshold) {
-        var result = { choice: 0, gate: 0, fame: 0, badge: 0 };
-        if (!event || !event.pages) return result;
-        var limit = threshold || $.DEFAULT_FAME;
-        event.pages.forEach(function(page) {
-            if (!page || !page.list) return;
-            var part = $.patchRankList(page.list, limit);
-            var scripts = $.patchRankScripts(page.list, limit);
-            result.choice += part.choice;
-            result.gate += part.gate;
-            result.fame += part.fame + scripts.fame;
-            result.badge += part.badge + scripts.badge;
         });
         return result;
     };
-
-    $.patchFameList = function(list) {
-        var n = 0;
-        if (!list) return n;
-        list.forEach(function(cmd) {
-            if ($.patchFameCommand(cmd)) n++;
-            if (eachRuntimeString(cmd, $.widenFameText)) n++;
+    $.rankChoicePending = function(list) {
+        var text = choiceText(list);
+        return /\\v\[\s*64\s*\]/.test(text) && /v\[\s*1\s*\]\s*>\s*9999/.test(text);
+    };
+    $.rankFamePending = function(list, threshold) {
+        var rank2 = false;
+        var compared = false;
+        var priced = false;
+        var stale = false;
+        (list || []).forEach(function(cmd) {
+            if ($.isRank2Check(cmd)) rank2 = true;
+            if ($.isFameAgainstV54(cmd)) compared = true;
+            if ($.isV54Set150(cmd)) stale = true;
+            var p = cmd && cmd.code === 122 && cmd.parameters;
+            if (p && p[0] === 54 && p[1] === 54 && p[2] === 0 && p[3] === 0 && p[4] === threshold) priced = true;
         });
-        return n;
+        if (!rank2 || !compared) return false;
+        return stale || !priced;
     };
     $.patchShopList = function(list) {
         var n = 0;
@@ -284,54 +209,71 @@ var NP_Progression = NP_Progression || {};
         });
         return n;
     };
+    function scriptBlocks(list) {
+        var blocks = [];
+        var i = 0;
+        while (i < list.length) {
+            var cmd = list[i];
+            if (!cmd || cmd.code !== 355) { i++; continue; }
+            var end = i + 1;
+            while (end < list.length && list[end] && list[end].code === 655) end++;
+            blocks.push({ start: i, end: end });
+            i = end;
+        }
+        return blocks;
+    }
+    function blockText(list, block) {
+        var lines = [];
+        for (var i = block.start; i < block.end; i++) {
+            lines.push(String((list[i].parameters && list[i].parameters[0]) || ''));
+        }
+        return lines.join('\n');
+    }
     $.patchSpawnList = function(list) {
         var n = 0;
         if (!list) return n;
-        list.forEach(function(cmd) {
-            if (!cmd || (cmd.code !== 355 && cmd.code !== 655 && cmd.code !== 356 && !(cmd.code === 111 && cmd.parameters && cmd.parameters[0] === 12))) return;
-            if (eachRuntimeString(cmd, $.retargetSpawnText)) n++;
+        var blocks = scriptBlocks(list);
+        blocks.forEach(function(block, index) {
+            var own = blockText(list, block);
+            var follow = '';
+            for (var k = index + 1; k < blocks.length && k <= index + 2; k++) follow += '\n' + blockText(list, blocks[k]);
+            var assigns = /(?:^|[^.\w])id\s*=\s*(1|8)\b/.test(own);
+            var linked = $.callsTemplateMap(own) || (assigns && $.callsTemplateMap(follow));
+            if (!linked) return;
+            for (var i = block.start; i < block.end; i++) {
+                var line = String((list[i].parameters && list[i].parameters[0]) || '');
+                var next = $.assignSpawnSlot(line);
+                if (next !== line) {
+                    list[i].parameters[0] = next;
+                    n++;
+                }
+            }
         });
         return n;
+    };
+    $.spawnPending = function(list) {
+        var blocks = scriptBlocks(list || []);
+        for (var index = 0; index < blocks.length; index++) {
+            var own = blockText(list, blocks[index]);
+            var follow = '';
+            for (var k = index + 1; k < blocks.length && k <= index + 2; k++) follow += '\n' + blockText(list, blocks[k]);
+            var linked = $.callsTemplateMap(own) || (/id\s*=\s*(1|8)\b/.test(own) && $.callsTemplateMap(follow));
+            if (linked && /(?:^|[^.\w])id\s*=\s*(1|8)\b/.test(own)) return true;
+        }
+        return false;
     };
 
-    function questMode(text, current) {
-        if (/900201|900202/.test(text)) return 'exam';
-        if (/900301/.test(text)) return 'titan';
-        if (/900\d{3}/.test(text)) return null;
-        return current;
-    }
-    $.retargetBonusLine = function(text, mode) {
-        var raw = String(text || '');
-        if (!mode) return raw;
-        if (/setValue\s*\(\s*[89]\b/.test(raw)) return raw;
-        if (/setValue\s*\(\s*922\b/.test(raw) || /setValue\s*\(\s*912\b/.test(raw)) return raw;
-        if (mode === 'exam') {
-            return raw.replace(/\$gameVariables\.value\(\s*922\s*\)/g, '$gameVariables.value(912)')
-                .replace(/v\[\s*922\s*\]/g, 'v[912]');
-        }
-        if (mode === 'titan') {
-            return raw.replace(/\$gameVariables\.value\(\s*912\s*\)/g, '$gameVariables.value(922)')
-                .replace(/v\[\s*912\s*\]/g, 'v[922]');
-        }
-        return raw;
-    };
-    $.patchCe46List = function(list) {
-        var mode = null;
-        var n = 0;
-        if (!list) return n;
-        list.forEach(function(cmd) {
-            if (!cmd || !cmd.parameters || cmd.code === 101 || cmd.code === 401) return;
-            var editable = cmd.code !== 108 && cmd.code !== 408;
-            var before = JSON.stringify(cmd.parameters);
-            cmd.parameters = patchStrings(cmd.parameters, function(text) {
-                return String(text).split('\n').map(function(line) {
-                    mode = questMode(line, mode);
-                    return editable ? $.retargetBonusLine(line, mode) : line;
-                }).join('\n');
-            });
-            if (editable && JSON.stringify(cmd.parameters) !== before) n++;
+    $.patchRankEvent = function(event, threshold) {
+        var result = { choice: 0, fame: 0 };
+        if (!event || !event.pages) return result;
+        var limit = threshold || $.fameThreshold();
+        event.pages.forEach(function(page) {
+            if (!page || !page.list) return;
+            var part = $.patchRankList(page.list, limit);
+            result.choice += part.choice;
+            result.fame += part.fame;
         });
-        return n;
+        return result;
     };
 
     $.lockImmortal = function(table) {
@@ -354,74 +296,109 @@ var NP_Progression = NP_Progression || {};
         var n = 0;
         if (!event || !event.pages) return n;
         event.pages.forEach(function(page) {
-            if (!page) return;
-            var conditions = page.conditions;
-            if (conditions && conditions.variableValid && Number(conditions.variableId) === 9 &&
-                Number(conditions.variableValue) === 3) {
-                conditions.variableValue = 99;
-                n++;
-            }
-            if (!page.list) return;
+            if (!page || !page.list) return;
             page.list.forEach(function(cmd) {
-                if (!cmd || cmd.code !== 111 || !cmd.parameters || cmd.parameters[0] !== 12) return;
-                if (!$.isRank3Script(cmd.parameters[1])) return;
-                cmd.parameters[1] = '$gameVariables.value(9) >= 99';
-                n++;
+                var p = cmd && cmd.code === 111 && cmd.parameters;
+                // 0.80j: variable 9 >= constant 3. Not a page condition and not a script.
+                if (p && p[0] === 1 && p[1] === 9 && p[2] === 0 && p[3] === 3 && p[4] === 1) {
+                    p[3] = 99;
+                    n++;
+                }
             });
         });
         return n;
     };
+    $.campPending = function(event) {
+        var open = false;
+        var locked = false;
+        if (!event || !event.pages) return true;
+        event.pages.forEach(function(page) {
+            (page && page.list || []).forEach(function(cmd) {
+                var p = cmd && cmd.code === 111 && cmd.parameters;
+                if (!p || p[0] !== 1 || p[1] !== 9 || p[2] !== 0 || p[4] !== 1) return;
+                if (p[3] === 3) open = true;
+                if (p[3] === 99) locked = true;
+            });
+        });
+        if (open) return true;
+        return !locked;
+    };
+    function eachPage(map, fn) {
+        (map && map.events || []).forEach(function(ev) {
+            if (!ev || !ev.pages) return;
+            ev.pages.forEach(function(page) { if (page && page.list) fn(page.list); });
+        });
+    }
+    $.shopPending = function(map) {
+        var stale = false;
+        var done = false;
+        eachPage(map, function(list) {
+            list.forEach(function(cmd) {
+                var p = cmd && cmd.code === 111 && cmd.parameters;
+                if (!p || p[0] !== 1 || p[2] !== 0 || p[4] !== 1) return;
+                if (p[1] === 12 && (p[3] === 2 || p[3] === 3)) stale = true;
+                if (p[1] === 9 && (p[3] === 2 || p[3] === 3)) done = true;
+            });
+        });
+        return stale || !done;
+    };
 
     $.patchMap = function(map, mapId) {
-        var result = { rank: null, shop: 0, spawns: 0, fame: 0, camp: 0, note: false };
+        var result = {
+            rankChoice: 0, rankFame: 0, shop: 0, examNote: 0, spawns: 0, ruinsNote: 0, camp: 0
+        };
         if (!$.isEnabled() || !map) return result;
         var id = Number(mapId);
+        var limit = $.fameThreshold();
         if (id === 13 && map.events && map.events[12]) {
-            result.rank = $.patchRankEvent(map.events[12], $.fameThreshold());
-        }
-        if (id === 18 && map.events) {
-            map.events.forEach(function(ev) {
-                if (!ev || !ev.pages) return;
-                ev.pages.forEach(function(page) { result.shop += $.patchShopList(page && page.list); });
+            var rank = $.patchRankEvent(map.events[12], limit);
+            result.rankChoice = rank.choice;
+            result.rankFame = rank.fame;
+            var lists = [];
+            map.events[12].pages.forEach(function(page) { if (page && page.list) lists.push(page.list); });
+            var choicePending = lists.some($.rankChoicePending);
+            var famePending = lists.some(function(list) { return $.rankFamePending(list, limit); });
+            var sawChoice = lists.some(function(list) { return /\\v\[\s*64\s*\]/.test(choiceText(list)); });
+            var sawFame = lists.some(function(list) {
+                return list.some($.isRank2Check) && list.some($.isFameAgainstV54);
             });
+            $.record('rankChoice', result.rankChoice, choicePending || !sawChoice);
+            $.record('rankFame', result.rankFame, famePending || !sawFame);
+        }
+        if (id === 18) {
+            eachPage(map, function(list) { result.shop += $.patchShopList(list); });
+            $.record('shop', result.shop, $.shopPending(map));
         }
         if ($.EXAM_MAPS[id]) {
             var nextNote = $.ensureDungeonNote(map.note, $.EXAM_DLV);
-            if (nextNote !== map.note) { map.note = nextNote; result.note = true; }
-            if (map.events) {
-                map.events.forEach(function(ev) {
-                    if (!ev || !ev.pages) return;
-                    ev.pages.forEach(function(page) { result.spawns += $.patchSpawnList(page && page.list); });
-                });
-            }
+            if (nextNote !== map.note) { map.note = nextNote; result.examNote = 1; }
+            eachPage(map, function(list) { result.spawns += $.patchSpawnList(list); });
+            $.record('examNote', result.examNote, !/ダンジョンレベル\s*[:：]\s*\d+/.test(String(map.note || '')));
+            var spawnLeft = false;
+            eachPage(map, function(list) { if ($.spawnPending(list)) spawnLeft = true; });
+            $.record('spawns', result.spawns, spawnLeft);
         }
         if (id === $.RUINS_MAP) {
             var ruins = $.ensureDungeonNote(map.note, $.RUINS_DLV);
-            if (ruins !== map.note) { map.note = ruins; result.note = true; }
+            if (ruins !== map.note) { map.note = ruins; result.ruinsNote = 1; }
+            $.record('ruinsNote', result.ruinsNote, !/ダンジョンレベル\s*[:：]\s*\d+/.test(String(map.note || '')));
         }
-        if (id === 288 && map.events && map.events[16]) result.camp = $.lockCampEvent(map.events[16]);
-        if (map.events) {
-            map.events.forEach(function(ev) {
-                if (!ev || !ev.pages) return;
-                ev.pages.forEach(function(page) { result.fame += $.patchFameList(page && page.list); });
-            });
+        if (id === 288 && map.events && map.events[16]) {
+            result.camp = $.lockCampEvent(map.events[16]);
+            $.record('camp', result.camp, $.campPending(map.events[16]));
         }
         return result;
     };
-    $.patchCommonEvents = function(data) {
-        var result = { fame: 0, bonus: 0 };
-        if (!$.isEnabled() || !data) return result;
-        [46, 926].forEach(function(id) {
-            if (data[id] && data[id].list) result.bonus += $.patchCe46List(data[id].list);
-        });
-        data.forEach(function(entry) {
-            if (entry && entry.list) result.fame += $.patchFameList(entry.list);
-        });
-        return result;
+    $.patchCommonEvents = function() {
+        return { fame: 0, bonus: 0 };
     };
     $.patchQuests = function(table) {
         if (!$.isEnabled()) return 'off';
-        return $.lockImmortal(table);
+        var state = $.lockImmortal(table);
+        var hits = state === 'locked' ? 1 : 0;
+        var cond = table && table[301010] ? String(table[301010].release_conds || '') : '';
+        $.record('quest301010', hits, /\$v\[\s*9\s*\]\s*>=\s*3\b/.test(cond));
+        return state;
     };
 
     if (typeof ConfigManager !== 'undefined') {

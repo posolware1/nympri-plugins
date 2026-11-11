@@ -7,8 +7,8 @@ This copy does not update files that are already there. If Windows asks to repla
 1. Extract the whole ZIP into a normal folder. Do not work inside the ZIP window.
 2. Open the game www\js\plugins.js in Notepad. Press Ctrl+F and search for NP_. If Notepad finds it, close without saving. Stop. Use a separate clean copy.
 3. In that same js folder, if plugins.js.manual-bak is already there, stop. Do not replace it. Use a separate clean copy.
-4. Copy plugins.js and name the copy plugins.js.manual-bak. Putting that copy back later turns the new plugins off in the list. It does not delete the 46 scripts and 102 other files you add below. Those files stay in www. This is not a full return of the folder.
-5. In the extracted pack, open plugins. In the search box type *.js and press Enter. Select all 46 files (files only). Copy. Paste into the game www\js\plugins.
+4. Copy plugins.js and name the copy plugins.js.manual-bak. Putting that copy back later turns the new plugins off in the list. It does not delete the 47 scripts and 102 other files you add below. Those files stay in www. This is not a full return of the folder.
+5. In the extracted pack, open plugins. In the search box type *.js and press Enter. Select all 47 files (files only). Copy. Paste into the game www\js\plugins.
 6. For each folder below, open its assets folder. Select everything inside assets. Copy. Paste into the game www. Merge folders: Yes. Replace a file: Skip, then stop.
    plugins\NP_AudioBalance\assets
    plugins\NP_ClothDamage\assets

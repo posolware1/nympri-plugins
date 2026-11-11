@@ -171,7 +171,7 @@ var NP_StoryHint = NP_StoryHint || {};
   {
     "id": "exam_quiet",
     "condition": "$gameSwitches.value(300) == true && $gameSwitches.value(301) == false",
-    "hint_ru": "Зайдите в глубину Кладбища мечей.",
+    "hint_ru": "Зайдите вглубь Кладбища мечей.",
     "hint_en": "Go into the deep part of the Sword Graveyard.",
     "map_id": 189,
     "x": 16,
@@ -189,7 +189,7 @@ var NP_StoryHint = NP_StoryHint || {};
   {
     "id": "exam_voice",
     "condition": "$gameSwitches.value(298) == true && $gameSwitches.value(299) == false",
-    "hint_ru": "Внутри Башни Мудрости и Глупости найдите «Голос мудреца» и предъявите свой значок авантюриста.",
+    "hint_ru": "Внутри Башни Мудрости и Глупости найдите «Голос мудреца» и покажите свой значок авантюриста.",
     "hint_en": "Inside the Tower of Wisdom and Stupidity, find the Voice of the Sage and show your adventurer badge.",
     "map_id": 180,
     "x": 9,
@@ -315,7 +315,7 @@ var NP_StoryHint = NP_StoryHint || {};
   {
     "id": "cult_inn",
     "condition": "$gameVariables.value(908) >= 21 && $gameVariables.value(908) < 99",
-    "hint_ru": "Разберитесь с тем, что происходит на постоялом дворе у культа, и выведите людей.",
+    "hint_ru": "Разберитесь с тем, что происходит на постоялом дворе культа, и выведите людей.",
     "hint_en": "Deal with what is happening at the cult's inn and get the people out.",
     "map_id": 343,
     "x": 1,

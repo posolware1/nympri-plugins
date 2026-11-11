@@ -20,6 +20,7 @@ NP_ClothDamage
 NP_Stress
 NP_CampSkills
 NP_YarizoQuest
+NP_SoftlockFix
 NP_ShopCompare
 NP_BattleQoL
 NP_SuperAttack

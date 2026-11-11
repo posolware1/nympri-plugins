@@ -16,6 +16,7 @@
 {"name":"NP_Stress","status":true,"description":"v1.0 Напряжение (стресс) и черты отряда в духе Darkest Dungeon: срывы/подъёмы, черты, храмовая служба (опция).","parameters":{}},
 {"name":"NP_CampSkills","status":true,"description":"v1.1 Умения на привале: очки отдыха, баффы на 3 боя; восстановление меню после просмотра патчей (опция).","parameters":{}},
 {"name":"NP_YarizoQuest","status":true,"description":"v1.2 Задание «Наёмник из таверны»: где встретить и нанять Яризо (журнал + метки).","parameters":{}},
+{"name":"NP_SoftlockFix","status":true,"description":"v1.0 Открывает шаги сюжета 0.80j, чьи условия в оригинале не срабатывают.","parameters":{}},
 {"name":"NP_ShopCompare","status":true,"description":"[RU mod] Shop: stat deltas vs current gear","parameters":{"Enabled":"true"}},
 {"name":"NP_BattleQoL","status":true,"description":"[RU mod] Battle speed x2 (Shift) and auto battle","parameters":{"Speed Key":"16","Auto Icon":"38","Battle Switch":"14"}},
 {"name":"NP_SuperAttack","status":true,"description":"[RU mod] Super attacks for the Priestess and companions: charge bar + FP cost + unique QTE.","parameters":{"Icon":"143"}},

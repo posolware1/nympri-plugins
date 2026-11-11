@@ -19,6 +19,7 @@
     "NP_Stress",
     "NP_CampSkills",
     "NP_YarizoQuest",
+    "NP_SoftlockFix",
     "NP_ShopCompare",
     "NP_BattleQoL",
     "NP_SuperAttack",
@@ -380,6 +381,11 @@
       },
       "status": true
     },
+    "NP_SoftlockFix": {
+      "description": "v1.0 Открывает шаги сюжета 0.80j, чьи условия в оригинале не срабатывают.",
+      "parameters": {},
+      "status": true
+    },
     "NP_StoryHint": {
       "description": "v1.0 Подсказка «Что дальше» на вкладке «Сюжет»: следующий шаг основной истории и конец контента 0.80j.",
       "parameters": {},
@@ -445,6 +451,7 @@
         "NP_QuestTabs",
         "NP_StoryHint",
         "NP_YarizoQuest",
+        "NP_SoftlockFix",
         "NP_SouthGateQuest",
         "NP_MorningHints",
         "NP_BondHints",

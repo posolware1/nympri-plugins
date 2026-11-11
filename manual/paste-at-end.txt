@@ -1,4 +1,4 @@
-﻿{"name":"NP_VideoPortrait","status":true,"description":"v1.0.0 Looping video in place of a standing portrait (above pictures, below message window).","parameters":{"Default X":"960","Default Y":"960","Default Scale":"143","Feather":"14","Fade Frames":"20","Volume Source":"bgm"}},
+{"name":"NP_VideoPortrait","status":true,"description":"v1.0.0 Looping video in place of a standing portrait (above pictures, below message window).","parameters":{"Default X":"960","Default Y":"960","Default Scale":"143","Feather":"14","Fade Frames":"20","Volume Source":"bgm"}},
 {"name":"NP_AutoSave","status":true,"description":"v1.1 Два чередующихся автосохранения: переходы, сон и перед боссами.","parameters":{"Enabled":"true","Slot Id":"21","Throttle Seconds":"60","Sleep Common Events":"325","Idle Frames":"20","Slot Label":"Автосохранение","Toast Text":"Автосохранение…","Option Label":"Автосохранение"}},
 {"name":"NP_QuestMarker","status":true,"description":"v1.1 Мигающий «!» над доступной целью задания; скрывается вместе с NPC.","parameters":{"Enabled":"true","Option Label":"Метки заданий","Color":"#ffe040","Font Size":"34"}},
 {"name":"NP_FastBattle","status":true,"description":"v1.0 Быстрый бой (опция): короче паузы, без кубиков, лог боя листается сам.","parameters":{"Enabled":"false","Option Label":"Быстрый бой","Battle Switch":"14","Wait Rate":"0.25","Auto Advance Frames":"14","Hide Dice":"true","Battle Common Events":"13,14,20,31,32,33,34,35,36,37,38,335,343,345,346,349,350,351,364,365,366,367,368,380,389,392","Battle Map Event Pages":"53:9:2,53:9:4"}},
@@ -24,6 +24,7 @@
 {"name":"NP_MorningHints","status":true,"description":"[RU mod] Morning hints after a night absence","parameters":{"Chance":"60","Cooldown":"1","Delay":"45"}},
 {"name":"NP_QuestHints","status":true,"description":"[RU mod] Quest journal: where to go + tab counts","parameters":{}},
 {"name":"NP_QuestTabs","status":true,"description":"[RU mod] Quest journal tabs: Story / Side / Completed","parameters":{}},
+{"name":"NP_StoryHint","status":true,"description":"v1.0 Подсказка «Что дальше» на вкладке «Сюжет»: следующий шаг основной истории и конец контента 0.80j.","parameters":{}},
 {"name":"NP_AudioBalance","status":true,"description":"[RU mod] Loudness balance (EBU R128) + ambience for silent maps, scene and mod-mechanic sounds","parameters":{}},
 {"name":"NP_UIColors","status":true,"description":"[RU mod] Unified colour scheme: quests, inventory, shop, logs. Option «Цветное оформление»","parameters":{}},
 {"name":"NP_LogToggle","status":true,"description":"[RU mod] Map log: auto-hide in dialogue + collapse tab (L/D)","parameters":{"Hotkey":"76","Take Over D":"true","Restore Delay":"24"}},

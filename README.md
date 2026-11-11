@@ -38,8 +38,8 @@ This copy adds files. It does not update files that are already there. If Window
 1. Extract the whole ZIP into a normal folder. Do not work inside the ZIP window.
 2. Open the game’s `www\js\plugins.js` in Notepad. Press Ctrl+F and search for `NP_`. If Notepad finds it, close Notepad without saving. Stop. Use a separate clean copy of the game.
 3. In that same `js` folder, look for `plugins.js.manual-bak`. If that file is already there, stop. Do not replace it. It is the older backup. Use a separate clean copy.
-4. Copy `plugins.js` and name the copy `plugins.js.manual-bak`. Putting that copy back later turns the new plugins off in the list. It does not delete the scripts, pictures, and sounds you add below (44 scripts and 102 other files). Those files stay in `www`. This is not a full return of the folder to how it was.
-5. In the extracted pack, open `plugins`. In the search box type `*.js` and press Enter. Select all 44 files (only files, not folders). Copy them. Paste into the game’s `www\js\plugins`.
+4. Copy `plugins.js` and name the copy `plugins.js.manual-bak`. Putting that copy back later turns the new plugins off in the list. It does not delete the scripts, pictures, and sounds you add below (45 scripts and 102 other files). Those files stay in `www`. This is not a full return of the folder to how it was.
+5. In the extracted pack, open `plugins`. In the search box type `*.js` and press Enter. Select all 45 files (only files, not folders). Copy them. Paste into the game’s `www\js\plugins`.
 6. Pictures and sounds. For each folder below, open its `assets` folder. Select everything inside `assets` (`img`, `movies`, or `audio`). Copy. Paste into the game’s `www` (the folder that already contains `img` and `audio`). If Windows asks to merge folders, click **Yes**. If it asks to replace a file, click **Skip** and stop.
    - `plugins\NP_AudioBalance\assets`
    - `plugins\NP_ClothDamage\assets`
@@ -110,6 +110,7 @@ Categories are for browsing only. **Load order is separate** — see `install/pl
 - [NP_QuestMarker](plugins/NP_QuestMarker/) — Blinking «!» on the current quest target (or the exit to it).
 - [NP_QuestHints](plugins/NP_QuestHints/) — Quest detail line «Where to go: …» when known.
 - [NP_QuestTabs](plugins/NP_QuestTabs/) — Journal tabs: Story / Side / Completed.
+- [NP_StoryHint](plugins/NP_StoryHint/) — Pinned «What's next» on the Story tab; says where 0.80j ends.
 - [NP_YarizoQuest](plugins/NP_YarizoQuest/) — Quest tracks where Yarizo is and places the marker.
 - [NP_SouthGateQuest](plugins/NP_SouthGateQuest/) — From guild rank 2: 200 G delivery at the southern checkpoint.
 - [NP_MorningHints](plugins/NP_MorningHints/) — After a night away, the hero notices something small next map.

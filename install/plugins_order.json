@@ -27,6 +27,7 @@
     "NP_MorningHints",
     "NP_QuestHints",
     "NP_QuestTabs",
+    "NP_StoryHint",
     "NP_AudioBalance",
     "NP_UIColors",
     "NP_LogToggle",
@@ -378,6 +379,11 @@
         "showCounts": "true"
       },
       "status": true
+    },
+    "NP_StoryHint": {
+      "description": "v1.0 Подсказка «Что дальше» на вкладке «Сюжет»: следующий шаг основной истории и конец контента 0.80j.",
+      "parameters": {},
+      "status": true
     }
   },
   "categories": [
@@ -437,6 +443,7 @@
         "NP_QuestMarker",
         "NP_QuestHints",
         "NP_QuestTabs",
+        "NP_StoryHint",
         "NP_YarizoQuest",
         "NP_SouthGateQuest",
         "NP_MorningHints",

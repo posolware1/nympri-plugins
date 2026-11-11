@@ -1,0 +1,214 @@
+[
+  {
+    "id": "end_080j_poison",
+    "condition": "$gameVariables.value(923) >= 28"
+  },
+  {
+    "id": "end_080j_iris",
+    "condition": "$gameVariables.value(932) >= 4"
+  },
+  {
+    "id": "end_080j_daddy",
+    "condition": "$gameVariables.value(915) >= 14"
+  },
+  {
+    "id": "pp_slum_attack",
+    "condition": "$gameVariables.value(923) >= 20 && $gameVariables.value(923) < 28"
+  },
+  {
+    "id": "pp_seer",
+    "condition": "$gameVariables.value(923) >= 18 && $gameVariables.value(923) < 20"
+  },
+  {
+    "id": "pp_castle",
+    "condition": "$gameVariables.value(923) >= 16 && $gameVariables.value(923) < 18"
+  },
+  {
+    "id": "pp_report_capital",
+    "condition": "$gameVariables.value(923) >= 15 && $gameVariables.value(923) < 16"
+  },
+  {
+    "id": "pp_ruins",
+    "condition": "$gameVariables.value(923) >= 5 && $gameVariables.value(923) < 15"
+  },
+  {
+    "id": "pp_go_ruins",
+    "condition": "$gameVariables.value(923) >= 3 && $gameVariables.value(923) < 5"
+  },
+  {
+    "id": "pp_slums_info",
+    "condition": "$gameVariables.value(923) >= 1 && $gameVariables.value(923) < 3"
+  },
+  {
+    "id": "ts_report",
+    "condition": "$gameVariables.value(922) >= 5 && $gameVariables.value(922) < 99"
+  },
+  {
+    "id": "ts_hospitaller",
+    "condition": "$gameVariables.value(922) >= 4 && $gameVariables.value(922) < 5"
+  },
+  {
+    "id": "ts_guild",
+    "condition": "$gameVariables.value(922) >= 3 && $gameVariables.value(922) < 4"
+  },
+  {
+    "id": "ts_town",
+    "condition": "$gameVariables.value(922) >= 2 && $gameVariables.value(922) < 3"
+  },
+  {
+    "id": "ts_forest",
+    "condition": "$gameVariables.value(922) >= 1 && $gameVariables.value(922) < 2"
+  },
+  {
+    "id": "after_exam_south",
+    "condition": "$gameSwitches.value(300) == true && $gameVariables.value(922) == 0 && $gameVariables.value(923) == 0 && $gameVariables.value(913) == 0"
+  },
+  {
+    "id": "exam_quiet",
+    "condition": "$gameSwitches.value(300) == true && $gameSwitches.value(301) == false"
+  },
+  {
+    "id": "exam_sage",
+    "condition": "$gameSwitches.value(299) == true && $gameSwitches.value(300) == false"
+  },
+  {
+    "id": "exam_voice",
+    "condition": "$gameSwitches.value(298) == true && $gameSwitches.value(299) == false"
+  },
+  {
+    "id": "exam_forest",
+    "condition": "$gameSwitches.value(295) == true && $gameSwitches.value(298) == false"
+  },
+  {
+    "id": "exam_depart",
+    "condition": "$gameSwitches.value(292) == true && $gameSwitches.value(295) == false"
+  },
+  {
+    "id": "ch2_after_ch1",
+    "condition": "$gameVariables.value(911) >= 99 && $gameSwitches.value(292) == false && $gameSwitches.value(299) == false"
+  },
+  {
+    "id": "church_guild_finale",
+    "condition": "$gameVariables.value(911) >= 6 && $gameVariables.value(911) < 99"
+  },
+  {
+    "id": "church_boss",
+    "condition": "$gameVariables.value(911) >= 5 && $gameVariables.value(911) < 6"
+  },
+  {
+    "id": "church_inside",
+    "condition": "$gameVariables.value(911) >= 4 && $gameVariables.value(911) < 5"
+  },
+  {
+    "id": "church_entry",
+    "condition": "$gameVariables.value(911) >= 2 && $gameVariables.value(911) < 4"
+  },
+  {
+    "id": "church_michael",
+    "condition": "$gameVariables.value(911) >= 1 && $gameVariables.value(911) < 2"
+  },
+  {
+    "id": "supply_escort",
+    "condition": "$gameVariables.value(910) >= 6 && $gameVariables.value(910) < 99"
+  },
+  {
+    "id": "supply_cave",
+    "condition": "$gameVariables.value(910) >= 5 && $gameVariables.value(910) < 6"
+  },
+  {
+    "id": "supply_girl",
+    "condition": "$gameVariables.value(910) >= 4 && $gameVariables.value(910) < 5"
+  },
+  {
+    "id": "supply_deliver",
+    "condition": "$gameVariables.value(910) >= 3 && $gameVariables.value(910) < 4"
+  },
+  {
+    "id": "supply_pickup",
+    "condition": "$gameVariables.value(910) >= 1 && $gameVariables.value(910) < 3"
+  },
+  {
+    "id": "cult_inn",
+    "condition": "$gameVariables.value(908) >= 21 && $gameVariables.value(908) < 99"
+  },
+  {
+    "id": "cult_under",
+    "condition": "$gameVariables.value(908) >= 13 && $gameVariables.value(908) < 21"
+  },
+  {
+    "id": "cult_rooms",
+    "condition": "$gameVariables.value(908) >= 11 && $gameVariables.value(908) < 13"
+  },
+  {
+    "id": "cult_temple",
+    "condition": "$gameVariables.value(908) >= 3 && $gameVariables.value(908) < 11"
+  },
+  {
+    "id": "cult_meet",
+    "condition": "$gameVariables.value(908) >= 1 && $gameVariables.value(908) < 3"
+  },
+  {
+    "id": "goblin_village",
+    "condition": "$gameVariables.value(906) >= 27 && $gameVariables.value(906) < 99"
+  },
+  {
+    "id": "goblin_nest",
+    "condition": "$gameVariables.value(906) >= 2 && $gameVariables.value(906) < 27"
+  },
+  {
+    "id": "goblin_start",
+    "condition": "$gameVariables.value(906) >= 1 && $gameVariables.value(906) < 2"
+  },
+  {
+    "id": "prayer_report",
+    "condition": "$gameVariables.value(905) >= 7 && $gameVariables.value(905) < 99"
+  },
+  {
+    "id": "prayer_room",
+    "condition": "$gameVariables.value(905) >= 3 && $gameVariables.value(905) < 7"
+  },
+  {
+    "id": "prayer_deeper",
+    "condition": "$gameVariables.value(905) >= 2 && $gameVariables.value(905) < 3"
+  },
+  {
+    "id": "prayer_client",
+    "condition": "$gameVariables.value(905) >= 1 && $gameVariables.value(905) < 2"
+  },
+  {
+    "id": "train_do",
+    "condition": "$gameVariables.value(904) >= 3 && $gameVariables.value(904) < 99"
+  },
+  {
+    "id": "train_ready",
+    "condition": "$gameVariables.value(904) == 2 && $gameVariables.value(322) >= 10"
+  },
+  {
+    "id": "train_fame",
+    "condition": "$gameVariables.value(904) >= 1 && $gameVariables.value(904) <= 2 && $gameVariables.value(322) < 10"
+  },
+  {
+    "id": "sewer_report",
+    "condition": "$gameVariables.value(903) >= 5 && $gameVariables.value(903) < 99"
+  },
+  {
+    "id": "sewer_drain",
+    "condition": "$gameVariables.value(903) >= 2 && $gameVariables.value(903) < 5"
+  },
+  {
+    "id": "sewer_accept",
+    "condition": "$gameVariables.value(903) >= 1 && $gameVariables.value(903) < 2"
+  },
+  {
+    "id": "arrive_guild",
+    "condition": "$gameVariables.value(902) >= 99 && $gameVariables.value(903) == 0"
+  },
+  {
+    "id": "ruins_out",
+    "condition": "$gameVariables.value(902) >= 4 && $gameVariables.value(902) < 99"
+  },
+  {
+    "id": "ruins_room",
+    "condition": "$gameVariables.value(902) >= 1 && $gameVariables.value(902) < 4"
+  }
+]

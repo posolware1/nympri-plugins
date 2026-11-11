@@ -2,6 +2,7 @@
 # NP_Language is inserted right after MEO_Util_Node; the rest append at the end;
 # NP_OptionsCategories stays last.
 NP_Language
+NP_OriginalBugFix
 NP_VideoPortrait
 NP_AutoSave
 NP_QuestMarker

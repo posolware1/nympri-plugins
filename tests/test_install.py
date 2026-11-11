@@ -42,7 +42,7 @@ def apply_documented_paste(text: str, after: str, tail: str) -> str:
 
 
 def copy_manual_files(www: Path, skip_existing: bool) -> None:
-    """Explorer steps: copy the 46 scripts, then each assets folder into www, skipping existing files."""
+    """Explorer steps: copy the 47 scripts, then each assets folder into www, skipping existing files."""
     dest = www / "js" / "plugins"
     dest.mkdir(parents=True, exist_ok=True)
     for js in (ROOT / "plugins").glob("NP_*/*.js"):
@@ -108,7 +108,7 @@ class InstallTests(unittest.TestCase):
         self.assertEqual(names[-1], "NP_OptionsCategories")
         self.assertEqual(len(names), len(set(names)))
         self.assertEqual(install.order_errors(names, self.meta["load_order"], self.managed), [])
-        self.assertEqual(sum(1 for name in names if name.startswith("NP_")), 46)
+        self.assertEqual(sum(1 for name in names if name.startswith("NP_")), 47)
         # original parameter survived the rewrite
         yep = next(obj for obj in install.parse_plugins(text) if obj["name"] == "YEP_ItemCore")
         self.assertEqual(yep["parameters"]["keep"], "YEP_ItemCore")
@@ -159,7 +159,7 @@ class InstallTests(unittest.TestCase):
         path = self.write_js(["Community_Basic", "MEO_Util_Node"])
         code = install.main([str(self.www)])
         self.assertEqual(code, 0)
-        self.assertEqual(len(list((self.www / "js" / "plugins").glob("NP_*.js"))), 46)
+        self.assertEqual(len(list((self.www / "js" / "plugins").glob("NP_*.js"))), 47)
         self.assertEqual(install.missing_assets(self.www), [])
         self.assertEqual(install.cc0_errors(self.www), [])
         crackle = self.www / "audio" / "bgs" / "NP_Campfire_Crackle.ogg"

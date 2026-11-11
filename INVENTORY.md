@@ -30,6 +30,7 @@ Staged under `plugin_assets_for_repo/plugins/<Plugin>/assets/` for push into
 - **NP_AudioBalance** — Volume routing only; does not ship audio files (uses existing BGM/BGS/SE).
 - **NP_TitleVolume** — Config UI only; no assets.
 - **NP_Language** — Language switch. No shipped art.
+- **NP_OriginalBugFix** — Replaces crashing original scripts when their text still matches. No shipped art.
 - **NP_AutoSave** — Autosave. No shipped art.
 - **NP_QuestMarker** — Quest target marker drawn in code. No shipped art.
 - **NP_FastBattle** — Shorter battle waits. No shipped art.

@@ -82,7 +82,7 @@ var NP_OptionsCategories = window.NP_OptionsCategories = {};
         npFastBattle: 'battle', npBattleSpeed2: 'battle', npAutoBattle: 'battle', npBattleAuto: 'battle',
         npClothDamage: 'battle', npSuperAttackAuto: 'battle', npSuperAuto: 'battle', npQteAuto: 'battle', npSuperAttack: 'battle',
         npStress: 'mech', npCampSkills: 'mech', npCampTalk: 'mech', npOutfitTalk: 'mech',
-        npSaveAnywhere: 'mech', npAutoSave: 'mech', npMorningHints: 'mech',
+        npSaveAnywhere: 'mech', npAutoSave: 'mech', npMorningHints: 'mech', npOriginalBugFix: 'misc',
         npTitlePopup: 'ui', npTitleProgress: 'ui', npShopCompare: 'ui', npQuestHints: 'ui', npQuestMarkers: 'ui',
         npSoftlockFix: 'mech', npStoryHint: 'ui',
         npLogCollapsed: 'ui', npLogAutoHide: 'ui', npCompactMenu: 'ui', npUIColors: 'ui',
@@ -93,6 +93,7 @@ var NP_OptionsCategories = window.NP_OptionsCategories = {};
     // Folder name -> options symbol, or null when that plugin adds no options row.
     C.PLUGIN_INDEX = {
         NP_Language: 'npLanguage',
+        NP_OriginalBugFix: 'npOriginalBugFix',
         NP_VideoPortrait: null,
         NP_AutoSave: 'npAutoSave',
         NP_QuestMarker: 'npQuestMarkers',

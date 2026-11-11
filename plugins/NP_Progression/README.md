@@ -44,7 +44,7 @@ Not counted, on purpose: repeatable hunts past those few extra clears; quest 301
 
 Quest **301010 “The Immortal”** is open again at rank 3 or more. Its chain already runs on registered maps, from the sister in the crossroad village through the vampire castle and the doctor’s lab back to the guild. The journal reward was empty. Other rank-3 jobs pay 150 to 500 silver: the four Titan hunts pay 200, the kidnapped villagers pay 150, the orc general and the dryad honey pay 300, and the smith pays 500. 301010 is a long chain, so it receives **300** silver, the same amount as those longer jobs, not the short 200 hunts and not the 500 smith.
 
-Quest **301011** stays locked. Its scenes sit on maps 406, 407, 432, and 433, which are not in the map list. Its release check becomes a condition that never happens.
+Quest **301011** is not in the quest list at all, so there is nothing to lock. Its scenes sit on maps 406, 407, 432, and 433, which are not in the map list, so those transfers stay blocked.
 
 The guild agent on camp map 288 (event 16) is back to the original check, variable 9 at least 3. The plugin does not change that branch.
 

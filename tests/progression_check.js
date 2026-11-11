@@ -49,7 +49,7 @@ assert.strictEqual(P.openRankChoice('\\v[64] if(v[9] >= 2)'), '\\v[64] if(v[9] >
 
 // Real Map013 ev12 shapes from the 0.80j validation log.
 const guildList = [
-    { code: 102, indent: 0, parameters: [['話', '\\v[64] if(v[1]>9999)'], 0, 0, 2, 0] },
+    { code: 102, indent: 0, parameters: [['\\v[61] if(v[1]>9999)', '\\v[64] if(v[1]>9999)'], 0, 0, 2, 0] },
     { code: 402, indent: 0, parameters: [1, 'rank'] },
     { code: 111, indent: 1, parameters: [1, 9, 0, 2, 0] },
     { code: 122, indent: 2, parameters: [54, 54, 0, 0, 150] },
@@ -70,8 +70,9 @@ guild.events[12] = { pages: [{ list: guildList }] };
 const guildHits = P.patchMap(guild, 13);
 assert.strictEqual(guildHits.rankChoice, 1);
 assert.strictEqual(guildHits.rankFame, 1);
-assert.strictEqual(guildList[0].parameters[0][0], '話');
+assert.strictEqual(guildList[0].parameters[0][0], '\\v[61] if(v[1]>9999)');
 assert.strictEqual(guildList[0].parameters[0][1], '\\v[64] if(v[9] >= 2)');
+assert.strictEqual(P.rankChoicePending(guildList), false);
 assert.deepStrictEqual(guildList[3].parameters, [54, 54, 0, 0, 60]);
 assert.deepStrictEqual(guildList[4].parameters, [1, 322, 1, 54, 1]);
 assert.deepStrictEqual(guildList[5].parameters, [887, 1, 0, 1]);
@@ -204,18 +205,16 @@ assert.strictEqual(enemies[906][26], 'G:80:100');
 
 const quests = {
     301010: { release_conds: '$v[9] >= 3', rewards: [] },
-    301011: { release_conds: '$v[9] >= 3', rewards: [] },
     201003: { release_conds: '$v[9] >= 2', rewards: [[100, 0]] }
 };
 const questHits = P.patchQuests(quests);
 assert.strictEqual(questHits.reward, 'granted');
-assert.strictEqual(questHits.lock, 'locked');
 assert.strictEqual(quests[301010].release_conds, '$v[9] >= 3');
 assert.strictEqual(quests[301010].rewards.length, 1);
 assert.strictEqual(quests[301010].rewards[0][0], 300);
 assert.strictEqual(quests[301010].rewards[0][1], 0);
-assert.strictEqual(quests[301011].release_conds, '$v[1] > 9999');
 assert.deepStrictEqual(quests[201003].rewards, [[100, 0]]);
+assert.ok(P.PATCH_NAMES.indexOf('quest301011Lock') < 0);
 
 const totals = {
     rankChoice: guildHits.rankChoice,
@@ -228,8 +227,7 @@ const totals = {
     hardLeather: tierHits.hardLeather,
     portPrices: portHits.portPrices,
     drops: dbHits.drops,
-    quest301010Reward: 1,
-    quest301011Lock: 1
+    quest301010Reward: 1
 };
 P.PATCH_NAMES.forEach(function(name) {
     assert.ok(totals[name] > 0, name + ' applied 0 times');
@@ -249,7 +247,9 @@ assert.strictEqual(P.patchMap(tierShop, 18).hardLeather, 0);
 assert.strictEqual(P.patchDatabases(armors, weapons, enemies).prices, 0);
 assert.strictEqual(P.patchDatabases(armors, weapons, enemies).drops, 0);
 assert.strictEqual(P.patchQuests(quests).reward, 'already');
-assert.strictEqual(P.patchQuests(quests).lock, 'already');
+assert.strictEqual(again.rankChoice, 0);
+assert.strictEqual(P.rankChoicePending(guildList), false);
+assert.strictEqual(guildList[0].parameters[0][0], '\\v[61] if(v[1]>9999)');
 assert.strictEqual(P.warnings.length, 0, 'second pass warned: ' + P.warnings.join('\n'));
 
 P.warned = {};

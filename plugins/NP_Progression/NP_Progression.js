@@ -19,7 +19,8 @@ var NP_L = window.NP_L || function(r) { return r; };
  * строка меню — «\\v[64] if(v[1]>9999)», а порог — команда «V54 = 150»
  * при ранге 2, затем «V322 >= V54». Плагин не пишет V8, V9, V912 и V922.
  * Квест 301010 открыт при ранге 3 и получает 300 серебра.
- * Квест 301011 остаётся закрытым. Агент лагеря 288 снова на V9 >= 3.
+ * Строки 301011 в журнале нет: его карты не в списке карт.
+ * Агент лагеря 288 снова на V9 >= 3.
  * Правки применяются к уже загруженным данным карты и общих событий.
  * Файлы игры на диске не меняются. Повтор ничего не меняет.
  * Пункт «Прогрессия середины игры» / "Midgame progression", категория
@@ -65,7 +66,7 @@ var NP_Progression = NP_Progression || {};
         { kind: 1, id: 42, from: 5200, to: 3600 }
     ];
     $.DROPS = { 112: 'G:30:60', 905: 'G:80:100', 906: 'G:80:100' };
-    $.PATCH_NAMES = ['rankChoice', 'rankFame', 'shop', 'examNote', 'spawns', 'ruinsNote', 'prices', 'hardLeather', 'portPrices', 'drops', 'quest301010Reward', 'quest301011Lock'];
+    $.PATCH_NAMES = ['rankChoice', 'rankFame', 'shop', 'examNote', 'spawns', 'ruinsNote', 'prices', 'hardLeather', 'portPrices', 'drops', 'quest301010Reward'];
     $.hits = {};
     $.warnings = [];
     $.warned = {};
@@ -193,8 +194,15 @@ var NP_Progression = NP_Progression || {};
         return result;
     };
     $.rankChoicePending = function(list) {
-        var text = choiceText(list);
-        return /\\v\[\s*64\s*\]/.test(text) && /v\[\s*1\s*\]\s*>\s*9999/.test(text);
+        var pending = false;
+        (list || []).forEach(function(cmd) {
+            if (!cmd || cmd.code !== 102 || !cmd.parameters || !Array.isArray(cmd.parameters[0])) return;
+            cmd.parameters[0].forEach(function(choice) {
+                var line = String(choice);
+                if (/\\v\[\s*64\s*\]/.test(line) && /v\[\s*1\s*\]\s*>\s*9999/.test(line)) pending = true;
+            });
+        });
+        return pending;
     };
     $.rankFamePending = function(list, threshold) {
         var rank2 = false;
@@ -438,14 +446,6 @@ var NP_Progression = NP_Progression || {};
         setField(quest, 'rewards', [[300, 0]]);
         return 'granted';
     };
-    $.lockFalseImmortal = function(table) {
-        var quest = table && table[301011];
-        if (!quest) return 'missing';
-        var cond = String(quest.release_conds || '');
-        if (/\$v\[\s*1\s*\]\s*>\s*9999/.test(cond)) return 'already';
-        setField(quest, 'release_conds', '$v[1] > 9999');
-        return 'locked';
-    };
     function eachPage(map, fn) {
         (map && map.events || []).forEach(function(ev) {
             if (!ev || !ev.pages) return;
@@ -533,10 +533,8 @@ var NP_Progression = NP_Progression || {};
     $.patchQuests = function(table) {
         if (!$.isEnabled()) return 'off';
         var reward = $.grantImmortalReward(table);
-        var lock = $.lockFalseImmortal(table);
         $.record('quest301010Reward', reward === 'granted' ? 1 : 0, reward === 'missing');
-        $.record('quest301011Lock', lock === 'locked' ? 1 : 0, lock === 'missing' || (table && table[301011] && !/\$v\[\s*1\s*\]\s*>\s*9999/.test(String(table[301011].release_conds || ''))));
-        return { reward: reward, lock: lock };
+        return { reward: reward };
     };
     $.patchDatabases = function(armors, weapons, enemies) {
         if (!$.isEnabled()) return { prices: 0, drops: 0 };

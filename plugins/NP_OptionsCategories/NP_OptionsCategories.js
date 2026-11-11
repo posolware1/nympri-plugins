@@ -93,6 +93,7 @@ var NP_OptionsCategories = window.NP_OptionsCategories = {};
     // Folder name -> options symbol, or null when that plugin adds no options row.
     C.PLUGIN_INDEX = {
         NP_Language: 'npLanguage',
+        NP_OriginalBugFix: 'npOriginalBugFix',
         NP_VideoPortrait: null,
         NP_AutoSave: 'npAutoSave',
         NP_QuestMarker: 'npQuestMarkers',

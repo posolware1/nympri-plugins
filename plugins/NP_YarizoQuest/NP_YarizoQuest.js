@@ -2,30 +2,40 @@
 // NP_YarizoQuest.js  (RU mod)
 //=============================================================================
 /*:
- * @plugindesc v1.1 Задание «Наёмник из таверны»: где встретить и нанять Яризо (журнал + метки).
+ * @plugindesc v1.2 Задание «Наёмник из таверны»: где встретить и нанять Яризо (журнал + метки).
  * @author RU mod
  *
  * @help
  * Задание в журнале (QuestList.csv, $quest_id=201090, переменная 3570).
  * Если строки 201090 ещё нет (чистый 0.80j), плагин добавляет только её в памяти
  * из своего RU/EN текста. Уже существующую строку не перезаписывает.
- * Не меняет события Яризо: только следит за его переключателями
- * (S290 встреча, S291 спасён, S2040 уведён матросами, S643 контракт,
- * S503 погиб) и концом разговоров M13 ev45 (наём) / M171 ev67 (выкуп).
+ * Файл карты не подменяет. На карте 171 в рантайме поправляет две проверки:
+ * страница 5 события 1 не перекрывает встречу, пока ранг ≥2 и S290 выключен
+ * (кроме S301 — тогда страница 5 остаётся как в оригинале); спрайты
+ * событий 29–31 видны при ранге ≥2, а не только при ранге ровно 2.
+ * После встречи (S290) страница 5 снова обычная.
+ * Следит за переключателями (S290 встреча, S291 спасён, S2040 уведён
+ * матросами, S643 контракт, S503 погиб) и концом разговоров M13 ev45 (наём)
+ * / M171 ev67 (выкуп). События 67 в чистой карте 0.80j нет, плагин его не
+ * добавляет: этапы 4–5 только если S2040 уже включён. Провал сцены в
+ * оригинале ставит S503.
  *
  * Этапы (V3570):
- *   1 слух: идти в Портовый город (ранг ★2)       метка: путь к M171
+ *   1 слух: Портовый город, сцена сама при входе, западный край у воды
  *   2 спасён: нанять в Гильдии авантюристов       метка: M13 ev45
  *   3 отказали в гильдии: он всё ещё ждёт там     метка: M13 ev45
- *   4 уведён матросами: выкуп 200 серебра (завтра) метка: M171 ev67
- *   5 выкуп отложен: всё ещё на причале           метка: M171 ev67
+ *   4 уведён матросами (только если S2040 уже ON) метка: M171 ev67
+ *   5 выкуп отложен (только если S2040 уже ON)    метка: M171 ev67
  *  99 нанят (S643) — выполнено
  * 100 наём невозможен (погиб/пропал до найма) — закрыто
  * Задание не стартует: при S643, S503, в режиме галереи (S5).
  * Старт — реплика NPC при входе в столицу (M96/M8/M13/M14) или в порту.
+ * Если актор 21 уже в отряде или S643 уже ON, а флаги встречи не сходятся,
+ * и S2040 выключен: S290 ON, S291 ON, S643 ON, S503 OFF, V3570 = 99.
+ * V8 и V911 не меняются.
  * Строки RU/EN: NP_YarizoQuest.TEXT (EN, если NP_Language.isEn()).
- * v1.1: «Место», «Описание» и «Подробности» в журнале зависят от этапа —
- * показывается только то, что игрок уже знает (без расписанной наперёд цепочки).
+ * v1.1: «Место», «Описание» и «Подробности» зависят от этапа.
+ * v1.2: встреча в порту не глушится сюжетом V911; журнал этапа 1 говорит, где он.
  */
 var Imported = Imported || {};
 Imported.NP_YarizoQuest = true;
@@ -35,8 +45,11 @@ var NP_YarizoQuest = NP_YarizoQuest || {};
     'use strict';
     var VAR = 3570, QID = 201090;
     var S_GALLERY = 5, S_MET = 290, S_SAVED = 291, S_TAKEN = 2040, S_HIRED = 643, S_DEAD = 503;
-    var V_RANK = 9;
+    var S_QUIET = 301;
+    var V_RANK = 9, V_COMPANION = 8, V_STORY = 911;
+    var ACTOR = 21;
     var PORT = 171, GUILD = 13, GUILD_EV = 45, RANSOM_EV = 67;
+    var MEET_EV = 1, SPRITE_EVS = [29, 30, 31], SPRITE_X = 2, SPRITE_Y = 17;
     var HUBS = [96, 8, 13, 14];
     $.VAR = VAR; $.QID = QID;
 
@@ -64,13 +77,14 @@ var NP_YarizoQuest = NP_YarizoQuest || {};
                         'Хотите его вызволить — приходите на причал со следующего дня.',
                         'За 200 серебра, думаю, отдадут.'],
             // journal fields per stage (only what the player already knows)
-            place: {1: 'Портовый город', 2: 'Гильдия авантюристов', 3: 'Гильдия авантюристов',
+            place: {1: 'Портовый город, западный край у воды', 2: 'Гильдия авантюристов', 3: 'Гильдия авантюристов',
                     4: 'Портовый город, причал', 5: 'Портовый город, причал',
                     99: 'Таверна столицы', 100: '—'},
-            short: {1: 'Найти бродягу с копьём.', 2: 'Взять бродягу в отряд.', 3: 'Взять бродягу в отряд.',
+            short: {1: 'Найти бродягу с копьём в порту.', 2: 'Взять бродягу в отряд.', 3: 'Взять бродягу в отряд.',
                     4: 'Вызволить бродягу у матросов.', 5: 'Вызволить бродягу у матросов.',
                     99: 'Бродяга с копьём принят в отряд.', 100: 'Бродягу с копьём уже не нанять.'},
-            detail: {1: 'В столице болтают о бродяге-безбилетнике с копьём: его сняли с корабля в Портовом городе, и теперь он рвётся в авантюристы.',
+            step1: 'Бродяга с копьём — в Портовом городе, у воды на западном краю. Сцена начинается сама, как только вы входите в порт. \\c[6][Портовый город]\\c[0]',
+            detail: {1: 'Он в Портовом городе, у воды на западном краю. Сцена начинается сама, как только вы входите в порт.',
                      2: 'В порту вы выручили бродягу с копьём. Теперь он ищет отряд в Гильдии авантюристов.\nВ одиночку (без напарницы) его там не застать.',
                      3: 'Вы отказали бродяге, но он не теряет надежды и ждёт в Гильдии авантюристов.\nВ одиночку (без напарницы) его там не застать.',
                      4: 'Матросы увели бродягу с копьём отрабатывать долг. Говорят, за выкуп его отпустят.',
@@ -99,13 +113,14 @@ var NP_YarizoQuest = NP_YarizoQuest || {};
             portTaken: ['Tough luck for the old man... The sailors will make him haul crates until he pays his debt.',
                         'If you want him out, come to the pier from tomorrow on.',
                         'They\'ll probably let him go for 200 silver.'],
-            place: {1: 'Port Town', 2: 'Adventurers\' Guild', 3: 'Adventurers\' Guild',
+            place: {1: 'Port Town, west edge by the water', 2: 'Adventurers\' Guild', 3: 'Adventurers\' Guild',
                     4: 'Port Town, pier', 5: 'Port Town, pier',
                     99: 'Capital tavern', 100: '—'},
-            short: {1: 'Find the tramp with the spear.', 2: 'Take the tramp into your party.', 3: 'Take the tramp into your party.',
+            short: {1: 'Find the tramp with the spear in the port.', 2: 'Take the tramp into your party.', 3: 'Take the tramp into your party.',
                     4: 'Get the tramp away from the sailors.', 5: 'Get the tramp away from the sailors.',
                     99: 'The tramp with the spear joined your party.', 100: 'The tramp with the spear can no longer be hired.'},
-            detail: {1: 'People in the capital gossip about a stowaway tramp with a spear: he was dragged off a ship at the Port Town and now he is eager to become an adventurer.',
+            step1: 'The tramp with the spear is in Port Town, at the west edge by the water. The scene starts automatically when you enter the port. \\c[6][Port Town]\\c[0]',
+            detail: {1: 'He is in Port Town, at the west edge by the water. The scene starts automatically when you enter the port.',
                      2: 'You got the tramp with the spear out of trouble at the port. Now he is looking for a party at the Adventurers\' Guild.\nWhile you travel solo (without your partner) he will not be there.',
                      3: 'You turned the tramp down, but he has not given up and keeps waiting at the Adventurers\' Guild.\nWhile you travel solo (without your partner) he will not be there.',
                      4: 'The sailors took the tramp with the spear away to work off his debt. Word is they will let him go for a ransom.',
@@ -145,6 +160,7 @@ var NP_YarizoQuest = NP_YarizoQuest || {};
     // Silent state sync (after events / on map entry).
     $.sync = function() {
         if (!$gameVariables || !$gameSwitches || gallery()) return;
+        if ($.repairRecruit()) return;
         var st = $.stage();
         if (st <= 0 || st >= 99) return;
         if (sw(S_HIRED)) { $.setStage(99, 'logDone'); return; }
@@ -188,6 +204,92 @@ var NP_YarizoQuest = NP_YarizoQuest || {};
         if (sw(S_TAKEN)) return {key: 'cityTaken', stage: 4};
         if (!sw(S_MET) && $gameVariables.value(V_RANK) >= 2) return {key: 'rumor', stage: 1};
         return null;
+    };
+
+    // ------------------------------------------------------------------ port meeting (runtime, map file stays vanilla)
+    // Event 1 page 5 is the empty "story idle" page: action button, variable 911 >= 4.
+    // RPG Maker uses the last matching page, so that page covers the meeting (page 3)
+    // once chapter 1 has reached V911 >= 4. While he has not been met and rank is
+    // at least 2, keep page 5 inactive so page 3 (or the first-visit page that sets
+    // the visit switch) can run. Switch 301 is Quiet's arrival: leave page 5 as it
+    // is so that scene is not replaced by the meeting. After S290, page 5 is vanilla.
+    $.isStoryIdlePage = function(page) {
+        if (!page || page.trigger !== 0 || !page.conditions) return false;
+        var c = page.conditions;
+        return !!(c.variableValid && Number(c.variableId) === V_STORY && Number(c.variableValue) === 4);
+    };
+    $.portIdlePageActive = function(vanillaOk, waiting, quietArrived) {
+        if (!vanillaOk) return false;
+        if (waiting && !quietArrived) return false;
+        return true;
+    };
+    $.pageComment = function(page) {
+        if (!page || !page.list) return '';
+        var parts = [];
+        page.list.forEach(function(cmd) {
+            if (!cmd) return;
+            if (cmd.code === 108 || cmd.code === 408 || cmd.code === 355 || cmd.code === 655) {
+                parts.push(String((cmd.parameters && cmd.parameters[0]) || ''));
+            }
+        });
+        return parts.join('\n');
+    };
+    // Sprite pages on events 29–31 are a KNS check for rank exactly 2.
+    $.isRankTwoSpritePage = function(page) {
+        var text = $.pageComment(page);
+        if (!/\$gameVariables\.value\(\s*9\s*\)\s*===?\s*2\b/.test(text)) return false;
+        if (/\$gameSwitches/.test(text)) return false;
+        if (/\$gameVariables\.value\(\s*(?!9\b)\d+/.test(text)) return false;
+        return true;
+    };
+    $.spritePageActive = function(vanillaOk, met, rank) {
+        if (vanillaOk) return true;
+        if (met) return false;
+        return rank >= 2;
+    };
+    $.meetingWaiting = function() {
+        return !sw(S_MET) && $gameVariables.value(V_RANK) >= 2;
+    };
+    $.applyPortPage = function(eventId, page, vanillaOk) {
+        if (gallery() || !$gameVariables || !$gameSwitches) return vanillaOk;
+        if (Number(eventId) === MEET_EV && $.isStoryIdlePage(page)) {
+            return $.portIdlePageActive(!!vanillaOk, $.meetingWaiting(), sw(S_QUIET));
+        }
+        if (SPRITE_EVS.indexOf(Number(eventId)) >= 0 && $.isRankTwoSpritePage(page)) {
+            return $.spritePageActive(!!vanillaOk, sw(S_MET), $gameVariables.value(V_RANK));
+        }
+        return vanillaOk;
+    };
+
+    function actorWithPlayer() {
+        var party = $gameParty;
+        if (!party || !Array.isArray(party._actors)) return false;
+        return party._actors.indexOf(ACTOR) >= 0;
+    }
+    // MTool (or any add) put him in the party, or the contract is on, but the
+    // meeting flags do not match a finished hire. Only the clear case: not the
+    // sailor-taken switch, and not a death with no contract and no party slot.
+    $.recruitNeedsRepair = function() {
+        if (!$gameSwitches || !$gameVariables || gallery()) return false;
+        var inParty = actorWithPlayer();
+        var hired = sw(S_HIRED);
+        if (!inParty && !hired) return false;
+        if (sw(S_TAKEN)) return false;
+        if (sw(S_DEAD) && !inParty && !hired) return false;
+        return !(sw(S_MET) && sw(S_SAVED) && hired && !sw(S_DEAD) && $.stage() === 99);
+    };
+    $.repairRecruit = function() {
+        if (!$.recruitNeedsRepair()) return false;
+        var keepCompanion = $gameVariables.value(V_COMPANION);
+        var keepStory = $gameVariables.value(V_STORY);
+        $gameSwitches.setValue(S_MET, true);
+        $gameSwitches.setValue(S_SAVED, true);
+        $gameSwitches.setValue(S_HIRED, true);
+        $gameSwitches.setValue(S_DEAD, false);
+        if ($.stage() !== 99) $.setStage(99, $.stage() > 0 ? 'logDone' : null);
+        if ($gameVariables.value(V_COMPANION) !== keepCompanion) $gameVariables.setValue(V_COMPANION, keepCompanion);
+        if ($gameVariables.value(V_STORY) !== keepStory) $gameVariables.setValue(V_STORY, keepStory);
+        return true;
     };
     $.mentionList = function(mapId, m) {
         var list = [{code: 101, indent: 0, parameters: ['', 0, 0, 2]},
@@ -238,22 +340,35 @@ var NP_YarizoQuest = NP_YarizoQuest || {};
         } catch (e) { console.error(e); }
     };
 
+    if (typeof Game_Event !== 'undefined') {
+        var _meets = Game_Event.prototype.meetsConditions;
+        Game_Event.prototype.meetsConditions = function(page) {
+            var ok = _meets.apply(this, arguments);
+            try {
+                var mapId = this._mapId || ($gameMap && $gameMap.mapId());
+                if (Number(mapId) !== PORT) return ok;
+                return $.applyPortPage(this._eventId, page, ok);
+            } catch (e) { console.error(e); }
+            return ok;
+        };
+    }
+
     var ROW = {
   "ru": {
     "title": "Наёмник из таверны",
-    "map_name": "Портовый город",
+    "map_name": "Портовый город, западный край у воды",
     "client": "Слухи",
-    "progress": "$progress1=Говорят, в Портовом городе ошивается бродяга с копьём и ищет отряд. Загляните туда (нужен ранг 2 звезды). \\c[6][Портовый город]\\c[0]\n$progress2=Бродягу выручили. Он ищет отряд в Гильдии авантюристов — поговорите с ним и возьмите в спутники. \\c[6][Гильдия авантюристов, столица]\\c[0]\n$progress3=Вы ему отказали, но он всё ещё ждёт в Гильдии авантюристов. Передумаете — подойдите к нему снова. \\c[6][Гильдия авантюристов, столица]\\c[0]\n$progress4=Матросы увели бродягу отрабатывать долг. Его можно выкупить на причале за 200 серебра (со следующего дня). \\c[6][Портовый город, причал]\\c[0]\n$progress5=Выкуп не состоялся — бродяга всё ещё на причале. Принесите 200 серебра. \\c[6][Портовый город, причал]\\c[0]\n$progress99=Выполнено! \\c[2]Яризо\\c[0] — ваш спутник. Теперь он ждёт в таверне столицы.\n$progress100=Задание закрыто: бродяга погиб или пропал — нанять его больше нельзя.",
-    "short_desc": "Найти бродягу с копьём.",
-    "long_desc": "В столице болтают о бродяге-безбилетнике с копьём: его сняли с корабля в Портовом городе, и теперь он рвётся в авантюристы."
+    "progress": "$progress1=Бродяга с копьём — в Портовом городе, у воды на западном краю. Сцена начинается сама, как только вы входите в порт. \\c[6][Портовый город]\\c[0]\n$progress2=Бродягу выручили. Он ищет отряд в Гильдии авантюристов — поговорите с ним и возьмите в спутники. \\c[6][Гильдия авантюристов, столица]\\c[0]\n$progress3=Вы ему отказали, но он всё ещё ждёт в Гильдии авантюристов. Передумаете — подойдите к нему снова. \\c[6][Гильдия авантюристов, столица]\\c[0]\n$progress4=Матросы увели бродягу отрабатывать долг. Его можно выкупить на причале за 200 серебра (со следующего дня). \\c[6][Портовый город, причал]\\c[0]\n$progress5=Выкуп не состоялся — бродяга всё ещё на причале. Принесите 200 серебра. \\c[6][Портовый город, причал]\\c[0]\n$progress99=Выполнено! \\c[2]Яризо\\c[0] — ваш спутник. Теперь он ждёт в таверне столицы.\n$progress100=Задание закрыто: бродяга погиб или пропал — нанять его больше нельзя.",
+    "short_desc": "Найти бродягу с копьём в порту.",
+    "long_desc": "Он в Портовом городе, у воды на западном краю. Сцена начинается сама, как только вы входите в порт."
   },
   "en": {
     "title": "The Tavern Mercenary",
-    "map_name": "Port Town",
+    "map_name": "Port Town, west edge by the water",
     "client": "Rumors",
-    "progress": "$progress1=Word is a tramp with a spear is hanging around the Port Town looking for a party. Go take a look (requires 2-star rank). \\c[6][Port Town]\\c[0]\n$progress2=You got the tramp out of trouble. He is looking for a party at the Adventurers' Guild — talk to him and take him on as a companion. \\c[6][Adventurers' Guild, capital]\\c[0]\n$progress3=You turned him down, but he is still waiting at the Adventurers' Guild. If you change your mind, talk to him again. \\c[6][Adventurers' Guild, capital]\\c[0]\n$progress4=The sailors took the tramp away to work off his debt. You can buy him out at the pier for 200 silver (from the next day). \\c[6][Port Town, pier]\\c[0]\n$progress5=The ransom has not been paid — the tramp is still at the pier. Bring 200 silver. \\c[6][Port Town, pier]\\c[0]\n$progress99=Complete! \\c[2]Yarizo\\c[0] is your companion. He now waits at the capital's tavern.\n$progress100=Quest closed: the tramp is dead or gone — he can no longer be hired.",
-    "short_desc": "Find the tramp with the spear.",
-    "long_desc": "People in the capital gossip about a stowaway tramp with a spear: he was dragged off a ship at the Port Town and now he is eager to become an adventurer."
+    "progress": "$progress1=The tramp with the spear is in Port Town, at the west edge by the water. The scene starts automatically when you enter the port. \\c[6][Port Town]\\c[0]\n$progress2=You got the tramp out of trouble. He is looking for a party at the Adventurers' Guild — talk to him and take him on as a companion. \\c[6][Adventurers' Guild, capital]\\c[0]\n$progress3=You turned him down, but he is still waiting at the Adventurers' Guild. If you change your mind, talk to him again. \\c[6][Adventurers' Guild, capital]\\c[0]\n$progress4=The sailors took the tramp away to work off his debt. You can buy him out at the pier for 200 silver (from the next day). \\c[6][Port Town, pier]\\c[0]\n$progress5=The ransom has not been paid — the tramp is still at the pier. Bring 200 silver. \\c[6][Port Town, pier]\\c[0]\n$progress99=Complete! \\c[2]Yarizo\\c[0] is your companion. He now waits at the capital's tavern.\n$progress100=Quest closed: the tramp is dead or gone — he can no longer be hired.",
+    "short_desc": "Find the tramp with the spear in the port.",
+    "long_desc": "He is in Port Town, at the west edge by the water. The scene starts automatically when you enter the port."
   }
 };
 
@@ -332,7 +447,10 @@ var NP_YarizoQuest = NP_YarizoQuest || {};
         if (!h.length || h[h.length - 1] !== st) h.push(st);
         var out = [];
         h.forEach(function(s) {
-            if (s > 0 && s < 99 && text[s] !== undefined) out.push([1, text[s]]);
+            if (s > 0 && s < 99 && (text[s] !== undefined || s === 1)) {
+                var line = s === 1 && $.t('step1') ? $.t('step1') : text[s];
+                if (line) out.push([1, line]);
+            }
         });
         if (st >= 99) out.push([st, text[st] !== undefined ? text[st] : (text[99] || '')]);
         if (!out.length) out.push([1, text[1] || '']);
@@ -355,7 +473,7 @@ var NP_YarizoQuest = NP_YarizoQuest || {};
     var QM = window.NP_QuestMarker;
     if (QM && Array.isArray(QM.TARGETS)) {
         QM.TARGETS.push(
-            [VAR, 1, 1, {m: PORT}],
+            [VAR, 1, 1, {m: PORT, x: SPRITE_X, y: SPRITE_Y}],
             [VAR, 2, 3, {m: GUILD, e: GUILD_EV}],
             [VAR, 4, 5, {m: PORT, e: RANSOM_EV}]
         );

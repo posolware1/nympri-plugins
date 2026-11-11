@@ -3,7 +3,7 @@ var NP_L = window.NP_L || function(r) { return r; };
 // NP_OriginalBugFix.js
 //=============================================================================
 /*:
- * @plugindesc v1.0 Чинит краши скриптов оригинала 0.80j и переходы на отсутствующие карты.
+ * @plugindesc v1.1 Чинит краши скриптов оригинала 0.80j и переходы на отсутствующие карты.
  * @author RU mod
  *
  * @help
@@ -11,7 +11,11 @@ var NP_L = window.NP_L || function(r) { return r; };
  * Совпало — подставляет исправленный скрипт. Не совпало — пропускает и пишет
  * одну строку в консоль. Текст реплик (команды показа текста) не меняется.
  * Переход на карту, которой нет в списке карт, не выполняется: короткое
- * сообщение и возврат на карту мира. Новые карты не создаются.
+ * сообщение и возврат на карту мира. Два перехода с булавки ведут в уже
+ * существующий город: Горгода (V334 = 3) на карту 217 (5, 37), хижина
+ * (V334 = 37, карта 157 клетка 21,85) на карту 155 (16, 21). Направление
+ * и затухание берутся из исходной команды. Остальные пропуски остаются
+ * блоком. Сжатие карты 251 не меняется. Новые карты не создаются.
  * Целиком патчи CommonEventPatch_202609 и _202610 не включаются.
  * Точечно: в выборе ночлега en(v[133]) заменяется на en(s[133]).
  * Сейв не переписывается. Настройка «Исправления оригинала» включена по умолчанию.
@@ -189,10 +193,30 @@ var NP_OriginalBugFix = NP_OriginalBugFix || {};
     $.mapExists = function(mapInfos, id) {
         return !!(mapInfos && id && mapInfos[id]);
     };
+    $.PATCH_NAMES = ['gorgoda', 'hut'];
+    $.redirectFor = function(params, v334, mapInfos) {
+        if (!params || params[0] !== 0) return null;
+        var v = Number(v334 || 0);
+        if (params[1] === 385 && v === 3 && $.mapExists(mapInfos, 217)) {
+            return { id: 'gorgoda', map: 217, x: 5, y: 37 };
+        }
+        if (params[1] === 157 && params[2] === 21 && params[3] === 85 && v === 37 && $.mapExists(mapInfos, 155)) {
+            return { id: 'hut', map: 155, x: 16, y: 21 };
+        }
+        return null;
+    };
     $.transferPlan = function(params, ctx) {
         ctx = ctx || {};
         if (!params) return null;
         if (params[0] === 0 && params[1] === 251 && params[2] === 29 && params[3] === 40) return { type: 'clamp', y: 39 };
+        var v334 = ctx.readVar ? ctx.readVar(334) : 0;
+        var redirect = $.redirectFor(params, v334, ctx.mapInfos);
+        if (redirect) {
+            return {
+                type: 'redirect', id: redirect.id, map: redirect.map, x: redirect.x, y: redirect.y,
+                d: params[4], fade: params[5]
+            };
+        }
         if (params[0] === 0 && params[1] === 157 && params[2] === 21 && params[3] === 85) {
             return { type: 'block', dest: $.worldDest(ctx.mapInfos, ctx.wmts) };
         }
@@ -202,6 +226,20 @@ var NP_OriginalBugFix = NP_OriginalBugFix || {};
         else return null;
         if (!$.mapExists(ctx.mapInfos, mapId)) return { type: 'block', dest: $.worldDest(ctx.mapInfos, ctx.wmts) };
         return null;
+    };
+    $.sampleHits = function(mapInfos) {
+        var hits = { gorgoda: 0, hut: 0 };
+        var g = $.transferPlan([0, 385, 23, 18, 2, 0], {
+            mapInfos: mapInfos,
+            readVar: function(id) { return id === 334 ? 3 : 0; }
+        });
+        var h = $.transferPlan([0, 157, 21, 85, 4, 1], {
+            mapInfos: mapInfos,
+            readVar: function(id) { return id === 334 ? 37 : 0; }
+        });
+        if (g && g.type === 'redirect' && g.map === 217 && g.x === 5 && g.y === 37 && g.d === 2 && g.fade === 0) hits.gorgoda = 1;
+        if (h && h.type === 'redirect' && h.map === 155 && h.x === 16 && h.y === 21 && h.d === 4 && h.fade === 1) hits.hut = 1;
+        return hits;
     };
     $.blockedText = function() {
         var en = false;
@@ -264,6 +302,12 @@ var NP_OriginalBugFix = NP_OriginalBugFix || {};
             } catch (e) { plan = null; }
             if (!plan) return _201.apply(this, arguments);
             if (plan.type === 'clamp') {
+                this._params[3] = plan.y;
+                return _201.apply(this, arguments);
+            }
+            if (plan.type === 'redirect') {
+                this._params[1] = plan.map;
+                this._params[2] = plan.x;
                 this._params[3] = plan.y;
                 return _201.apply(this, arguments);
             }

@@ -6,7 +6,7 @@ Patches for original script crashes and missing-map transfers.
 
 ## Version
 
-1.0 (`@plugindesc`).
+1.1 (`@plugindesc`).
 
 ## Purpose
 
@@ -14,7 +14,9 @@ When a map or the common-event list loads, each known command is checked against
 
 Show Text commands are never edited, so a language pack can still replace dialogue.
 
-A transfer to a map that is not in the map list is blocked. The player sees a short line and returns to the world map (map 3 at `$WMTS`, or map 96 at 7,18 if that point is missing). Map 251’s one-cell-too-far transfer is clamped to 29,39. Map 157’s transfer to 21,85 is blocked the same way. No new maps are added.
+A transfer to a map that is not in the map list is blocked. The player sees a short line and returns to the world map (map 3 at `$WMTS`, or map 96 at 7,18 if that point is missing). Map 251’s one-cell-too-far transfer is clamped to 29,39.
+
+Two world-map pins now land in the town that already exists. Gorgoda (`V334` is 3, the missing map 385) goes to map 217 at 5,37. That point is inside the 120×50 street, and neighboring maps already use it as an entrance. The abandoned hut (`V334` is 37, map 157 at 21,85, which is off that empty map) goes to map 155 at 16,21. That point is inside the 35×30 hut. The direction and the fade stay whatever the original command already had. Any other missing map, including map 157 when variable 334 is not 37, stays blocked. No new maps are added.
 
 The inn choice `en(v[133])` becomes `en(s[133])` when that exact text is still there. The full common-event patch files from 202609 and 202610 are not applied, and `CommonEventPatchList` is left empty.
 

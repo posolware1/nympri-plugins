@@ -3,7 +3,7 @@ var NP_L = window.NP_L || function(r) { return r; };
 // NP_Progression.js
 //=============================================================================
 /*:
- * @plugindesc v1.0 Ранг 3 гильдии по достижимой славе и правки середины игры 0.80j.
+ * @plugindesc v1.1 Ранг 3, квест 301010, цены витрины и дроп золота середины 0.80j.
  * @author RU mod
  *
  * @param Rank3Fame
@@ -18,7 +18,8 @@ var NP_L = window.NP_L || function(r) { return r; };
  * ветке берётся из параметра (по умолчанию 60, не 150). В данных 0.80j
  * строка меню — «\\v[64] if(v[1]>9999)», а порог — команда «V54 = 150»
  * при ранге 2, затем «V322 >= V54». Плагин не пишет V8, V9, V912 и V922.
- * Квест 301010 и агент лагеря 288 остаются закрытыми.
+ * Квест 301010 открыт при ранге 3 и получает 300 серебра.
+ * Квест 301011 остаётся закрытым. Агент лагеря 288 снова на V9 >= 3.
  * Правки применяются к уже загруженным данным карты и общих событий.
  * Файлы игры на диске не меняются. Повтор ничего не меняет.
  * Пункт «Прогрессия середины игры» / "Midgame progression", категория
@@ -54,7 +55,17 @@ var NP_Progression = NP_Progression || {};
     $.RUINS_DLV = 3;
     // Map029 event 37 is named enemyID:304. Events 1 and 8 are the rat and the spider.
     $.THIEF_SLOT = 37;
-    $.PATCH_NAMES = ['rankChoice', 'rankFame', 'shop', 'examNote', 'spawns', 'ruinsNote', 'camp', 'quest301010'];
+    // kind 1 weapon, 2 armor. from === to means the price stays and only the shop tier moves.
+    $.PRICE_ROWS = [
+        { kind: 2, id: 11, from: 4500, to: 3000 },
+        { kind: 2, id: 4, from: 2800, to: 2800 },
+        { kind: 2, id: 12, from: 9800, to: 6000 },
+        { kind: 2, id: 48, from: 6200, to: 4000 },
+        { kind: 2, id: 5, from: 9800, to: 4500 },
+        { kind: 1, id: 42, from: 5200, to: 3600 }
+    ];
+    $.DROPS = { 112: 'G:30:60', 905: 'G:80:100', 906: 'G:80:100' };
+    $.PATCH_NAMES = ['rankChoice', 'rankFame', 'shop', 'examNote', 'spawns', 'ruinsNote', 'prices', 'hardLeather', 'portPrices', 'drops', 'quest301010Reward', 'quest301011Lock'];
     $.hits = {};
     $.warnings = [];
     $.warned = {};
@@ -276,52 +287,164 @@ var NP_Progression = NP_Progression || {};
         return result;
     };
 
-    $.lockImmortal = function(table) {
-        if (!table) return 'missing';
-        var quest = table[301010];
-        if (!quest) return 'missing';
-        var cond = String(quest.release_conds || '');
-        if (!/\$v\[\s*9\s*\]/.test(cond) && !/value\(\s*9\s*\)/.test(cond)) return 'shape';
-        if (/\$v\[\s*9\s*\]\s*>=\s*99/.test(cond)) return 'already';
+    function setField(obj, key, value) {
         try {
-            Object.defineProperty(quest, 'release_conds', {
-                configurable: true, enumerable: true, writable: true, value: '$v[9] >= 99'
-            });
-        } catch (e) {
-            quest.release_conds = '$v[9] >= 99';
+            Object.defineProperty(obj, key, { configurable: true, enumerable: true, writable: true, value: value });
+        } catch (e) { obj[key] = value; }
+    }
+    function findShops(list) {
+        var shops = [];
+        var stack = [];
+        var shop = null;
+        for (var i = 0; i < list.length; i++) {
+            var cmd = list[i];
+            if (!cmd) continue;
+            var indent = cmd.indent || 0;
+            while (stack.length && stack[stack.length - 1].indent >= indent) stack.pop();
+            if (cmd.code === 111) stack.push({ indent: indent, parameters: cmd.parameters });
+            if (cmd.code === 302) {
+                shop = { start: i, end: i, parent: stack.length ? stack[stack.length - 1].parameters : null, goods: [i] };
+                shops.push(shop);
+                continue;
+            }
+            if (shop && cmd.code === 605) { shop.end = i; shop.goods.push(i); continue; }
+            shop = null;
         }
-        return 'locked';
+        return shops;
+    }
+    function isRankGate(params, value) {
+        return !!(params && params[0] === 1 && params[1] === 9 && params[2] === 0 && params[3] === value && params[4] === 1);
+    }
+    function isHardLeatherGood(params) {
+        return !!(params && params[0] === 2 && params[1] === 4);
+    }
+    $.moveHardLeather = function(list) {
+        if (!list) return 0;
+        var shops = findShops(list);
+        var fromIndex = -1;
+        var rank2 = null;
+        shops.forEach(function(shop) {
+            if (isRankGate(shop.parent, 2)) rank2 = shop;
+            if (isRankGate(shop.parent, 3)) {
+                shop.goods.forEach(function(index) {
+                    if (isHardLeatherGood(list[index].parameters)) fromIndex = index;
+                });
+            }
+        });
+        if (!rank2 || fromIndex < 0) return 0;
+        if (rank2.goods.some(function(index) { return isHardLeatherGood(list[index].parameters); })) return 0;
+        var params = list[fromIndex].parameters.slice();
+        var indent = list[rank2.start].indent || 0;
+        list.splice(fromIndex, 1);
+        rank2 = null;
+        findShops(list).forEach(function(shop) { if (isRankGate(shop.parent, 2)) rank2 = shop; });
+        if (!rank2) return 0;
+        list.splice(rank2.end + 1, 0, { code: 605, indent: indent, parameters: params });
+        return 1;
     };
-    $.lockCampEvent = function(event) {
+    $.hardLeatherPending = function(list) {
+        var shops = findShops(list || []);
+        var in3 = false;
+        var in2 = false;
+        shops.forEach(function(shop) {
+            shop.goods.forEach(function(index) {
+                if (!isHardLeatherGood(list[index].parameters)) return;
+                if (isRankGate(shop.parent, 3)) in3 = true;
+                if (isRankGate(shop.parent, 2)) in2 = true;
+            });
+        });
+        return in3 && !in2;
+    };
+    $.patchListedPrices = function(list) {
         var n = 0;
-        if (!event || !event.pages) return n;
-        event.pages.forEach(function(page) {
-            if (!page || !page.list) return;
-            page.list.forEach(function(cmd) {
-                var p = cmd && cmd.code === 111 && cmd.parameters;
-                // 0.80j: variable 9 >= constant 3. Not a page condition and not a script.
-                if (p && p[0] === 1 && p[1] === 9 && p[2] === 0 && p[3] === 3 && p[4] === 1) {
-                    p[3] = 99;
+        (list || []).forEach(function(cmd) {
+            if (!cmd || (cmd.code !== 302 && cmd.code !== 605) || !cmd.parameters || cmd.parameters[2] !== 1) return;
+            var p = cmd.parameters;
+            $.PRICE_ROWS.forEach(function(row) {
+                if (row.from === row.to) return;
+                if (p[0] === row.kind && p[1] === row.id && p[3] === row.from) {
+                    p[3] = row.to;
                     n++;
                 }
             });
         });
         return n;
     };
-    $.campPending = function(event) {
-        var open = false;
-        var locked = false;
-        if (!event || !event.pages) return true;
-        event.pages.forEach(function(page) {
-            (page && page.list || []).forEach(function(cmd) {
-                var p = cmd && cmd.code === 111 && cmd.parameters;
-                if (!p || p[0] !== 1 || p[1] !== 9 || p[2] !== 0 || p[4] !== 1) return;
-                if (p[3] === 3) open = true;
-                if (p[3] === 99) locked = true;
-            });
+    $.patchPortPrices = function(list) {
+        var n = 0;
+        (list || []).forEach(function(cmd) {
+            if (!cmd || (cmd.code !== 302 && cmd.code !== 605) || !cmd.parameters || cmd.parameters[2] !== 1) return;
+            if (cmd.parameters[3] === 200) { cmd.parameters[3] = 120; n++; }
+            else if (cmd.parameters[3] === 2000) { cmd.parameters[3] = 1000; n++; }
         });
-        if (open) return true;
-        return !locked;
+        return n;
+    };
+    $.portPending = function(list) {
+        return (list || []).some(function(cmd) {
+            return cmd && (cmd.code === 302 || cmd.code === 605) && cmd.parameters && cmd.parameters[2] === 1 &&
+                (cmd.parameters[3] === 200 || cmd.parameters[3] === 2000);
+        });
+    };
+    $.patchPrices = function(armors, weapons) {
+        var n = 0;
+        $.PRICE_ROWS.forEach(function(row) {
+            if (row.from === row.to) return;
+            var db = row.kind === 1 ? weapons : armors;
+            var item = db && db[row.id];
+            if (item && item.price === row.from) { item.price = row.to; n++; }
+        });
+        return n;
+    };
+    $.pricesPending = function(armors, weapons) {
+        return $.PRICE_ROWS.some(function(row) {
+            if (row.from === row.to) return false;
+            var db = row.kind === 1 ? weapons : armors;
+            var item = db && db[row.id];
+            return !!(item && item.price === row.from);
+        });
+    };
+    $.patchDrops = function(table) {
+        var n = 0;
+        if (!table) return n;
+        Object.keys($.DROPS).forEach(function(id) {
+            var row = table[id];
+            if (!row) return;
+            var token = $.DROPS[id];
+            var cur = String(row[26] == null ? '' : row[26]);
+            if (cur.indexOf(token) >= 0) return;
+            row[26] = cur ? cur + ',' + token : token;
+            n++;
+        });
+        return n;
+    };
+    $.dropsPending = function(table) {
+        if (!table) return false;
+        return Object.keys($.DROPS).some(function(id) {
+            var row = table[id];
+            if (!row) return true;
+            return String(row[26] == null ? '' : row[26]).indexOf($.DROPS[id]) < 0;
+        });
+    };
+    function hasGold(quest, amount) {
+        var rows = quest && quest.rewards;
+        if (!rows || !rows.length) return false;
+        return rows.some(function(row) { return row && row[0] === amount && row[1] === 0; });
+    }
+    $.grantImmortalReward = function(table) {
+        var quest = table && table[301010];
+        if (!quest) return 'missing';
+        if (String(quest.release_conds || '') === '$v[9] >= 99') setField(quest, 'release_conds', '$v[9] >= 3');
+        if (hasGold(quest, 300)) return 'already';
+        setField(quest, 'rewards', [[300, 0]]);
+        return 'granted';
+    };
+    $.lockFalseImmortal = function(table) {
+        var quest = table && table[301011];
+        if (!quest) return 'missing';
+        var cond = String(quest.release_conds || '');
+        if (/\$v\[\s*1\s*\]\s*>\s*9999/.test(cond)) return 'already';
+        setField(quest, 'release_conds', '$v[1] > 9999');
+        return 'locked';
     };
     function eachPage(map, fn) {
         (map && map.events || []).forEach(function(ev) {
@@ -345,7 +468,8 @@ var NP_Progression = NP_Progression || {};
 
     $.patchMap = function(map, mapId) {
         var result = {
-            rankChoice: 0, rankFame: 0, shop: 0, examNote: 0, spawns: 0, ruinsNote: 0, camp: 0
+            rankChoice: 0, rankFame: 0, shop: 0, examNote: 0, spawns: 0, ruinsNote: 0,
+            hardLeather: 0, shopPrices: 0, portPrices: 0
         };
         if (!$.isEnabled() || !map) return result;
         var id = Number(mapId);
@@ -366,8 +490,15 @@ var NP_Progression = NP_Progression || {};
             $.record('rankFame', result.rankFame, famePending || !sawFame);
         }
         if (id === 18) {
-            eachPage(map, function(list) { result.shop += $.patchShopList(list); });
+            eachPage(map, function(list) {
+                result.shop += $.patchShopList(list);
+                result.hardLeather += $.moveHardLeather(list);
+                result.shopPrices += $.patchListedPrices(list);
+            });
             $.record('shop', result.shop, $.shopPending(map));
+            var leatherLeft = false;
+            eachPage(map, function(list) { if ($.hardLeatherPending(list)) leatherLeft = true; });
+            $.record('hardLeather', result.hardLeather, leatherLeft);
         }
         if ($.EXAM_MAPS[id]) {
             var nextNote = $.ensureDungeonNote(map.note, $.EXAM_DLV);
@@ -383,9 +514,16 @@ var NP_Progression = NP_Progression || {};
             if (ruins !== map.note) { map.note = ruins; result.ruinsNote = 1; }
             $.record('ruinsNote', result.ruinsNote, !/ダンジョンレベル\s*[:：]\s*\d+/.test(String(map.note || '')));
         }
-        if (id === 288 && map.events && map.events[16]) {
-            result.camp = $.lockCampEvent(map.events[16]);
-            $.record('camp', result.camp, $.campPending(map.events[16]));
+        if (id === 176) {
+            eachPage(map, function(list) { result.portPrices += $.patchPortPrices(list); });
+            var portLeft = false;
+            eachPage(map, function(list) { if ($.portPending(list)) portLeft = true; });
+            $.record('portPrices', result.portPrices, portLeft);
+        }
+        if (id === 288 && map.events && map.events[33]) {
+            (map.events[33].pages || []).forEach(function(page) {
+                if (page && page.list) result.shopPrices += $.patchListedPrices(page.list);
+            });
         }
         return result;
     };
@@ -394,11 +532,19 @@ var NP_Progression = NP_Progression || {};
     };
     $.patchQuests = function(table) {
         if (!$.isEnabled()) return 'off';
-        var state = $.lockImmortal(table);
-        var hits = state === 'locked' ? 1 : 0;
-        var cond = table && table[301010] ? String(table[301010].release_conds || '') : '';
-        $.record('quest301010', hits, /\$v\[\s*9\s*\]\s*>=\s*3\b/.test(cond));
-        return state;
+        var reward = $.grantImmortalReward(table);
+        var lock = $.lockFalseImmortal(table);
+        $.record('quest301010Reward', reward === 'granted' ? 1 : 0, reward === 'missing');
+        $.record('quest301011Lock', lock === 'locked' ? 1 : 0, lock === 'missing' || (table && table[301011] && !/\$v\[\s*1\s*\]\s*>\s*9999/.test(String(table[301011].release_conds || ''))));
+        return { reward: reward, lock: lock };
+    };
+    $.patchDatabases = function(armors, weapons, enemies) {
+        if (!$.isEnabled()) return { prices: 0, drops: 0 };
+        var prices = $.patchPrices(armors, weapons);
+        var drops = $.patchDrops(enemies);
+        if (armors || weapons) $.record('prices', prices, $.pricesPending(armors, weapons));
+        if (enemies) $.record('drops', drops, $.dropsPending(enemies));
+        return { prices: prices, drops: drops };
     };
 
     if (typeof ConfigManager !== 'undefined') {
@@ -441,8 +587,17 @@ var NP_Progression = NP_Progression || {};
         var _db = DataManager.isDatabaseLoaded;
         DataManager.isDatabaseLoaded = function() {
             var ok = _db.apply(this, arguments);
-            if (ok && typeof $csvQuestList !== 'undefined') {
-                try { $.patchQuests($csvQuestList); } catch (e) {}
+            if (ok) {
+                try {
+                    $.patchDatabases(
+                        (typeof $dataArmors !== 'undefined') ? $dataArmors : null,
+                        (typeof $dataWeapons !== 'undefined') ? $dataWeapons : null,
+                        (typeof $csv_EnemyData !== 'undefined') ? $csv_EnemyData : null
+                    );
+                } catch (e) {}
+                if (typeof $csvQuestList !== 'undefined') {
+                    try { $.patchQuests($csvQuestList); } catch (e2) {}
+                }
             }
             return ok;
         };
@@ -453,6 +608,11 @@ var NP_Progression = NP_Progression || {};
             var loaded = _csvLoad.apply(this, arguments);
             try {
                 if (typeof $csvQuestList !== 'undefined') $.patchQuests($csvQuestList);
+                $.patchDatabases(
+                    (typeof $dataArmors !== 'undefined') ? $dataArmors : null,
+                    (typeof $dataWeapons !== 'undefined') ? $dataWeapons : null,
+                    (typeof $csv_EnemyData !== 'undefined') ? $csv_EnemyData : null
+                );
             } catch (e) {}
             return loaded;
         };

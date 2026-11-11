@@ -15,7 +15,7 @@ assert.ok(!/\bOrigin\b|cursor\.com\/codebase/.test(src));
 ['README.md', 'README.ru.md'].forEach(function(name) {
     const text = fs.readFileSync(path.join(root, 'plugins', 'NP_StoryHint', name), 'utf8');
     assert.ok(!/\bOrigin\b|cursor\.com\/codebase/.test(text), name);
-    assert.ok(text.indexOf('1.0') >= 0, name);
+    assert.ok(text.indexOf('1.1') >= 0, name);
 });
 const options = fs.readFileSync(path.join(root, 'plugins', 'NP_OptionsCategories', 'NP_OptionsCategories.js'), 'utf8');
 assert.ok(/npStoryHint:\s*'ui'/.test(options));
@@ -65,7 +65,7 @@ const journal = boot(true);
 const Q = journal.NP_StoryHint;
 assert.strictEqual(Q.installed, 'journal');
 assert.strictEqual(Q.placement(), 'journal');
-assert.strictEqual(Q.ROUTE.length, 53);
+assert.strictEqual(Q.ROUTE.length, 55);
 assert.strictEqual(Q.ROUTE[0].id, 'end_080j_poison');
 assert.strictEqual(Q.ROUTE[0].condition, '$gameVariables.value(923) >= 28');
 assert.strictEqual(JSON.stringify(Q.ROUTE.map(function(s) { return { id: s.id, condition: s.condition }; })), JSON.stringify(locked));
@@ -82,6 +82,10 @@ assert.strictEqual(step(journal, { 911: 3 }, {}).id, 'church_entry');
 assert.strictEqual(step(journal, { 911: 99 }, {}).id, 'ch2_after_ch1');
 assert.strictEqual(step(journal, {}, { 299: true }).id, 'exam_sage');
 assert.strictEqual(step(journal, { 922: 3 }, {}).id, 'ts_guild');
+assert.strictEqual(step(journal, { 9: 2, 322: 60 }, { 299: true }).id, 'rank3_apply');
+assert.strictEqual(step(journal, { 9: 3 }, { 299: true }).id, 'rank3_gear');
+assert.ok(Q.ROUTE.find(function(s) { return s.id === 'ts_forest'; }).hint_en.indexOf('60 fame') >= 0);
+assert.ok(Q.ROUTE.find(function(s) { return s.id === 'pp_go_ruins'; }).hint_ru.indexOf('фальшион') >= 0);
 assert.strictEqual(step(journal, { 923: 28, 911: 99 }, { 299: true, 300: true }).id, 'end_080j_poison');
 
 journal.NP_Language = { isEn: function() { return false; } };

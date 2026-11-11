@@ -143,6 +143,32 @@ assert.strictEqual(F.transferPlan([0, 385, 1, 1, 0, 0], ctx).type, 'block');
 assert.strictEqual(F.transferPlan([0, 385, 1, 1, 0, 0], ctx).dest.map, 3);
 assert.strictEqual(F.transferPlan([0, 385, 1, 1, 0, 0], ctx).dest.x, 4);
 assert.strictEqual(F.transferPlan([0, 157, 21, 85, 8, 0], ctx).type, 'block');
+infos[217] = { id: 217 };
+infos[155] = { id: 155 };
+const hits = F.sampleHits(infos);
+F.PATCH_NAMES.forEach(function(name) {
+    assert.ok(hits[name] > 0, name + ' applied 0 times');
+});
+const gorgoda = F.transferPlan([0, 385, 23, 18, 6, 0], {
+    mapInfos: infos, wmts: ctx.wmts, readVar: function(id) { return id === 334 ? 3 : 0; }
+});
+assert.strictEqual(gorgoda.type, 'redirect');
+assert.strictEqual(gorgoda.map, 217);
+assert.strictEqual(gorgoda.x, 5);
+assert.strictEqual(gorgoda.y, 37);
+assert.strictEqual(gorgoda.d, 6, 'original facing is kept');
+assert.strictEqual(gorgoda.fade, 0);
+const hut = F.transferPlan([0, 157, 21, 85, 8, 1], {
+    mapInfos: infos, wmts: ctx.wmts, readVar: function(id) { return id === 334 ? 37 : 0; }
+});
+assert.strictEqual(hut.type, 'redirect');
+assert.strictEqual(hut.map, 155);
+assert.strictEqual(hut.x, 16);
+assert.strictEqual(hut.y, 21);
+assert.strictEqual(hut.d, 8);
+assert.strictEqual(hut.fade, 1);
+assert.strictEqual(F.transferPlan([0, 385, 23, 18, 2, 0], ctx).type, 'block');
+assert.strictEqual(F.transferPlan([0, 398, 1, 1, 0, 0], ctx).type, 'block');
 assert.strictEqual(F.transferPlan([0, 157, 1, 1, 0, 0], ctx), null);
 const clamp = F.transferPlan([0, 251, 29, 40, 8, 0], ctx);
 assert.strictEqual(clamp.type, 'clamp');

@@ -3,7 +3,7 @@ var NP_L = window.NP_L || function(r) { return r; };
 // NP_StoryHint.js
 //=============================================================================
 /*:
- * @plugindesc v1.0 Подсказка «Что дальше»: следующий шаг основной истории и конец контента 0.80j.
+ * @plugindesc v1.1 Подсказка «Что дальше»: сюжет 0.80j, ранг 3 и витрина столицы.
  * @author RU mod
  *
  * @help
@@ -99,8 +99,8 @@ var NP_StoryHint = NP_StoryHint || {};
   {
     "id": "pp_go_ruins",
     "condition": "$gameVariables.value(923) >= 3 && $gameVariables.value(923) < 5",
-    "hint_ru": "Отправляйтесь в Кровавые руины к югу от города в пустоши.",
-    "hint_en": "Head to the Bloody Ruins, south of the wasteland town.",
+    "hint_ru": "Отправляйтесь в Кровавые руины к югу от города в пустоши. В оружейной столицы для 3-го ранга уже продают фальшион и латы.",
+    "hint_en": "Head to the Bloody Ruins, south of the wasteland town. The capital weapon shop now sells the rank-3 falchion and plate armor.",
     "map_id": 263,
     "x": 8,
     "y": 11
@@ -144,8 +144,8 @@ var NP_StoryHint = NP_StoryHint || {};
   {
     "id": "ts_town",
     "condition": "$gameVariables.value(922) >= 2 && $gameVariables.value(922) < 3",
-    "hint_ru": "Идите в город в пустоши (через Ступени Титана).",
-    "hint_en": "Head to the wasteland town (through Titan's Step).",
+    "hint_ru": "Идите в город в пустоши (через Ступени Титана). Для 3-го ранга в столичной гильдии нужна слава 60; охоты на Ступенях Титана как раз её дают.",
+    "hint_en": "Head to the wasteland town (through Titan's Step). Rank 3 at the capital guild needs 60 fame; the hunts on Titan's Step will get you there.",
     "map_id": 85,
     "x": 1,
     "y": 1
@@ -153,17 +153,35 @@ var NP_StoryHint = NP_StoryHint || {};
   {
     "id": "ts_forest",
     "condition": "$gameVariables.value(922) >= 1 && $gameVariables.value(922) < 2",
-    "hint_ru": "Пройдите через Южный лес (лес, ведущий на юг) к городу в пустоши.",
-    "hint_en": "Travel through the Forest of the South toward the wasteland town.",
+    "hint_ru": "Пройдите через Южный лес (лес, ведущий на юг) к городу в пустоши. Для 3-го ранга в столичной гильдии нужна слава 60; охоты на Ступенях Титана как раз её дают.",
+    "hint_en": "Travel through the Forest of the South toward the wasteland town. Rank 3 at the capital guild needs 60 fame; the hunts on Titan's Step will get you there.",
     "map_id": 241,
     "x": 28,
     "y": 67
   },
   {
+    "id": "rank3_gear",
+    "condition": "$gameSwitches.value(299) == true && $gameVariables.value(9) >= 3 && $gameVariables.value(922) == 0 && $gameVariables.value(923) == 0 && $gameVariables.value(913) == 0",
+    "hint_ru": "В оружейной столицы (центральный район) появилось новое снаряжение: фальшион и латы.",
+    "hint_en": "New gear is in stock at the capital weapon shop (central district): a falchion and plate armor.",
+    "map_id": 18,
+    "x": 10,
+    "y": 3
+  },
+  {
+    "id": "rank3_apply",
+    "condition": "$gameSwitches.value(299) == true && $gameVariables.value(9) == 2 && $gameVariables.value(322) >= 60 && $gameVariables.value(922) == 0 && $gameVariables.value(923) == 0 && $gameVariables.value(913) == 0",
+    "hint_ru": "Слава уже 60. В гильдии столицы Либра подайте заявку на повышение до 3-го ранга.",
+    "hint_en": "Your fame is already 60. Apply for rank 3 at the Adventurer's Guild in the royal capital of Libra.",
+    "map_id": 13,
+    "x": 11,
+    "y": 10
+  },
+  {
     "id": "after_exam_south",
     "condition": "$gameSwitches.value(300) == true && $gameVariables.value(922) == 0 && $gameVariables.value(923) == 0 && $gameVariables.value(913) == 0",
-    "hint_ru": "Разговор с мудрецом уже был. Следующий сюжетный квест в этой версии сам не начинается. Можно идти на юг: через Южный лес к городу в пустоши. Позже и эта линия оборвётся.",
-    "hint_en": "You already spoke with the sage. The next official story quest does not start in this version. You can head south: through the Forest of the South to the wasteland town. That line also stops later.",
+    "hint_ru": "Разговор с мудрецом уже был. Следующий сюжетный квест в этой версии сам не начинается. Можно идти на юг: через Южный лес к городу в пустоши. Позже и эта линия оборвётся. Когда слава дойдёт до 60, в гильдии столицы можно подать заявку на 3-й ранг.",
+    "hint_en": "You already spoke with the sage. The next official story quest does not start in this version. You can head south: through the Forest of the South to the wasteland town. That line also stops later. When your fame reaches 60, you can apply for rank 3 at the Adventurer's Guild in the capital.",
     "map_id": 241,
     "x": 28,
     "y": 67

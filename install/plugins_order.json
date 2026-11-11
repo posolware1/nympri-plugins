@@ -1,6 +1,7 @@
 {
   "load_order": [
     "NP_Language",
+    "NP_OriginalBugFix",
     "NP_VideoPortrait",
     "NP_AutoSave",
     "NP_QuestMarker",
@@ -390,6 +391,11 @@
       "description": "v1.0 Подсказка «Что дальше» на вкладке «Сюжет»: следующий шаг основной истории и конец контента 0.80j.",
       "parameters": {},
       "status": true
+    },
+    "NP_OriginalBugFix": {
+      "description": "v1.0 Чинит краши скриптов оригинала 0.80j и переходы на отсутствующие карты.",
+      "parameters": {},
+      "status": true
     }
   },
   "categories": [
@@ -478,6 +484,7 @@
       "title_en": "Misc",
       "title_ru": "Прочее",
       "plugins": [
+        "NP_OriginalBugFix",
         "NP_AutoSave"
       ]
     }

@@ -132,6 +132,7 @@ Categories are for browsing only. **Load order is separate** — see `install/pl
 ### Misc
 
 - [NP_AutoSave](plugins/NP_AutoSave/) — Autosave on map transfers, after sleep, and before bosses.
+- [NP_OriginalBugFix](plugins/NP_OriginalBugFix/) — Patches original script crashes and missing-map transfers.
 
 ## Language switch
 
